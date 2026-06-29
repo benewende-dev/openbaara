@@ -43,6 +43,25 @@ export default function CareersPage() {
     setErrorMsg("");
 
     try {
+      let cvPayload: { name: string; type: string; content: string } | null = null;
+      if (cvFile) {
+        if (cvFile.size > 5 * 1024 * 1024) {
+          setStatus("error");
+          setErrorMsg(locale === "fr" ? "Le CV dépasse 5 Mo." : "The CV exceeds 5 MB.");
+          return;
+        }
+        cvPayload = {
+          name: cvFile.name,
+          type: cvFile.type,
+          content: await new Promise<string>((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(String(reader.result).split(",")[1] || "");
+            reader.onerror = () => reject(new Error("read_error"));
+            reader.readAsDataURL(cvFile);
+          }),
+        };
+      }
+
       const res = await fetch("/api/career", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -52,7 +71,7 @@ export default function CareersPage() {
           linkedin,
           github,
           message,
-          cvFile: cvFile ? { name: cvFile.name, size: cvFile.size } : null,
+          cvFile: cvPayload,
         }),
       });
       const data = await res.json();
