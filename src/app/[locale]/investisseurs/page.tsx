@@ -1,7 +1,6 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
 import { Link } from "@/i18n/routing";
 import { AnimatedSection, AnimatedStagger, AnimatedItem } from "@/components/shared/AnimatedSection";
 import {
@@ -23,6 +22,7 @@ import {
   Building2,
   FlaskConical,
   FileText,
+  Check,
 } from "lucide-react";
 
 const highlights = [
@@ -42,8 +42,9 @@ type MoatItem = { title: string; description: string };
 const DOSSIER_MAILTO =
   "mailto:contact@openbaara.com?subject=Dossier%20investisseur%20OpenBaara";
 
-// Avancement produit (finalisation avancée, pré-lancement)
-const PROGRESS = 85;
+// Jalons d'avancement produit (l'étape « Finalisation » est en cours)
+const PROGRESS_STEPS = ["platform", "product", "finalization", "launch"] as const;
+const CURRENT_STEP = 2; // index de l'étape en cours
 
 export default function InvestorsPage() {
   const t = useTranslations("investors");
@@ -70,26 +71,65 @@ export default function InvestorsPage() {
             {t("status")}: {t("statusDescription")}
           </span>
 
-          {/* Barre de progression — avancement produit */}
-          <div className="max-w-xl mx-auto mt-10 text-left">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-semibold">{t("progressTitle")}</span>
-              <span className="text-sm font-bold text-primary">
-                {t("progressStage")} · {PROGRESS}%
-              </span>
+          {/* Feuille de route — jalons d'avancement */}
+          <div className="max-w-2xl mx-auto mt-12">
+            <div className="flex items-center justify-between mb-6">
+              <span className="text-sm font-semibold">{t("progress.title")}</span>
+              <span className="text-sm font-bold text-primary">{t("progress.advanced")}</span>
             </div>
-            <div className="h-3 rounded-full bg-surface dark:bg-[#111111] border border-border dark:border-border-dark overflow-hidden">
-              <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: `${PROGRESS}%` }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.2, ease: "easeOut" }}
-                className="h-full rounded-full bg-primary"
-              />
-            </div>
-            <div className="flex items-center justify-between mt-1.5 text-xs text-muted dark:text-muted-dark">
-              <span>{t("status")}</span>
-              <span>{t("progressLaunch")}</span>
+            <div className="flex items-start">
+              {PROGRESS_STEPS.map((key, i) => {
+                const state = i < CURRENT_STEP ? "done" : i === CURRENT_STEP ? "current" : "upcoming";
+                return (
+                  <div key={key} className="flex-1 flex flex-col items-center relative">
+                    {/* Connecteur gauche (segment i-1 → i) */}
+                    {i > 0 && (
+                      <span
+                        className={`absolute top-[13px] left-0 right-1/2 h-1 ${
+                          i <= CURRENT_STEP ? "bg-primary" : "bg-border dark:bg-border-dark"
+                        }`}
+                      />
+                    )}
+                    {/* Connecteur droit (segment i → i+1) */}
+                    {i < PROGRESS_STEPS.length - 1 && (
+                      <span
+                        className={`absolute top-[13px] left-1/2 right-0 h-1 ${
+                          i < CURRENT_STEP ? "bg-primary" : "bg-border dark:bg-border-dark"
+                        }`}
+                      />
+                    )}
+                    {/* Nœud */}
+                    <div className="relative z-10">
+                      {state === "done" ? (
+                        <div className="w-7 h-7 rounded-full bg-primary text-black flex items-center justify-center">
+                          <Check className="w-4 h-4" strokeWidth={3} />
+                        </div>
+                      ) : state === "current" ? (
+                        <div className="w-7 h-7 rounded-full bg-primary text-black flex items-center justify-center ring-4 ring-primary/20 animate-pulse-glow">
+                          <span className="w-2.5 h-2.5 rounded-full bg-black" />
+                        </div>
+                      ) : (
+                        <div className="w-7 h-7 rounded-full border-2 border-border dark:border-border-dark bg-surface dark:bg-[#111111]" />
+                      )}
+                    </div>
+                    {/* Libellés */}
+                    <span
+                      className={`mt-2.5 text-xs text-center leading-tight ${
+                        state === "upcoming"
+                          ? "text-muted dark:text-muted-dark"
+                          : state === "current"
+                          ? "text-primary font-semibold"
+                          : "font-medium"
+                      }`}
+                    >
+                      {t(`progress.steps.${key}`)}
+                    </span>
+                    <span className="mt-0.5 text-[10px] uppercase tracking-wider text-muted dark:text-muted-dark">
+                      {t(`progress.${state}`)}
+                    </span>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </AnimatedSection>

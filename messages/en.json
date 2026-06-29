@@ -170,9 +170,19 @@
     "subtitle": "OpenBaara is at the pre-launch stage. The product is in advanced finalization and entry is at an early stage.",
     "status": "Pre-launch",
     "statusDescription": "Outio, our flagship product, is in advanced finalization.",
-    "progressTitle": "Outio progress",
-    "progressStage": "Advanced finalization",
-    "progressLaunch": "Launch",
+    "progress": {
+      "title": "Product roadmap",
+      "advanced": "Advanced finalization · 85%",
+      "done": "Done",
+      "current": "In progress",
+      "upcoming": "Upcoming",
+      "steps": {
+        "platform": "Platform",
+        "product": "Outio product",
+        "finalization": "Finalization",
+        "launch": "Launch"
+      }
+    },
     "highlights": {
       "product": "Product in advanced finalization",
       "platform": "Orchestration platform operational",
