@@ -10,7 +10,7 @@ const content: { fr: LegalContent; en: LegalContent } = {
       {
         heading: "Éditeur du site",
         body: [
-          "Le présent site est édité par OpenBaara, société à responsabilité limitée (SARL) au capital de [À COMPLÉTER] FCFA.",
+          "Le présent site est édité par OpenBaara SAS (ci-après « OpenBaara »), société par actions simplifiée au capital de [À COMPLÉTER].",
           [
             "Siège social : [À COMPLÉTER], Abidjan, Côte d'Ivoire",
             "Registre du Commerce et du Crédit Mobilier (RCCM) : [À COMPLÉTER]",
@@ -61,7 +61,7 @@ const content: { fr: LegalContent; en: LegalContent } = {
       {
         heading: "Site publisher",
         body: [
-          "This website is published by OpenBaara, a limited liability company (SARL) with a share capital of [TO BE COMPLETED] FCFA.",
+          "This website is published by OpenBaara SAS (hereinafter \"OpenBaara\"), a simplified joint-stock company (SAS) with a share capital of [TO BE COMPLETED].",
           [
             "Registered office: [TO BE COMPLETED], Abidjan, Côte d'Ivoire",
             "Trade and Personal Property Credit Register (RCCM): [TO BE COMPLETED]",

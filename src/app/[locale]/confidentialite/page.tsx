@@ -12,7 +12,7 @@ const content: { fr: LegalContent; en: LegalContent } = {
       {
         heading: "Responsable du traitement",
         body: [
-          "Le responsable du traitement des données est OpenBaara (SARL), Abidjan, Côte d'Ivoire. Pour toute question, écrivez-nous à contact@openbaara.com.",
+          "Le responsable du traitement des données est OpenBaara SAS, Abidjan, Côte d'Ivoire. Pour toute question, écrivez-nous à contact@openbaara.com.",
         ],
       },
       {
@@ -86,7 +86,7 @@ const content: { fr: LegalContent; en: LegalContent } = {
       {
         heading: "Data controller",
         body: [
-          "The data controller is OpenBaara (SARL), Abidjan, Côte d'Ivoire. For any question, write to us at contact@openbaara.com.",
+          "The data controller is OpenBaara SAS, Abidjan, Côte d'Ivoire. For any question, write to us at contact@openbaara.com.",
         ],
       },
       {
