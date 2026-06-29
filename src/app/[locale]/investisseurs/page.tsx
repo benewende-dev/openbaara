@@ -197,7 +197,7 @@ export default function InvestorsPage() {
         {/* The Ask */}
         <AnimatedSection className="mb-16">
           <div className="rounded-2xl bg-surface dark:bg-[#111111] border border-border dark:border-border-dark p-8 md:p-12 text-center">
-            <h2 className="text-2xl md:text-3xl font-black mb-4">L&apos;opportunité</h2>
+            <h2 className="text-2xl md:text-3xl font-black mb-4">{t("askTitle")}</h2>
             <p className="text-muted dark:text-muted-dark max-w-2xl mx-auto leading-relaxed mb-8">{t("ask")}</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link

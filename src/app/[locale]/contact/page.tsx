@@ -174,7 +174,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="font-bold mb-1">{t("location")}</p>
-                      <p className="text-sm text-muted dark:text-muted-dark">Afrique de l&apos;Ouest · UEMOA</p>
+                      <p className="text-sm text-muted dark:text-muted-dark">{t("region")}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">

@@ -60,7 +60,7 @@ export default function AboutPage() {
 
         {/* Tech stack */}
         <AnimatedSection>
-          <h2 className="text-2xl md:text-3xl font-black text-center mb-10">Stack & Compétences</h2>
+          <h2 className="text-2xl md:text-3xl font-black text-center mb-10">{t("stackTitle")}</h2>
           <div className="space-y-8">
             {stackCategories.map((category) => (
               <div key={category}>

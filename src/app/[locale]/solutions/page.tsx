@@ -111,7 +111,7 @@ export default function SolutionsPage() {
 
         {/* Process flow */}
         <AnimatedSection className="mb-20">
-          <h2 className="text-2xl font-black text-center mb-10">Notre processus</h2>
+          <h2 className="text-2xl font-black text-center mb-10">{t("processTitle")}</h2>
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0">
             {processSteps.map((step, i) => {
               const Icon = processIcons[i];

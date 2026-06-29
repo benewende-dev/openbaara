@@ -161,7 +161,8 @@
     "longBio": "Self-taught over five years with a singular conviction: knowledge and mastery come first. Build what's needed, build to last — don't ride waves. Outio is the first tangible outcome and the starting point of a broader ambition.\n\nHis thesis: we're living through a global tech tipping point. AI is crossing from software into the physical world. Africa risks being left behind — this void must be filled. Open source changes the game: create and innovate locally, build technology transfer partnerships with open-minded partners — particularly in Asia —, and protect data through local servers.\n\nBorn in Gagnoa, western Côte d'Ivoire, of Ivorian-Burkinabè origin, based in Abidjan. This coast ↔ Sahel bridge is a strategic asset, not a biographical detail.",
     "quote": "The need is immense. We have the minds, the brains, and with the right resources, the power to drive real change. Africa must have its own applications and its own technological independence. I believe in it — and I'm going to make it happen.",
     "location": "Abidjan, Côte d'Ivoire",
-    "origin": "Ivorian-Burkinabè · Born in Gagnoa"
+    "origin": "Ivorian-Burkinabè · Born in Gagnoa",
+    "stackTitle": "Stack & Skills"
   },
   "investors": {
     "badge": "Investors",
@@ -175,6 +176,7 @@
       "sequence": "First roadmap step underway",
       "opportunity": "Entry at an early stage"
     },
+    "askTitle": "The opportunity",
     "ask": "Finance the transition from launch to first traction: go-to-market, acquisition, infrastructure.",
     "tractionPlaceholder": "Traction metrics will appear here post-launch.",
     "marketNote": "Figures to be re-sourced",
@@ -282,6 +284,7 @@
         "description": "Local infrastructure, sensitive data protected. For organizations with sovereignty constraints."
       }
     },
+    "processTitle": "Our process",
     "process": {
       "step1": "Audit",
       "step2": "Design",
@@ -461,6 +464,7 @@
     "newsletterPlaceholder": "your@email.com",
     "newsletterSubmit": "Subscribe",
     "location": "Abidjan, Côte d'Ivoire",
+    "region": "West Africa · UEMOA",
     "email": "contact@openbaara.com"
   },
   "footer": {

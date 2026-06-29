@@ -161,7 +161,8 @@
     "longBio": "Autodidacte formé pendant cinq ans avec une conviction : la connaissance et la maîtrise priment sur tout. Bâtir le nécessaire, du durable, pas surfer sur la vague. Outio est le premier aboutissement concret et le départ d'une ambition plus large.\n\nSa thèse : nous vivons un basculement technologique mondial. L'IA passe du logiciel au monde physique. L'Afrique risque d'être laissée à l'écart — il faut combler ce vide. L'open source rebat les cartes : créer et innover localement, tisser des transferts de technologie avec des partenaires ouverts — notamment asiatiques —, et protéger les données via des serveurs locaux.\n\nNé à Gagnoa, dans l'ouest de la Côte d'Ivoire, d'origine ivoiro-burkinabè, basé à Abidjan. Ce pont côte ↔ Sahel est un atout stratégique, pas un détail biographique.",
     "quote": "Le besoin est immense. Nous avons les esprits, les cerveaux et, avec les bons moyens, de quoi provoquer un vrai changement. L'Afrique doit avoir ses propres applications et son indépendance technologique. J'y crois — et je vais le faire.",
     "location": "Abidjan, Côte d'Ivoire",
-    "origin": "Ivoiro-burkinabè · Né à Gagnoa"
+    "origin": "Ivoiro-burkinabè · Né à Gagnoa",
+    "stackTitle": "Stack & Compétences"
   },
   "investors": {
     "badge": "Investisseurs",
@@ -175,6 +176,7 @@
       "sequence": "Première étape de la feuille de route engagée",
       "opportunity": "Entrée à un stade précoce"
     },
+    "askTitle": "L'opportunité",
     "ask": "Financer le passage lancement → première traction : mise en marché, acquisition, infrastructure.",
     "tractionPlaceholder": "Les métriques de traction apparaîtront ici post-lancement.",
     "marketNote": "Chiffres à re-sourcer",
@@ -282,6 +284,7 @@
         "description": "Infrastructure locale, données sensibles protégées. Pour les organisations avec des contraintes de souveraineté."
       }
     },
+    "processTitle": "Notre processus",
     "process": {
       "step1": "Audit",
       "step2": "Conception",
@@ -461,6 +464,7 @@
     "newsletterPlaceholder": "votre@email.com",
     "newsletterSubmit": "S'inscrire",
     "location": "Abidjan, Côte d'Ivoire",
+    "region": "Afrique de l'Ouest · UEMOA",
     "email": "contact@openbaara.com"
   },
   "footer": {
