@@ -165,7 +165,54 @@
     "tractionPlaceholder": "Traction metrics will appear here post-launch.",
     "marketNote": "Figures to be re-sourced",
     "ctaBookCall": "Book a call",
-    "ctaEmail": "Write to us"
+    "ctaEmail": "Write to us",
+    "thesis": {
+      "kicker": "The thesis",
+      "title": "AI value has shifted from access to assembly",
+      "body": "Raw models have become a commodity — open source, free, interchangeable. The edge is no longer the model, but the ability to assemble the right tools into a system that delivers concrete results, and to distribute it where no one else does. OpenBaara is that assembly and distribution layer, for markets global players don't serve.",
+      "quote": "The AI divide won't be between those who know how to use it, but between those who own it and those who depend on it."
+    },
+    "markets": {
+      "kicker": "Market",
+      "title": "Real markets, already sized",
+      "items": [
+        { "value": "$13.7B", "label": "AI agent orchestration market in 2026 (CAGR ~23%)", "source": "Dimension Market Research" },
+        { "value": "$46.8B", "label": "Agentic market projected for 2036, up from $6.3B in 2026", "source": "Deloitte · DMR" },
+        { "value": "$314.6M", "label": "Music streaming in Africa in 2026, toward $510M in 2027", "source": "IFPI Global Music Report 2026" }
+      ],
+      "note": "Figures from public reports (2026), dated — to be re-verified during due diligence."
+    },
+    "matrix": {
+      "kicker": "Tools × Markets",
+      "title": "Each division targets a specific market",
+      "rows": [
+        { "tool": "Outio — orchestration", "market": "Agent orchestration & SME automation", "detail": "A product already built, not a concept" },
+        { "tool": "Creative studios & distribution", "market": "African music and creators", "detail": "White-label distribution to platforms, local payouts" },
+        { "tool": "B2B Solutions", "market": "SMEs poorly served by foreign tools", "detail": "Localization: language, payment, pricing, connectivity" },
+        { "tool": "Baarali Labs", "market": "R&D frontier, beyond the wrapper", "detail": "Imitate → understand → discover" }
+      ]
+    },
+    "moat": {
+      "kicker": "Defensibility",
+      "title": "The moat isn't the model — it's the assembly",
+      "items": [
+        { "title": "Cost-arbitrage gateway", "description": "The model tier is picked automatically based on real cost: margin preserved, accessible pricing, anti-failure fallback invisible to the user." },
+        { "title": "Multi-agent orchestration", "description": "Parallel sub-agents, double-checking and synthesis — riding the hottest market wave." },
+        { "title": "Localized rails", "description": "Mobile Money / CinetPay payments and white-label music distribution: a barrier foreign players don't cross." },
+        { "title": "Data sovereignty", "description": "Execution possible on local models (Ollama): no data leakage, trust for the local market and enterprises." },
+        { "title": "Three-tier packaging", "description": "Presets, templates and user-built agents: the prompt-engineering barrier falls." }
+      ]
+    },
+    "sovereignty": {
+      "kicker": "Sovereignty",
+      "quote": "Will French-speaking Africa own AI, or be its raw material?",
+      "body": "OpenBaara moves its markets onto the owners' side: own the rails (sovereignty, local models), own the data (local moat), own the value (assembly, not mere access)."
+    },
+    "dossier": {
+      "title": "Get the full deck",
+      "body": "Detailed thesis, unit economics, product sequence and roadmap — on request.",
+      "cta": "Request the deck"
+    }
   },
   "careers": {
     "badge": "Careers",

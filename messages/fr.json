@@ -165,7 +165,54 @@
     "tractionPlaceholder": "Les métriques de traction apparaîtront ici post-lancement.",
     "marketNote": "Chiffres à re-sourcer",
     "ctaBookCall": "Prendre RDV",
-    "ctaEmail": "Nous écrire"
+    "ctaEmail": "Nous écrire",
+    "thesis": {
+      "kicker": "La thèse",
+      "title": "La valeur de l'IA s'est déplacée de l'accès à l'assemblage",
+      "body": "Les modèles bruts sont devenus une commodité — open source, gratuits, interchangeables. L'avantage n'est plus le modèle, mais la capacité à assembler les bons outils en un système qui produit des résultats concrets, et à le distribuer là où personne ne le fait. OpenBaara est cette couche d'assemblage et de distribution, pour des marchés que les acteurs mondiaux n'adressent pas.",
+      "quote": "La fracture de l'IA ne sera pas entre ceux qui savent l'utiliser, mais entre ceux qui la possèdent et ceux qui en dépendent."
+    },
+    "markets": {
+      "kicker": "Marché",
+      "title": "Des marchés réels, déjà chiffrés",
+      "items": [
+        { "value": "13,7 Md$", "label": "Marché de l'orchestration d'agents IA en 2026 (CAGR ~23 %)", "source": "Dimension Market Research" },
+        { "value": "46,8 Md$", "label": "Marché agentique projeté en 2036, depuis 6,3 Md$ en 2026", "source": "Deloitte · DMR" },
+        { "value": "314,6 M$", "label": "Streaming musical en Afrique en 2026, vers 510 M$ en 2027", "source": "IFPI Global Music Report 2026" }
+      ],
+      "note": "Chiffres issus de rapports publics (2026), datés — à revérifier en due diligence."
+    },
+    "matrix": {
+      "kicker": "Outils × Marchés",
+      "title": "Chaque division adresse un marché précis",
+      "rows": [
+        { "tool": "Outio — orchestration", "market": "Orchestration d'agents & automation des PME", "detail": "Un produit déjà construit, pas un concept" },
+        { "tool": "Studios créatifs & distribution", "market": "Musique et créateurs africains", "detail": "Distribution white-label sur les plateformes, reversement local" },
+        { "tool": "Solutions B2B", "market": "PME mal servies par les outils étrangers", "detail": "Localisation : langue, paiement, prix, connectivité" },
+        { "tool": "Baarali Labs", "market": "Frontière R&D, au-delà du wrapper", "detail": "Imiter → comprendre → découvrir" }
+      ]
+    },
+    "moat": {
+      "kicker": "Défendabilité",
+      "title": "Le moat n'est pas le modèle — c'est l'assemblage",
+      "items": [
+        { "title": "Gateway à arbitrage de coût", "description": "Le niveau de modèle est choisi automatiquement selon le coût réel : marge préservée, prix accessibles, basculement anti-échec invisible pour l'utilisateur." },
+        { "title": "Orchestration multi-agents", "description": "Sous-agents en parallèle, double-contrôle et synthèse — sur la vague de marché la plus chaude." },
+        { "title": "Rails localisés", "description": "Paiement Mobile Money / CinetPay et distribution musicale white-label : une barrière que les acteurs étrangers ne franchissent pas." },
+        { "title": "Souveraineté des données", "description": "Exécution possible sur modèles locaux (Ollama) : pas de fuite de données, confiance pour le marché local et les entreprises." },
+        { "title": "Packaging en 3 niveaux", "description": "Préconfigurations, modèles et agents créés par l'utilisateur : la barrière du prompt engineering tombe." }
+      ]
+    },
+    "sovereignty": {
+      "kicker": "Souveraineté",
+      "quote": "L'Afrique francophone sera-t-elle propriétaire de l'IA, ou sa matière première ?",
+      "body": "OpenBaara fait passer ses marchés du côté des propriétaires : posséder les rails (souveraineté, modèles locaux), posséder les données (moat local), posséder la valeur (l'assemblage, pas le simple accès)."
+    },
+    "dossier": {
+      "title": "Recevoir le dossier complet",
+      "body": "Thèse détaillée, économie unitaire, séquence produit et feuille de route — sur demande.",
+      "cta": "Demander le dossier"
+    }
   },
   "careers": {
     "badge": "Carrières",
