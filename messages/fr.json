@@ -1,0 +1,414 @@
+{
+  "metadata": {
+    "title": "OPENBAARA — Holding Deep-Tech Africaine",
+    "description": "OPENBAARA construit le cerveau d'orchestration agentique africain — du logiciel au monde physique. Basée à Abidjan, Côte d'Ivoire."
+  },
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "store": "Boutique",
+    "solutions": "Solutions",
+    "academy": "Academy",
+    "labs": "Baarali Labs",
+    "investors": "Investisseurs",
+    "careers": "Carrières",
+    "contact": "Contact",
+    "cvGenerator": "CV Generator",
+    "joinMission": "Rejoindre la mission",
+    "switchLang": "EN"
+  },
+  "hero": {
+    "badge": "Holding Deep-Tech · Abidjan · Afrique de l'Ouest",
+    "title": "Le cerveau d'orchestration qui propulse l'Afrique",
+    "titleHighlight": "du logiciel au monde physique",
+    "subtitle": "Un seul cerveau réutilisable — aujourd'hui il pilote des agents IA dans un logiciel, demain des machines, des usines, des véhicules.",
+    "ctaJoin": "Rejoindre la mission",
+    "ctaInvest": "Investir / Nous parler"
+  },
+  "thesis": {
+    "badge": "Pourquoi maintenant",
+    "title": "Le moment historique",
+    "subtitle": "L'IA bascule du logiciel vers le monde physique. Les fondations open source rebattent les cartes. Personne ne construit cette technologie pour les réalités africaines.",
+    "void": {
+      "title": "Le vide africain",
+      "description": "Ni la Silicon Valley ni Lagos ne construisent l'IA pour l'Afrique de l'Ouest francophone. OpenBaara occupe ce vide — un espace blanc défendable."
+    },
+    "anchor": {
+      "title": "Ancrage UEMOA",
+      "description": "~130 millions d'habitants. Porte d'entrée : Abidjan. Un marché massif, une culture commune, un cadre monétaire unifié."
+    },
+    "opensource": {
+      "title": "L'open source comme carburant",
+      "description": "Doctrine « modèle Apple » : l'open source alimente le moteur, mais le produit, les données, l'expérience et la marque restent propriétaires."
+    },
+    "execution": {
+      "title": "Exécution séquentielle",
+      "description": "Revenue-first. On n'ouvre une verticale que quand la porte de la précédente est franchie. Ambition sans plafond, discipline totale."
+    }
+  },
+  "divisions": {
+    "badge": "Nos divisions",
+    "title": "Une holding, des divisions qui se renforcent",
+    "subtitle": "Chaque division est un maillon de la chaîne. Chaque victoire débloque la suivante.",
+    "outio": {
+      "name": "OUTIO",
+      "tagline": "Le moteur logiciel & première source de revenus",
+      "description": "Super-app créateur-IA : texte, image, vidéo, cinéma, audio, avatar, influenceur, Brand DNA, distribution musicale africaine. La preuve que le cerveau d'orchestration fonctionne et génère du cash.",
+      "cta": "Découvrir Outio",
+      "status": "En cours"
+    },
+    "academy": {
+      "name": "OPENBAARA ACADEMY",
+      "tagline": "Formation & vente de cours IA",
+      "description": "Cours en ligne et présentiels pour former l'Afrique francophone à l'IA et à l'IA agentique — du débutant au pro, certifiants. Vendus à l'unité ou en parcours.",
+      "cta": "Voir les formations",
+      "status": "Actif"
+    },
+    "solutions": {
+      "name": "OPENBAARA SOLUTIONS",
+      "tagline": "Installation & intégration d'IA agentique en entreprise",
+      "description": "Conseil + déploiement d'agents IA dans les organisations : entreprises privées, administrations publiques, PME et entrepreneurs. Offre « souveraine » disponible.",
+      "cta": "Demander un audit",
+      "status": "Actif"
+    },
+    "studio": {
+      "name": "OPENBAARA STUDIO",
+      "tagline": "Création d'outils SaaS",
+      "description": "Conception de produits SaaS verticaux propulsés par le cerveau d'orchestration — internes et pour clients. Inclut le Générateur de CV Moderne.",
+      "cta": "Explorer les outils",
+      "status": "Actif"
+    },
+    "labs": {
+      "name": "BAARALI LABS",
+      "tagline": "Le labo de recherche & de production",
+      "description": "Le cœur deep-tech : vision industrielle, numérisation 3D, robotique légère, edge-IA, puis mobilité. Le moat = les données africaines.",
+      "cta": "Découvrir le labo",
+      "status": "Recherche & Production"
+    }
+  },
+  "sequence": {
+    "badge": "La séquence",
+    "title": "Gagner le droit à l'étape suivante",
+    "subtitle": "Toujours le même cerveau. Chaque étape franchie débloque la suivante.",
+    "sameBrain": "TOUJOURS LE MÊME CERVEAU",
+    "steps": {
+      "step1": {
+        "title": "Logiciel & IA",
+        "entity": "Outio",
+        "horizon": "Maintenant → 1-5 mois",
+        "description": "Prouver que le cerveau d'orchestration fonctionne dans le logiciel. Générer les premiers revenus.",
+        "gate": "Premiers revenus récurrents + produit validé par le marché",
+        "status": "En cours"
+      },
+      "step2": {
+        "title": "Automatisation des entreprises",
+        "entity": "UEMOA",
+        "horizon": "6-12 mois",
+        "description": "Enraciner le cerveau dans l'économie réelle. Capturer des données de processus.",
+        "gate": "Pipeline B2B qualifié + premiers contrats signés"
+      },
+      "step3": {
+        "title": "Automatisation incarnée",
+        "entity": "1er corps",
+        "horizon": "2-3 ans",
+        "description": "Vision industrielle, agritech, drones. Le cerveau contrôle ses premiers corps physiques.",
+        "gate": "Prototype fonctionnel + premier client pilote"
+      },
+      "step4": {
+        "title": "Matériel & deep tech",
+        "entity": "Edge-IA",
+        "horizon": "4-6 ans",
+        "description": "Dispositifs edge-IA assemblés localement. Modèles fine-tunés sur données africaines.",
+        "gate": "Ligne de production locale + premiers appareils déployés"
+      },
+      "step5": {
+        "title": "Autonome & mobilité",
+        "entity": "Électrique",
+        "horizon": "Le plus tard",
+        "description": "Véhicules électriques, flottes B2B en sites contrôlés. L'aboutissement de la séquence.",
+        "gate": "Maîtrise matérielle démontrée + cadre réglementaire"
+      }
+    }
+  },
+  "tools": {
+    "badge": "Outils & Stack",
+    "title": "Construit avec les meilleurs outils agentiques",
+    "subtitle": "Nous utilisons et maîtrisons les outils IA les plus avancés pour construire nos produits."
+  },
+  "ctaRecruit": {
+    "title": "Nous cherchons les meilleurs.",
+    "subtitle": "Pas les plus diplômés — les plus passionnés, les plus déterminés, ceux qui veulent construire quelque chose qui compte.",
+    "cta": "Voir les postes ouverts"
+  },
+  "founder": {
+    "name": "Yannick Benewende Rapadamnaba",
+    "role": "Fondateur & CEO",
+    "shortBio": "Autodidacte passionné de tech, né à Gagnoa, d'origine ivoiro-burkinabè. Cinq ans d'apprentissage guidés par une conviction : maîtriser la technologie pour bâtir le nécessaire — et l'indépendance tech africaine. Outio en est la première pierre.",
+    "longBio": "Autodidacte formé pendant cinq ans avec une conviction : la connaissance et la maîtrise priment sur tout. Bâtir le nécessaire, du durable, pas surfer sur la vague. Outio est le premier aboutissement concret et le départ d'une ambition plus large.\n\nSa thèse : nous vivons un basculement technologique mondial. L'IA passe du logiciel au monde physique. L'Afrique risque d'être laissée à l'écart — il faut combler ce vide. L'open source rebat les cartes : créer et innover localement, tisser des transferts de technologie avec des partenaires ouverts — notamment asiatiques —, et protéger les données via des serveurs locaux.\n\nNé à Gagnoa, dans l'ouest de la Côte d'Ivoire, d'origine ivoiro-burkinabè, basé à Abidjan. Ce pont côte ↔ Sahel est un atout stratégique, pas un détail biographique.",
+    "quote": "Le besoin est immense. Nous avons les esprits, les cerveaux et, avec les bons moyens, de quoi provoquer un vrai changement. L'Afrique doit avoir ses propres applications et son indépendance technologique. J'y crois — et je vais le faire.",
+    "location": "Abidjan, Côte d'Ivoire",
+    "origin": "Ivoiro-burkinabè · Né à Gagnoa"
+  },
+  "investors": {
+    "badge": "Investisseurs",
+    "title": "Entrez avant le lancement",
+    "subtitle": "OpenBaara est en pré-lancement. Le produit est quasi prêt. L'opportunité est maintenant.",
+    "status": "Pré-lancement",
+    "statusDescription": "Outio est terminé à ~80-90 %. Lancement imminent.",
+    "highlights": {
+      "product": "Produit quasi prêt à expédier",
+      "platform": "Plateforme d'orchestration construite",
+      "sequence": "Premier maillon de la séquence en place",
+      "opportunity": "Entrer AVANT le lancement"
+    },
+    "ask": "Financer le passage lancement → première traction : mise en marché, acquisition, infrastructure.",
+    "tractionPlaceholder": "Les métriques de traction apparaîtront ici post-lancement.",
+    "marketNote": "Chiffres à re-sourcer",
+    "ctaBookCall": "Prendre RDV",
+    "ctaEmail": "Nous écrire"
+  },
+  "careers": {
+    "badge": "Carrières",
+    "title": "Rejoindre la mission",
+    "subtitle": "Nous ne cherchons pas des CV — nous cherchons des esprits déterminés à construire l'indépendance technologique africaine.",
+    "values": {
+      "revenue": {
+        "title": "Revenue-first",
+        "description": "Pas de « on verra plus tard ». Chaque action doit rapprocher du revenu."
+      },
+      "noNIH": {
+        "title": "Pas de « Not Invented Here »",
+        "description": "Si un outil open source fait le job, on l'utilise. L'ego ne construit rien."
+      },
+      "local": {
+        "title": "Ancrage local",
+        "description": "On construit depuis l'Afrique, pour l'Afrique. Abidjan est notre base, pas notre limite."
+      },
+      "ambition": {
+        "title": "Ambition sans limite",
+        "description": "Du logiciel aux véhicules autonomes. Chaque étape ouvre la suivante."
+      }
+    },
+    "noPositions": "Aucun poste ouvert pour le moment, mais nous sommes toujours à la recherche de talents exceptionnels.",
+    "spontaneous": "Candidature spontanée",
+    "formName": "Nom complet",
+    "formEmail": "Email",
+    "formLinkedin": "LinkedIn / Portfolio",
+    "formGithub": "GitHub",
+    "formMessage": "Pourquoi voulez-vous rejoindre OpenBaara ?",
+    "formCv": "Joindre votre CV",
+    "formSubmit": "Envoyer ma candidature"
+  },
+  "solutions": {
+    "badge": "Solutions B2B",
+    "title": "L'IA agentique au service de votre organisation",
+    "subtitle": "Conseil, intégration et déploiement d'agents IA. Du back-office à la logistique documentaire.",
+    "services": {
+      "audit": {
+        "title": "Audit IA",
+        "description": "Cartographie de vos processus, identification des opportunités d'automatisation par IA agentique."
+      },
+      "integration": {
+        "title": "Intégration d'agents",
+        "description": "Déploiement d'agents IA dans vos workflows existants. Automatisation des processus répétitifs."
+      },
+      "automation": {
+        "title": "Automatisation complète",
+        "description": "Chaînes de traitement automatisées de bout en bout : back-office, logistique documentaire, opérations."
+      },
+      "sovereign": {
+        "title": "Déploiement souverain",
+        "description": "Infrastructure locale, données sensibles protégées. Pour les organisations avec des contraintes de souveraineté."
+      }
+    },
+    "process": {
+      "step1": "Audit",
+      "step2": "Conception",
+      "step3": "Déploiement",
+      "step4": "Optimisation"
+    },
+    "targets": "Entreprises privées · Administrations publiques · PME · Entrepreneurs",
+    "ctaAudit": "Demander un audit gratuit",
+    "formCompany": "Entreprise",
+    "formName": "Nom complet",
+    "formEmail": "Email professionnel",
+    "formSector": "Secteur d'activité",
+    "formMessage": "Décrivez votre besoin",
+    "formSubmit": "Envoyer la demande"
+  },
+  "academy": {
+    "badge": "Academy",
+    "title": "Formez-vous à l'IA agentique",
+    "subtitle": "Du débutant au pro — cours en ligne et présentiels pour maîtriser l'IA et les outils agentiques.",
+    "pathTitle": "Parcours d'apprentissage",
+    "pathBeginner": "Débutant",
+    "pathIntermediate": "Intermédiaire",
+    "pathAdvanced": "Avancé",
+    "pathPro": "Pro",
+    "cliTools": "Outils CLI & IDE",
+    "cliDescription": "Maîtrisez les outils qui accélèrent 10x votre productivité développeur.",
+    "ctaCourses": "Voir tous les cours"
+  },
+  "labs": {
+    "badge": "Baarali Labs",
+    "title": "Le labo de recherche & de production",
+    "subtitle": "Le cœur deep-tech d'OpenBaara. Du prototypage à la production — l'IA physique, fabriquée en Afrique.",
+    "status": "Recherche & Production",
+    "areas": {
+      "vision": {
+        "title": "Vision industrielle",
+        "description": "Systèmes de vision par ordinateur pour le contrôle qualité, l'inspection et la surveillance."
+      },
+      "scanning": {
+        "title": "Numérisation 3D",
+        "description": "Capture et reconstruction 3D d'environnements et d'objets pour la jumelle numérique."
+      },
+      "robotics": {
+        "title": "Robotique légère",
+        "description": "Bras robotiques et systèmes automatisés pour l'assemblage et la manipulation."
+      },
+      "edge": {
+        "title": "Edge-IA",
+        "description": "Inférence embarquée sur des dispositifs edge. Traitement local, latence minimale."
+      },
+      "mobility": {
+        "title": "Mobilité",
+        "description": "Véhicules autonomes et flottes B2B pour sites contrôlés. L'horizon long terme."
+      }
+    },
+    "foundations": "Fondations open source",
+    "foundationsList": "Cosmos · Locate Anything · GenRecon · TriSplat · Gamma World",
+    "moat": "Le moat = les données africaines",
+    "moatDescription": "De l'intégration à la création de tech propriétaire : modèles fine-tunés, dispositifs edge-IA assemblés localement."
+  },
+  "store": {
+    "badge": "Boutique",
+    "title": "Cours, outils & services",
+    "subtitle": "Tout ce qu'OpenBaara propose — formations IA, outils SaaS et services d'intégration.",
+    "searchPlaceholder": "Rechercher un produit...",
+    "filterAll": "Tout",
+    "filterCourses": "Cours",
+    "filterTools": "Outils & SaaS",
+    "filterServices": "Services",
+    "addToCart": "Ajouter au panier",
+    "buy": "Acheter",
+    "tryFree": "Essayer gratuitement",
+    "bookCall": "Réserver un appel",
+    "preRegister": "Pré-inscription",
+    "onQuote": "Sur devis",
+    "free": "Gratuit",
+    "perMonth": "/mois",
+    "new": "Nouveau",
+    "popular": "Populaire",
+    "comingSoon": "Bientôt",
+    "noResults": "Aucun produit trouvé."
+  },
+  "cart": {
+    "title": "Panier",
+    "empty": "Votre panier est vide",
+    "total": "Total",
+    "checkout": "Passer à la caisse",
+    "remove": "Retirer",
+    "continueShopping": "Continuer les achats"
+  },
+  "checkout": {
+    "title": "Paiement",
+    "subtitle": "Finalisez votre commande",
+    "paymentMethods": "Modes de paiement",
+    "mobileMoney": "Mobile Money (CinetPay)",
+    "card": "Carte bancaire",
+    "mobileMoneyNote": "Orange Money · MTN Money · Wave · Moov Money",
+    "comingSoon": "Paiement en ligne bientôt disponible. Contactez-nous pour finaliser votre commande.",
+    "ctaContact": "Nous contacter pour finaliser"
+  },
+  "cv": {
+    "badge": "Générateur de CV",
+    "title": "Créez votre CV moderne",
+    "subtitle": "Saisissez vos informations, choisissez un template premium et exportez en PDF — en quelques minutes.",
+    "formTitle": "Vos informations",
+    "fullName": "Nom complet",
+    "jobTitle": "Titre du poste",
+    "email": "Email",
+    "phone": "Téléphone",
+    "location": "Localisation",
+    "summary": "Résumé professionnel",
+    "experience": "Expérience",
+    "addExperience": "Ajouter une expérience",
+    "education": "Formation",
+    "addEducation": "Ajouter une formation",
+    "skills": "Compétences",
+    "addSkill": "Ajouter",
+    "languages": "Langues",
+    "addLanguage": "Ajouter une langue",
+    "company": "Entreprise",
+    "position": "Poste",
+    "startDate": "Début",
+    "endDate": "Fin",
+    "present": "Présent",
+    "description": "Description",
+    "school": "Établissement",
+    "degree": "Diplôme",
+    "field": "Domaine",
+    "templateSelect": "Choisir un template",
+    "templateFree": "Gratuit",
+    "templatePremium": "Premium",
+    "templateLocked": "Débloquer dans la boutique",
+    "exportPdf": "Exporter en PDF",
+    "preview": "Aperçu",
+    "emailCapture": "Sauvegardez votre CV — entrez votre email",
+    "emailPlaceholder": "votre@email.com",
+    "save": "Sauvegarder"
+  },
+  "contact": {
+    "badge": "Contact",
+    "title": "Parlons de votre projet",
+    "subtitle": "Que vous soyez talent, investisseur, client ou simplement curieux — nous répondons.",
+    "formName": "Nom complet",
+    "formEmail": "Email",
+    "formSubject": "Sujet",
+    "formMessage": "Message",
+    "formSubmit": "Envoyer",
+    "newsletter": "Newsletter",
+    "newsletterDesc": "Recevez les actualités d'OpenBaara — IA, produits, opportunités.",
+    "newsletterPlaceholder": "votre@email.com",
+    "newsletterSubmit": "S'inscrire",
+    "location": "Abidjan, Côte d'Ivoire",
+    "email": "contact@openbaara.com"
+  },
+  "footer": {
+    "description": "Holding deep-tech africaine construisant le cerveau d'orchestration agentique — du logiciel au monde physique.",
+    "navigation": "Navigation",
+    "company": "Entreprise",
+    "legal": "Mentions légales",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d'utilisation",
+    "copyright": "© {year} OPENBAARA. Tous droits réservés.",
+    "madeIn": "Fait avec ❤️ à Abidjan"
+  },
+  "common": {
+    "learnMore": "En savoir plus",
+    "backHome": "Retour à l'accueil",
+    "loading": "Chargement...",
+    "error": "Une erreur est survenue",
+    "success": "Succès !",
+    "formSuccess": "Votre message a été envoyé avec succès.",
+    "formError": "Erreur lors de l'envoi. Veuillez réessayer.",
+    "required": "Requis"
+  },
+  "techStack": {
+    "languages": "Langages",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "auth": "Auth & Sécurité",
+    "ai": "IA & Orchestration",
+    "agentic": "Automatisation & Agentique",
+    "payment": "Paiement",
+    "cloud": "Cloud & Infra",
+    "integration": "Intégration & API",
+    "devops": "DevOps & Déploiement",
+    "system": "Système",
+    "product": "Produit & UX",
+    "tools": "Méthode & Outils",
+    "cliIde": "Outils CLI & IDE"
+  }
+}

@@ -1,0 +1,414 @@
+{
+  "metadata": {
+    "title": "OPENBAARA — African Deep-Tech Holding",
+    "description": "OPENBAARA builds the African agentic orchestration brain — from software to the physical world. Based in Abidjan, Côte d'Ivoire."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "store": "Store",
+    "solutions": "Solutions",
+    "academy": "Academy",
+    "labs": "Baarali Labs",
+    "investors": "Investors",
+    "careers": "Careers",
+    "contact": "Contact",
+    "cvGenerator": "CV Generator",
+    "joinMission": "Join the mission",
+    "switchLang": "FR"
+  },
+  "hero": {
+    "badge": "Deep-Tech Holding · Abidjan · West Africa",
+    "title": "The orchestration brain powering Africa",
+    "titleHighlight": "from software to the physical world",
+    "subtitle": "One reusable brain — today it drives AI agents in software, tomorrow machines, factories, vehicles.",
+    "ctaJoin": "Join the mission",
+    "ctaInvest": "Invest / Talk to us"
+  },
+  "thesis": {
+    "badge": "Why now",
+    "title": "The historic moment",
+    "subtitle": "AI is crossing from software into the physical world. Open source foundations level the playing field. Nobody is building this technology for African realities.",
+    "void": {
+      "title": "The African void",
+      "description": "Neither Silicon Valley nor Lagos is building AI for francophone West Africa. OpenBaara fills that void — a defensible white space."
+    },
+    "anchor": {
+      "title": "UEMOA anchor",
+      "description": "~130 million people. Gateway: Abidjan. A massive market, shared culture, unified monetary framework."
+    },
+    "opensource": {
+      "title": "Open source as fuel",
+      "description": "'Apple model' doctrine: open source powers the engine, but the product, data, experience and brand remain proprietary."
+    },
+    "execution": {
+      "title": "Sequential execution",
+      "description": "Revenue-first. We only open a new vertical when the door of the previous one is cleared. Unlimited ambition, total discipline."
+    }
+  },
+  "divisions": {
+    "badge": "Our divisions",
+    "title": "One holding, compounding divisions",
+    "subtitle": "Every division is a link in the chain. Every win unlocks the next one.",
+    "outio": {
+      "name": "OUTIO",
+      "tagline": "The software engine & first revenue source",
+      "description": "AI creator super-app: text, image, video, cinema, audio, avatar, influencer, Brand DNA, African music distribution. Proof that the orchestration brain works and generates cash.",
+      "cta": "Discover Outio",
+      "status": "In progress"
+    },
+    "academy": {
+      "name": "OPENBAARA ACADEMY",
+      "tagline": "AI training & course sales",
+      "description": "Online and in-person courses training francophone Africa in AI and agentic AI — from beginner to pro, certified. Sold individually or as learning paths.",
+      "cta": "Browse courses",
+      "status": "Active"
+    },
+    "solutions": {
+      "name": "OPENBAARA SOLUTIONS",
+      "tagline": "Enterprise agentic AI installation & integration",
+      "description": "Consulting + AI agent deployment in organizations: private companies, public administrations, SMEs and entrepreneurs. 'Sovereign' deployment option available.",
+      "cta": "Request an audit",
+      "status": "Active"
+    },
+    "studio": {
+      "name": "OPENBAARA STUDIO",
+      "tagline": "SaaS tool creation",
+      "description": "Vertical SaaS products powered by the orchestration brain — internal and client-facing. Includes the Modern CV Generator.",
+      "cta": "Explore tools",
+      "status": "Active"
+    },
+    "labs": {
+      "name": "BAARALI LABS",
+      "tagline": "The research & production lab",
+      "description": "The deep-tech core: industrial vision, 3D scanning, lightweight robotics, edge-AI, then mobility. The moat = African data.",
+      "cta": "Discover the lab",
+      "status": "Research & Production"
+    }
+  },
+  "sequence": {
+    "badge": "The sequence",
+    "title": "Earning the right to the next step",
+    "subtitle": "Always the same brain. Each step cleared unlocks the next.",
+    "sameBrain": "ALWAYS THE SAME BRAIN",
+    "steps": {
+      "step1": {
+        "title": "Software & AI",
+        "entity": "Outio",
+        "horizon": "Now → 1-5 months",
+        "description": "Prove the orchestration brain works in software. Generate first revenues.",
+        "gate": "First recurring revenue + market-validated product",
+        "status": "In progress"
+      },
+      "step2": {
+        "title": "Enterprise automation",
+        "entity": "UEMOA",
+        "horizon": "6-12 months",
+        "description": "Root the brain in the real economy. Capture process data.",
+        "gate": "Qualified B2B pipeline + first signed contracts"
+      },
+      "step3": {
+        "title": "Embodied automation",
+        "entity": "1st body",
+        "horizon": "2-3 years",
+        "description": "Industrial vision, agritech, drones. The brain controls its first physical bodies.",
+        "gate": "Working prototype + first pilot customer"
+      },
+      "step4": {
+        "title": "Hardware & deep tech",
+        "entity": "Edge-AI",
+        "horizon": "4-6 years",
+        "description": "Locally assembled edge-AI devices. Models fine-tuned on African data.",
+        "gate": "Local production line + first devices deployed"
+      },
+      "step5": {
+        "title": "Autonomous & mobility",
+        "entity": "Electric",
+        "horizon": "Long-term",
+        "description": "Electric vehicles, B2B fleets in controlled sites. The sequence's culmination.",
+        "gate": "Demonstrated hardware mastery + regulatory framework"
+      }
+    }
+  },
+  "tools": {
+    "badge": "Tools & Stack",
+    "title": "Built with the best agentic tools",
+    "subtitle": "We use and master the most advanced AI tools to build our products."
+  },
+  "ctaRecruit": {
+    "title": "We're looking for the best.",
+    "subtitle": "Not the most credentialed — the most driven, the most determined, those who want to build something that matters.",
+    "cta": "See open positions"
+  },
+  "founder": {
+    "name": "Yannick Benewende Rapadamnaba",
+    "role": "Founder & CEO",
+    "shortBio": "Self-taught tech enthusiast, born in Gagnoa, of Ivorian-Burkinabè origin. Five years of learning driven by one conviction: master technology to build what's needed — and African tech independence. Outio is the first cornerstone.",
+    "longBio": "Self-taught over five years with a singular conviction: knowledge and mastery come first. Build what's needed, build to last — don't ride waves. Outio is the first tangible outcome and the starting point of a broader ambition.\n\nHis thesis: we're living through a global tech tipping point. AI is crossing from software into the physical world. Africa risks being left behind — this void must be filled. Open source changes the game: create and innovate locally, build technology transfer partnerships with open-minded partners — particularly in Asia —, and protect data through local servers.\n\nBorn in Gagnoa, western Côte d'Ivoire, of Ivorian-Burkinabè origin, based in Abidjan. This coast ↔ Sahel bridge is a strategic asset, not a biographical detail.",
+    "quote": "The need is immense. We have the minds, the brains, and with the right resources, the power to drive real change. Africa must have its own applications and its own technological independence. I believe in it — and I'm going to make it happen.",
+    "location": "Abidjan, Côte d'Ivoire",
+    "origin": "Ivorian-Burkinabè · Born in Gagnoa"
+  },
+  "investors": {
+    "badge": "Investors",
+    "title": "Get in before launch",
+    "subtitle": "OpenBaara is pre-launch. The product is nearly ready. The opportunity is now.",
+    "status": "Pre-launch",
+    "statusDescription": "Outio is ~80-90% complete. Launch imminent.",
+    "highlights": {
+      "product": "Product nearly ready to ship",
+      "platform": "Orchestration platform built",
+      "sequence": "First sequence link in place",
+      "opportunity": "Get in BEFORE launch"
+    },
+    "ask": "Finance the transition from launch to first traction: go-to-market, acquisition, infrastructure.",
+    "tractionPlaceholder": "Traction metrics will appear here post-launch.",
+    "marketNote": "Figures to be re-sourced",
+    "ctaBookCall": "Book a call",
+    "ctaEmail": "Write to us"
+  },
+  "careers": {
+    "badge": "Careers",
+    "title": "Join the mission",
+    "subtitle": "We're not looking for résumés — we're looking for minds determined to build African technological independence.",
+    "values": {
+      "revenue": {
+        "title": "Revenue-first",
+        "description": "No 'we'll figure it out later.' Every action must move closer to revenue."
+      },
+      "noNIH": {
+        "title": "No 'Not Invented Here'",
+        "description": "If an open source tool does the job, we use it. Ego doesn't build anything."
+      },
+      "local": {
+        "title": "Local anchoring",
+        "description": "We build from Africa, for Africa. Abidjan is our base, not our limit."
+      },
+      "ambition": {
+        "title": "Unlimited ambition",
+        "description": "From software to autonomous vehicles. Each step unlocks the next."
+      }
+    },
+    "noPositions": "No open positions at the moment, but we're always looking for exceptional talent.",
+    "spontaneous": "Spontaneous application",
+    "formName": "Full name",
+    "formEmail": "Email",
+    "formLinkedin": "LinkedIn / Portfolio",
+    "formGithub": "GitHub",
+    "formMessage": "Why do you want to join OpenBaara?",
+    "formCv": "Attach your CV",
+    "formSubmit": "Send my application"
+  },
+  "solutions": {
+    "badge": "B2B Solutions",
+    "title": "Agentic AI at the service of your organization",
+    "subtitle": "Consulting, integration and deployment of AI agents. From back-office to document logistics.",
+    "services": {
+      "audit": {
+        "title": "AI Audit",
+        "description": "Map your processes, identify automation opportunities through agentic AI."
+      },
+      "integration": {
+        "title": "Agent integration",
+        "description": "Deploy AI agents into your existing workflows. Automate repetitive processes."
+      },
+      "automation": {
+        "title": "Full automation",
+        "description": "End-to-end automated processing chains: back-office, document logistics, operations."
+      },
+      "sovereign": {
+        "title": "Sovereign deployment",
+        "description": "Local infrastructure, sensitive data protected. For organizations with sovereignty constraints."
+      }
+    },
+    "process": {
+      "step1": "Audit",
+      "step2": "Design",
+      "step3": "Deploy",
+      "step4": "Optimize"
+    },
+    "targets": "Private companies · Public administrations · SMEs · Entrepreneurs",
+    "ctaAudit": "Request a free audit",
+    "formCompany": "Company",
+    "formName": "Full name",
+    "formEmail": "Professional email",
+    "formSector": "Industry sector",
+    "formMessage": "Describe your needs",
+    "formSubmit": "Send request"
+  },
+  "academy": {
+    "badge": "Academy",
+    "title": "Train in agentic AI",
+    "subtitle": "From beginner to pro — online and in-person courses to master AI and agentic tools.",
+    "pathTitle": "Learning path",
+    "pathBeginner": "Beginner",
+    "pathIntermediate": "Intermediate",
+    "pathAdvanced": "Advanced",
+    "pathPro": "Pro",
+    "cliTools": "CLI & IDE Tools",
+    "cliDescription": "Master the tools that 10x your developer productivity.",
+    "ctaCourses": "See all courses"
+  },
+  "labs": {
+    "badge": "Baarali Labs",
+    "title": "The research & production lab",
+    "subtitle": "OpenBaara's deep-tech core. From prototyping to production — physical AI, made in Africa.",
+    "status": "Research & Production",
+    "areas": {
+      "vision": {
+        "title": "Industrial vision",
+        "description": "Computer vision systems for quality control, inspection and monitoring."
+      },
+      "scanning": {
+        "title": "3D Scanning",
+        "description": "3D capture and reconstruction of environments and objects for digital twin."
+      },
+      "robotics": {
+        "title": "Lightweight robotics",
+        "description": "Robotic arms and automated systems for assembly and manipulation."
+      },
+      "edge": {
+        "title": "Edge-AI",
+        "description": "On-device inference on edge devices. Local processing, minimal latency."
+      },
+      "mobility": {
+        "title": "Mobility",
+        "description": "Autonomous vehicles and B2B fleets for controlled sites. The long-term horizon."
+      }
+    },
+    "foundations": "Open source foundations",
+    "foundationsList": "Cosmos · Locate Anything · GenRecon · TriSplat · Gamma World",
+    "moat": "The moat = African data",
+    "moatDescription": "From integration to proprietary tech creation: fine-tuned models, locally assembled edge-AI devices."
+  },
+  "store": {
+    "badge": "Store",
+    "title": "Courses, tools & services",
+    "subtitle": "Everything OpenBaara offers — AI training, SaaS tools and integration services.",
+    "searchPlaceholder": "Search products...",
+    "filterAll": "All",
+    "filterCourses": "Courses",
+    "filterTools": "Tools & SaaS",
+    "filterServices": "Services",
+    "addToCart": "Add to cart",
+    "buy": "Buy",
+    "tryFree": "Try for free",
+    "bookCall": "Book a call",
+    "preRegister": "Pre-register",
+    "onQuote": "On quote",
+    "free": "Free",
+    "perMonth": "/month",
+    "new": "New",
+    "popular": "Popular",
+    "comingSoon": "Coming soon",
+    "noResults": "No products found."
+  },
+  "cart": {
+    "title": "Cart",
+    "empty": "Your cart is empty",
+    "total": "Total",
+    "checkout": "Proceed to checkout",
+    "remove": "Remove",
+    "continueShopping": "Continue shopping"
+  },
+  "checkout": {
+    "title": "Payment",
+    "subtitle": "Complete your order",
+    "paymentMethods": "Payment methods",
+    "mobileMoney": "Mobile Money (CinetPay)",
+    "card": "Credit card",
+    "mobileMoneyNote": "Orange Money · MTN Money · Wave · Moov Money",
+    "comingSoon": "Online payment coming soon. Contact us to finalize your order.",
+    "ctaContact": "Contact us to finalize"
+  },
+  "cv": {
+    "badge": "CV Generator",
+    "title": "Create your modern CV",
+    "subtitle": "Enter your information, choose a premium template and export to PDF — in minutes.",
+    "formTitle": "Your information",
+    "fullName": "Full name",
+    "jobTitle": "Job title",
+    "email": "Email",
+    "phone": "Phone",
+    "location": "Location",
+    "summary": "Professional summary",
+    "experience": "Experience",
+    "addExperience": "Add experience",
+    "education": "Education",
+    "addEducation": "Add education",
+    "skills": "Skills",
+    "addSkill": "Add",
+    "languages": "Languages",
+    "addLanguage": "Add language",
+    "company": "Company",
+    "position": "Position",
+    "startDate": "Start date",
+    "endDate": "End date",
+    "present": "Present",
+    "description": "Description",
+    "school": "School",
+    "degree": "Degree",
+    "field": "Field",
+    "templateSelect": "Choose a template",
+    "templateFree": "Free",
+    "templatePremium": "Premium",
+    "templateLocked": "Unlock in the store",
+    "exportPdf": "Export to PDF",
+    "preview": "Preview",
+    "emailCapture": "Save your CV — enter your email",
+    "emailPlaceholder": "your@email.com",
+    "save": "Save"
+  },
+  "contact": {
+    "badge": "Contact",
+    "title": "Let's talk about your project",
+    "subtitle": "Whether you're a talent, investor, client or simply curious — we respond.",
+    "formName": "Full name",
+    "formEmail": "Email",
+    "formSubject": "Subject",
+    "formMessage": "Message",
+    "formSubmit": "Send",
+    "newsletter": "Newsletter",
+    "newsletterDesc": "Get OpenBaara news — AI, products, opportunities.",
+    "newsletterPlaceholder": "your@email.com",
+    "newsletterSubmit": "Subscribe",
+    "location": "Abidjan, Côte d'Ivoire",
+    "email": "contact@openbaara.com"
+  },
+  "footer": {
+    "description": "African deep-tech holding building the agentic orchestration brain — from software to the physical world.",
+    "navigation": "Navigation",
+    "company": "Company",
+    "legal": "Legal notice",
+    "privacy": "Privacy policy",
+    "terms": "Terms of use",
+    "copyright": "© {year} OPENBAARA. All rights reserved.",
+    "madeIn": "Made with ❤️ in Abidjan"
+  },
+  "common": {
+    "learnMore": "Learn more",
+    "backHome": "Back to home",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success!",
+    "formSuccess": "Your message has been sent successfully.",
+    "formError": "Error sending. Please try again.",
+    "required": "Required"
+  },
+  "techStack": {
+    "languages": "Languages",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "auth": "Auth & Security",
+    "ai": "AI & Orchestration",
+    "agentic": "Automation & Agentic",
+    "payment": "Payment",
+    "cloud": "Cloud & Infra",
+    "integration": "Integration & API",
+    "devops": "DevOps & Deployment",
+    "system": "System",
+    "product": "Product & UX",
+    "tools": "Methods & Tools",
+    "cliIde": "CLI & IDE Tools"
+  }
+}
