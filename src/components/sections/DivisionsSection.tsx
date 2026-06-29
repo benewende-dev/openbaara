@@ -7,6 +7,7 @@ import {
   AnimatedStagger,
   AnimatedItem,
 } from "@/components/shared/AnimatedSection";
+import { LINKS } from "@/lib/constants";
 import {
   Zap,
   GraduationCap,
@@ -17,7 +18,7 @@ import {
 } from "lucide-react";
 
 const divisions = [
-  { key: "outio", Icon: Zap, href: "#", external: true },
+  { key: "outio", Icon: Zap, href: LINKS.outio, external: true },
   { key: "academy", Icon: GraduationCap, href: "/academy", external: false },
   { key: "solutions", Icon: Building2, href: "/solutions", external: false },
   { key: "studio", Icon: Wrench, href: "/boutique", external: false },

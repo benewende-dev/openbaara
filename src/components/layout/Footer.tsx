@@ -69,6 +69,13 @@ const companyNav = [
   { href: "/contact", labelKey: "contact" },
 ] as const;
 
+// Legal links use footer.* keys (legal / privacy / terms)
+const legalNav = [
+  { href: "/mentions-legales", labelKey: "legal" },
+  { href: "/confidentialite", labelKey: "privacy" },
+  { href: "/conditions", labelKey: "terms" },
+] as const;
+
 export function Footer() {
   const t = useTranslations("footer");
   const tNav = useTranslations("nav");
@@ -128,24 +135,28 @@ export function Footer() {
               >
                 <GithubIcon className="w-4.5 h-4.5" />
               </a>
-              <a
-                href={LINKS.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
-                aria-label="LinkedIn"
-              >
-                <LinkedinIcon className="w-4.5 h-4.5" />
-              </a>
-              <a
-                href={LINKS.twitter}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
-                aria-label="Twitter"
-              >
-                <TwitterIcon className="w-4.5 h-4.5" />
-              </a>
+              {LINKS.linkedin !== "#" && (
+                <a
+                  href={LINKS.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <LinkedinIcon className="w-4.5 h-4.5" />
+                </a>
+              )}
+              {LINKS.twitter !== "#" && (
+                <a
+                  href={LINKS.twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+                  aria-label="Twitter"
+                >
+                  <TwitterIcon className="w-4.5 h-4.5" />
+                </a>
+              )}
               <a
                 href={`mailto:${LINKS.email}`}
                 className="p-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
@@ -235,8 +246,21 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Legal links */}
+        <nav className="pt-8 border-t border-border dark:border-border-dark flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
+          {legalNav.map((link) => (
+            <Link
+              key={link.labelKey}
+              href={link.href}
+              className="text-muted dark:text-muted-dark hover:text-primary transition-colors"
+            >
+              {t(link.labelKey)}
+            </Link>
+          ))}
+        </nav>
+
         {/* Bottom bar */}
-        <div className="pt-8 border-t border-border dark:border-border-dark flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted dark:text-muted-dark">
+        <div className="mt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted dark:text-muted-dark">
           <p>{t("copyright", { year: new Date().getFullYear() })}</p>
           <p className="flex items-center gap-1">
             {t("madeIn")}

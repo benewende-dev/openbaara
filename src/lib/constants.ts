@@ -9,8 +9,9 @@ export const COLORS = {
 
 // ─── Social / external links ───
 export const LINKS = {
-  outio: "#", // Will be updated with live URL when available
+  outio: "https://getoutio.com",
   github: "https://github.com/benewende-dev",
+  // Réseaux : "#" = pas encore de compte → masqué automatiquement dans le footer.
   linkedin: "#",
   twitter: "#",
   email: "contact@openbaara.com",
