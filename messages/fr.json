@@ -19,19 +19,33 @@
   },
   "hero": {
     "badge": "Holding Deep-Tech · Abidjan · Afrique de l'Ouest",
-    "title": "Le cerveau d'orchestration qui propulse l'Afrique",
+    "title": "L'infrastructure d'orchestration de l'IA, conçue en Afrique de l'Ouest",
     "titleHighlight": "du logiciel au monde physique",
-    "subtitle": "Un seul cerveau réutilisable — aujourd'hui il pilote des agents IA dans un logiciel, demain des machines, des usines, des véhicules.",
+    "subtitle": "Une même technologie d'orchestration, réutilisable d'une activité à l'autre. Notre produit phare, Outio, est déjà opérationnel — et notre feuille de route mène, à terme, du logiciel aux systèmes physiques.",
     "ctaJoin": "Rejoindre la mission",
-    "ctaInvest": "Investir / Nous parler"
+    "ctaInvest": "Échanger avec nous"
+  },
+  "outioSpotlight": {
+    "kicker": "Produit phare",
+    "name": "Outio",
+    "title": "La super-app créateur, augmentée par l'IA",
+    "description": "Outio réunit dans une seule plateforme la création de contenus — texte, image, vidéo, audio, avatars —, l'identité de marque et la distribution musicale africaine, le tout orchestré par des agents IA. C'est la première application concrète de la technologie d'OpenBaara, et sa première source de revenus.",
+    "features": [
+      "Studios créatifs : image, vidéo, audio, avatar",
+      "Orchestration multi-agents",
+      "Distribution musicale sur les plateformes",
+      "Paiements et tarifs adaptés au marché local"
+    ],
+    "cta": "Découvrir Outio",
+    "note": "Une division d'OpenBaara"
   },
   "thesis": {
     "badge": "Pourquoi maintenant",
-    "title": "Le moment historique",
-    "subtitle": "L'IA bascule du logiciel vers le monde physique. Les fondations open source rebattent les cartes. Personne ne construit cette technologie pour les réalités africaines.",
+    "title": "Une bascule technologique, un vide à combler",
+    "subtitle": "L'IA passe progressivement du logiciel au monde physique. Les fondations open source rebattent les cartes. Peu d'acteurs conçoivent cette technologie pour les réalités africaines.",
     "void": {
       "title": "Le vide africain",
-      "description": "Ni la Silicon Valley ni Lagos ne construisent l'IA pour l'Afrique de l'Ouest francophone. OpenBaara occupe ce vide — un espace blanc défendable."
+      "description": "Ni la Silicon Valley ni Lagos ne conçoivent l'IA pour l'Afrique de l'Ouest francophone. OpenBaara se positionne sur cet espace encore peu adressé — et défendable."
     },
     "anchor": {
       "title": "Ancrage UEMOA",
@@ -43,19 +57,19 @@
     },
     "execution": {
       "title": "Exécution séquentielle",
-      "description": "Revenue-first. On n'ouvre une verticale que quand la porte de la précédente est franchie. Ambition sans plafond, discipline totale."
+      "description": "Priorité aux revenus : nous n'ouvrons une nouvelle activité qu'une fois la précédente consolidée. Une ambition de long terme, conduite avec discipline."
     }
   },
   "divisions": {
     "badge": "Nos divisions",
     "title": "Une holding, des divisions qui se renforcent",
-    "subtitle": "Chaque division est un maillon de la chaîne. Chaque victoire débloque la suivante.",
+    "subtitle": "Chaque division s'appuie sur la précédente et prépare la suivante.",
     "outio": {
       "name": "OUTIO",
-      "tagline": "Le moteur logiciel & première source de revenus",
-      "description": "Super-app créateur-IA : texte, image, vidéo, cinéma, audio, avatar, influenceur, Brand DNA, distribution musicale africaine. La preuve que le cerveau d'orchestration fonctionne et génère du cash.",
+      "tagline": "Notre produit phare — la super-app créateur augmentée par l'IA",
+      "description": "Super-app pour créateurs : génération de texte, d'images, de vidéo, d'audio et d'avatars, identité de marque et distribution musicale africaine. La première application concrète de notre technologie d'orchestration — et notre première source de revenus.",
       "cta": "Découvrir Outio",
-      "status": "En cours"
+      "status": "Produit phare"
     },
     "academy": {
       "name": "OPENBAARA ACADEMY",
@@ -81,16 +95,16 @@
     "labs": {
       "name": "BAARALI LABS",
       "tagline": "Le labo de recherche & de production",
-      "description": "Le cœur deep-tech : vision industrielle, numérisation 3D, robotique légère, edge-IA, puis mobilité. Le moat = les données africaines.",
+      "description": "Le cœur deep-tech : vision industrielle, numérisation 3D, robotique légère, edge-IA, puis mobilité. Notre avantage repose sur les données africaines.",
       "cta": "Découvrir le labo",
       "status": "Recherche & Production"
     }
   },
   "sequence": {
     "badge": "La séquence",
-    "title": "Gagner le droit à l'étape suivante",
-    "subtitle": "Toujours le même cerveau. Chaque étape franchie débloque la suivante.",
-    "sameBrain": "TOUJOURS LE MÊME CERVEAU",
+    "title": "Une feuille de route, étape par étape",
+    "subtitle": "Une même technologie, appliquée progressivement. Chaque étape consolidée ouvre la suivante.",
+    "sameBrain": "Une même technologie, d'une étape à l'autre",
     "steps": {
       "step1": {
         "title": "Logiciel & IA",
@@ -132,12 +146,12 @@
   },
   "tools": {
     "badge": "Outils & Stack",
-    "title": "Construit avec les meilleurs outils agentiques",
-    "subtitle": "Nous utilisons et maîtrisons les outils IA les plus avancés pour construire nos produits."
+    "title": "Construit avec des outils agentiques de pointe",
+    "subtitle": "Nous nous appuyons sur des outils d'IA avancés, éprouvés en production, pour concevoir nos produits."
   },
   "ctaRecruit": {
-    "title": "Nous cherchons les meilleurs.",
-    "subtitle": "Pas les plus diplômés — les plus passionnés, les plus déterminés, ceux qui veulent construire quelque chose qui compte.",
+    "title": "Construire OpenBaara, ensemble",
+    "subtitle": "Nous recherchons des profils déterminés et curieux, qui souhaitent contribuer à un projet ambitieux et utile.",
     "cta": "Voir les postes ouverts"
   },
   "founder": {
@@ -151,15 +165,15 @@
   },
   "investors": {
     "badge": "Investisseurs",
-    "title": "Entrez avant le lancement",
-    "subtitle": "OpenBaara est en pré-lancement. Le produit est quasi prêt. L'opportunité est maintenant.",
+    "title": "Investir au stade pré-lancement",
+    "subtitle": "OpenBaara est en phase de pré-lancement. Le produit est en finalisation avancée et l'entrée se fait à un stade précoce.",
     "status": "Pré-lancement",
-    "statusDescription": "Outio est terminé à ~80-90 %. Lancement imminent.",
+    "statusDescription": "Outio, notre produit phare, est en phase de finalisation avancée.",
     "highlights": {
-      "product": "Produit quasi prêt à expédier",
-      "platform": "Plateforme d'orchestration construite",
-      "sequence": "Premier maillon de la séquence en place",
-      "opportunity": "Entrer AVANT le lancement"
+      "product": "Produit en finalisation avancée",
+      "platform": "Plateforme d'orchestration opérationnelle",
+      "sequence": "Première étape de la feuille de route engagée",
+      "opportunity": "Entrée à un stade précoce"
     },
     "ask": "Financer le passage lancement → première traction : mise en marché, acquisition, infrastructure.",
     "tractionPlaceholder": "Les métriques de traction apparaîtront ici post-lancement.",
@@ -217,23 +231,23 @@
   "careers": {
     "badge": "Carrières",
     "title": "Rejoindre la mission",
-    "subtitle": "Nous ne cherchons pas des CV — nous cherchons des esprits déterminés à construire l'indépendance technologique africaine.",
+    "subtitle": "Au-delà du diplôme, nous valorisons la détermination et l'envie de contribuer à l'autonomie technologique africaine.",
     "values": {
       "revenue": {
-        "title": "Revenue-first",
-        "description": "Pas de « on verra plus tard ». Chaque action doit rapprocher du revenu."
+        "title": "Priorité aux revenus",
+        "description": "Chaque initiative vise un impact concret et, à terme, des revenus."
       },
       "noNIH": {
         "title": "Pas de « Not Invented Here »",
-        "description": "Si un outil open source fait le job, on l'utilise. L'ego ne construit rien."
+        "description": "Si un outil open source répond au besoin, nous l'utilisons. L'efficacité prime sur l'ego."
       },
       "local": {
         "title": "Ancrage local",
-        "description": "On construit depuis l'Afrique, pour l'Afrique. Abidjan est notre base, pas notre limite."
+        "description": "Nous construisons depuis l'Afrique, pour l'Afrique. Abidjan est notre base, pas notre limite."
       },
       "ambition": {
-        "title": "Ambition sans limite",
-        "description": "Du logiciel aux véhicules autonomes. Chaque étape ouvre la suivante."
+        "title": "Ambition de long terme",
+        "description": "Du logiciel aux systèmes physiques : une trajectoire construite étape par étape."
       }
     },
     "noPositions": "Aucun poste ouvert pour le moment, mais nous sommes toujours à la recherche de talents exceptionnels.",
@@ -293,7 +307,7 @@
     "pathAdvanced": "Avancé",
     "pathPro": "Pro",
     "cliTools": "Outils CLI & IDE",
-    "cliDescription": "Maîtrisez les outils qui accélèrent 10x votre productivité développeur.",
+    "cliDescription": "Maîtrisez les outils qui accélèrent significativement la productivité des développeurs.",
     "ctaCourses": "Voir tous les cours"
   },
   "labs": {
@@ -325,7 +339,7 @@
     },
     "foundations": "Fondations open source",
     "foundationsList": "Cosmos · Locate Anything · GenRecon · TriSplat · Gamma World",
-    "moat": "Le moat = les données africaines",
+    "moat": "Notre avantage : les données africaines",
     "moatDescription": "De l'intégration à la création de tech propriétaire : modèles fine-tunés, dispositifs edge-IA assemblés localement."
   },
   "store": {
