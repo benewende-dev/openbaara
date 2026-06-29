@@ -85,7 +85,7 @@ export function CartDrawer() {
                   </div>
                 </div>
                 <Link
-                  href="/boutique"
+                  href="/checkout"
                   onClick={toggleCart}
                   className="block w-full py-3 bg-primary text-black text-center rounded-xl font-semibold hover:bg-primary-dark transition-colors"
                   id="cart-checkout"
