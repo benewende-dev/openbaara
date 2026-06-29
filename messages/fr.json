@@ -378,7 +378,12 @@
     "new": "Nouveau",
     "popular": "Populaire",
     "comingSoon": "Bientôt",
-    "noResults": "Aucun produit trouvé."
+    "noResults": "Aucun produit trouvé.",
+    "catCourse": "Cours",
+    "catTool": "Outil",
+    "catService": "Service",
+    "lessonsLabel": "leçons",
+    "toolsLabel": "Outils couverts"
   },
   "cart": {
     "title": "Panier",

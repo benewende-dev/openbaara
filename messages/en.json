@@ -378,7 +378,12 @@
     "new": "New",
     "popular": "Popular",
     "comingSoon": "Coming soon",
-    "noResults": "No products found."
+    "noResults": "No products found.",
+    "catCourse": "Course",
+    "catTool": "Tool",
+    "catService": "Service",
+    "lessonsLabel": "lessons",
+    "toolsLabel": "Tools covered"
   },
   "cart": {
     "title": "Cart",

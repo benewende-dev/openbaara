@@ -19,6 +19,8 @@ import {
   GraduationCap,
   Wrench,
   Briefcase,
+  BarChart3,
+  PlayCircle,
 } from "lucide-react";
 
 const categoryIcons: Record<ProductCategory, typeof GraduationCap> = {
@@ -56,6 +58,12 @@ export default function StorePage() {
     { key: "tool" as const, label: t("filterTools") },
     { key: "service" as const, label: t("filterServices") },
   ];
+
+  const categoryLabels: Record<ProductCategory, string> = {
+    course: t("catCourse"),
+    tool: t("catTool"),
+    service: t("catService"),
+  };
 
   return (
     <div className="section-padding">
@@ -133,7 +141,7 @@ export default function StorePage() {
                       <div className="flex items-center gap-2 text-xs text-muted dark:text-muted-dark">
                         <CatIcon className="w-4 h-4" />
                         <span className="uppercase tracking-wider font-medium">
-                          {product.category}
+                          {categoryLabels[product.category]}
                         </span>
                       </div>
                       {badge && (
@@ -151,6 +159,49 @@ export default function StorePage() {
                     <p className="text-sm text-muted dark:text-muted-dark leading-relaxed flex-1 mb-4">
                       {pickLocale(product.description, locale)}
                     </p>
+
+                    {/* Course meta: level · duration · lessons */}
+                    {(product.level || product.duration || product.lessons) && (
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-3 text-xs text-muted dark:text-muted-dark">
+                        {product.level && (
+                          <span className="inline-flex items-center gap-1">
+                            <BarChart3 className="w-3.5 h-3.5 text-primary" />
+                            {pickLocale(product.level, locale)}
+                          </span>
+                        )}
+                        {product.duration && (
+                          <span className="inline-flex items-center gap-1">
+                            <Clock className="w-3.5 h-3.5 text-primary" />
+                            {pickLocale(product.duration, locale)}
+                          </span>
+                        )}
+                        {product.lessons && (
+                          <span className="inline-flex items-center gap-1">
+                            <PlayCircle className="w-3.5 h-3.5 text-primary" />
+                            {product.lessons} {t("lessonsLabel")}
+                          </span>
+                        )}
+                      </div>
+                    )}
+
+                    {/* Tools covered */}
+                    {product.tools && product.tools.length > 0 && (
+                      <div className="mb-4">
+                        <p className="text-[11px] uppercase tracking-wider font-medium text-muted dark:text-muted-dark mb-1.5">
+                          {t("toolsLabel")}
+                        </p>
+                        <div className="flex flex-wrap gap-1.5">
+                          {product.tools.map((tool) => (
+                            <span
+                              key={tool}
+                              className="px-2 py-0.5 rounded-md text-[11px] font-medium bg-primary/10 text-primary"
+                            >
+                              {tool}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
 
                     {/* Price */}
                     <div className="mb-4">
