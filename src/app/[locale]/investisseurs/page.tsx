@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { motion } from "framer-motion";
 import { Link } from "@/i18n/routing";
 import { AnimatedSection, AnimatedStagger, AnimatedItem } from "@/components/shared/AnimatedSection";
 import {
@@ -41,6 +42,9 @@ type MoatItem = { title: string; description: string };
 const DOSSIER_MAILTO =
   "mailto:contact@openbaara.com?subject=Dossier%20investisseur%20OpenBaara";
 
+// Avancement produit (finalisation avancée, pré-lancement)
+const PROGRESS = 85;
+
 export default function InvestorsPage() {
   const t = useTranslations("investors");
 
@@ -65,6 +69,29 @@ export default function InvestorsPage() {
             <CheckCircle2 className="w-5 h-5" />
             {t("status")}: {t("statusDescription")}
           </span>
+
+          {/* Barre de progression — avancement produit */}
+          <div className="max-w-xl mx-auto mt-10 text-left">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-sm font-semibold">{t("progressTitle")}</span>
+              <span className="text-sm font-bold text-primary">
+                {t("progressStage")} · {PROGRESS}%
+              </span>
+            </div>
+            <div className="h-3 rounded-full bg-surface dark:bg-[#111111] border border-border dark:border-border-dark overflow-hidden">
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: `${PROGRESS}%` }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.2, ease: "easeOut" }}
+                className="h-full rounded-full bg-primary"
+              />
+            </div>
+            <div className="flex items-center justify-between mt-1.5 text-xs text-muted dark:text-muted-dark">
+              <span>{t("status")}</span>
+              <span>{t("progressLaunch")}</span>
+            </div>
+          </div>
         </AnimatedSection>
 
         {/* Highlights */}
