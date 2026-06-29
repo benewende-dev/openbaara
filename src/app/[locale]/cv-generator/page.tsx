@@ -156,12 +156,25 @@ export default function CVGeneratorPage() {
     if (!previewRef.current) return;
     const html2canvas = (await import("html2canvas")).default;
     const jsPDF = (await import("jspdf")).default;
-    const canvas = await html2canvas(previewRef.current, { scale: 2, useCORS: true });
+    const canvas = await html2canvas(previewRef.current, { scale: 2, useCORS: true, backgroundColor: "#ffffff" });
     const pdf = new jsPDF("p", "mm", "a4");
     const imgData = canvas.toDataURL("image/png");
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-    pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+    const pageWidth = pdf.internal.pageSize.getWidth(); // 210 mm
+    const pageHeight = pdf.internal.pageSize.getHeight(); // 297 mm
+    // Hauteur totale de l'image projetée à la largeur A4
+    const imgHeight = (canvas.height * pageWidth) / canvas.width;
+
+    // Découpage en pages A4 successives (multi-pages)
+    let heightLeft = imgHeight;
+    let position = 0;
+    pdf.addImage(imgData, "PNG", 0, position, pageWidth, imgHeight);
+    heightLeft -= pageHeight;
+    while (heightLeft > 0) {
+      position -= pageHeight; // décale l'image vers le haut pour la tranche suivante
+      pdf.addPage();
+      pdf.addImage(imgData, "PNG", 0, position, pageWidth, imgHeight);
+      heightLeft -= pageHeight;
+    }
     pdf.save(`${data.fullName || "cv"}-openbaara.pdf`);
   };
 
