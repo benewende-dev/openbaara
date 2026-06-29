@@ -6,11 +6,8 @@ import { Link } from "@/i18n/routing";
 import { useCart } from "@/features/store/CartContext";
 import { products, pickLocale, type ProductCategory } from "@/data/products";
 import { formatXOF, formatUSD } from "@/lib/utils";
-import {
-  AnimatedSection,
-  AnimatedStagger,
-  AnimatedItem,
-} from "@/components/shared/AnimatedSection";
+import { motion } from "framer-motion";
+import { AnimatedSection } from "@/components/shared/AnimatedSection";
 import {
   Search,
   ShoppingCart,
@@ -117,13 +114,19 @@ export default function StorePage() {
             {t("noResults")}
           </p>
         ) : (
-          <AnimatedStagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filtered.map((product) => {
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filtered.map((product, index) => {
               const CatIcon = categoryIcons[product.category];
               const badge = product.badge ? badgeMap[product.badge] : null;
 
               return (
-                <AnimatedItem key={product.id}>
+                <motion.div
+                  key={product.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, ease: "easeOut", delay: Math.min(index * 0.04, 0.4) }}
+                  className="h-full"
+                >
                   <div className="card-hover group rounded-2xl bg-white dark:bg-[#111111] border border-border dark:border-border-dark p-6 flex flex-col h-full">
                     {/* Top row: category + badge */}
                     <div className="flex items-center justify-between mb-4">
@@ -223,10 +226,10 @@ export default function StorePage() {
                       </button>
                     )}
                   </div>
-                </AnimatedItem>
+                </motion.div>
               );
             })}
-          </AnimatedStagger>
+          </div>
         )}
       </div>
     </div>
