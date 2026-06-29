@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/routing";
 import {
   AnimatedSection,
   AnimatedStagger,
@@ -16,9 +15,6 @@ import {
   ArrowRight,
   CheckCircle2,
   Building2,
-  LandPlot,
-  Users,
-  Briefcase,
 } from "lucide-react";
 
 const services = [
@@ -68,7 +64,7 @@ export default function SolutionsPage() {
         setStatus("error");
         setErrorMsg(data.error || tCommon("formError"));
       }
-    } catch (err) {
+    } catch {
       setStatus("error");
       setErrorMsg(tCommon("formError"));
     }

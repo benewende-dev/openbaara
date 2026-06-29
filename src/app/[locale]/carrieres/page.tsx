@@ -87,7 +87,7 @@ export default function CareersPage() {
         setStatus("error");
         setErrorMsg(data.error || tCommon("formError"));
       }
-    } catch (err) {
+    } catch {
       setStatus("error");
       setErrorMsg(tCommon("formError"));
     }

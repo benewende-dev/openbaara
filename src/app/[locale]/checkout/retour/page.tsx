@@ -18,11 +18,11 @@ function ReturnInner() {
 
   useEffect(() => {
     let active = true;
-    if (!id) {
-      setView("refused");
-      return;
-    }
     (async () => {
+      if (!id) {
+        if (active) setView("refused");
+        return;
+      }
       try {
         const res = await fetch(`/api/payments/cinetpay/status?id=${encodeURIComponent(id)}`);
         const data = await res.json();

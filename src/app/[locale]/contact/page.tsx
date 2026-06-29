@@ -45,7 +45,7 @@ export default function ContactPage() {
         setStatus("error");
         setErrorMsg(data.error || tCommon("formError"));
       }
-    } catch (err) {
+    } catch {
       setStatus("error");
       setErrorMsg(tCommon("formError"));
     }
@@ -72,7 +72,7 @@ export default function ContactPage() {
         setNewsletterStatus("error");
         setNewsletterErrorMsg(data.error || tCommon("formError"));
       }
-    } catch (err) {
+    } catch {
       setNewsletterStatus("error");
       setNewsletterErrorMsg(tCommon("formError"));
     }

@@ -1,4 +1,3 @@
-import { useTranslations } from "next-intl";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { OutioSpotlight } from "@/components/sections/OutioSpotlight";
 import { ThesisSection } from "@/components/sections/ThesisSection";
