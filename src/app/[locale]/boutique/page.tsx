@@ -1,10 +1,10 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { useState } from "react";
 import { Link } from "@/i18n/routing";
 import { useCart } from "@/features/store/CartContext";
-import { products, type ProductCategory } from "@/data/products";
+import { products, pickLocale, type ProductCategory } from "@/data/products";
 import { formatXOF, formatUSD } from "@/lib/utils";
 import {
   AnimatedSection,
@@ -32,16 +32,18 @@ const categoryIcons: Record<ProductCategory, typeof GraduationCap> = {
 
 export default function StorePage() {
   const t = useTranslations("store");
+  const locale = useLocale();
   const { addItem } = useCart();
   const [filter, setFilter] = useState<ProductCategory | "all">("all");
   const [search, setSearch] = useState("");
 
   const filtered = products.filter((p) => {
     const matchCategory = filter === "all" || p.category === filter;
+    const q = search.toLowerCase();
     const matchSearch =
       search === "" ||
-      p.nameKey.toLowerCase().includes(search.toLowerCase()) ||
-      p.descriptionKey.toLowerCase().includes(search.toLowerCase());
+      pickLocale(p.name, locale).toLowerCase().includes(q) ||
+      pickLocale(p.description, locale).toLowerCase().includes(q);
     return matchCategory && matchSearch;
   });
 
@@ -142,9 +144,9 @@ export default function StorePage() {
                     </div>
 
                     {/* Product info */}
-                    <h3 className="text-lg font-bold mb-2">{product.nameKey}</h3>
+                    <h3 className="text-lg font-bold mb-2">{pickLocale(product.name, locale)}</h3>
                     <p className="text-sm text-muted dark:text-muted-dark leading-relaxed flex-1 mb-4">
-                      {product.descriptionKey}
+                      {pickLocale(product.description, locale)}
                     </p>
 
                     {/* Price */}
@@ -177,7 +179,7 @@ export default function StorePage() {
                         onClick={() =>
                           addItem({
                             id: product.id,
-                            name: product.nameKey,
+                            name: pickLocale(product.name, locale),
                             priceXOF: product.priceXOF!,
                             priceUSD: product.priceUSD!,
                             quantity: 1,

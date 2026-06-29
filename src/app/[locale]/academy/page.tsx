@@ -1,9 +1,9 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { AnimatedSection, AnimatedStagger, AnimatedItem } from "@/components/shared/AnimatedSection";
-import { products } from "@/data/products";
+import { products, pickLocale } from "@/data/products";
 import { CLI_TOOLS } from "@/lib/constants";
 import { GraduationCap, ArrowRight, Terminal, BookOpen, ChevronRight } from "lucide-react";
 
@@ -11,6 +11,7 @@ const levels = ["pathBeginner", "pathIntermediate", "pathAdvanced", "pathPro"] a
 
 export default function AcademyPage() {
   const t = useTranslations("academy");
+  const locale = useLocale();
   const courses = products.filter((p) => p.category === "course");
 
   return (
@@ -59,8 +60,8 @@ export default function AcademyPage() {
                     <BookOpen className="w-6 h-6" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-bold mb-1">{course.nameKey}</h3>
-                    <p className="text-sm text-muted dark:text-muted-dark mb-3">{course.descriptionKey}</p>
+                    <h3 className="font-bold mb-1">{pickLocale(course.name, locale)}</h3>
+                    <p className="text-sm text-muted dark:text-muted-dark mb-3">{pickLocale(course.description, locale)}</p>
                     <p className="font-bold text-primary">
                       {course.priceXOF?.toLocaleString("fr-FR")} FCFA
                     </p>

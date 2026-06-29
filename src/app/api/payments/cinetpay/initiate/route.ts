@@ -59,7 +59,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "invalid_item" }, { status: 400 });
     }
     amount += product.priceXOF * qty;
-    lines.push(`${qty}× ${product.nameKey}`);
+    lines.push(`${qty}× ${product.name.fr}`);
   }
 
   amount = normalizeXof(amount);
