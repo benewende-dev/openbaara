@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/routing";
 import { useCart } from "@/features/store/CartContext";
+import { Logo } from "@/components/layout/Logo";
 import { useTheme } from "@/components/layout/ThemeProvider";
 import {
   Menu,
@@ -44,13 +45,8 @@ export function Navbar() {
       <header className="fixed top-0 left-0 right-0 z-50 glass">
         <nav className="container-wide mx-auto flex items-center justify-between px-4 md:px-6 h-16 md:h-18">
           {/* Logo */}
-          <Link
-            href="/"
-            className="flex items-center gap-2 font-black text-xl tracking-tight"
-            id="nav-logo"
-          >
-            <span className="text-primary">OPEN</span>
-            <span>BAARA</span>
+          <Link href="/" className="flex items-center" id="nav-logo">
+            <Logo size={28} />
           </Link>
 
           {/* Desktop nav */}
@@ -62,7 +58,7 @@ export function Navbar() {
                 className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-black/5 dark:hover:bg-white/5 ${
                   pathname === link.href
                     ? "text-primary font-semibold"
-                    : "text-[#0A0A0A]/70 dark:text-[#FAFAFA]/70"
+                    : "text-[#000000]/70 dark:text-[#FFFFFF]/70"
                 }`}
                 id={`nav-${link.labelKey}`}
               >
@@ -109,7 +105,7 @@ export function Navbar() {
             >
               <ShoppingCart className="w-4.5 h-4.5" />
               {itemCount > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 bg-primary text-white text-[10px] font-bold w-4.5 h-4.5 rounded-full flex items-center justify-center">
+                <span className="absolute -top-0.5 -right-0.5 bg-primary text-black text-[10px] font-bold w-4.5 h-4.5 rounded-full flex items-center justify-center">
                   {itemCount}
                 </span>
               )}
@@ -139,7 +135,7 @@ export function Navbar() {
             className="absolute inset-0 bg-black/20 dark:bg-black/40"
             onClick={() => setMobileOpen(false)}
           />
-          <nav className="absolute top-16 left-0 right-0 glass border-t border-border dark:border-border-dark bg-white/95 dark:bg-[#0A0A0A]/95 p-4 flex flex-col gap-1 animate-fade-in">
+          <nav className="absolute top-16 left-0 right-0 glass border-t border-border dark:border-border-dark bg-white/95 dark:bg-[#000000]/95 p-4 flex flex-col gap-1 animate-fade-in">
             {navLinks.map((link) => (
               <Link
                 key={link.labelKey}
@@ -148,7 +144,7 @@ export function Navbar() {
                 className={`px-4 py-3 rounded-xl text-base font-medium transition-colors ${
                   pathname === link.href
                     ? "text-primary bg-primary/5 font-semibold"
-                    : "text-[#0A0A0A]/70 dark:text-[#FAFAFA]/70 hover:bg-black/5 dark:hover:bg-white/5"
+                    : "text-[#000000]/70 dark:text-[#FFFFFF]/70 hover:bg-black/5 dark:hover:bg-white/5"
                 }`}
                 id={`nav-mobile-${link.labelKey}`}
               >
@@ -158,7 +154,7 @@ export function Navbar() {
             <Link
               href="/carrieres"
               onClick={() => setMobileOpen(false)}
-              className="mt-2 px-4 py-3 rounded-xl bg-primary text-white text-center font-semibold"
+              className="mt-2 px-4 py-3 rounded-xl bg-primary text-black text-center font-semibold"
               id="nav-mobile-join"
             >
               {t("joinMission")}

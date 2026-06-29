@@ -1,6 +1,6 @@
 import "../globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { locales } from "@/i18n/config";
@@ -13,6 +13,20 @@ import { CartDrawer } from "@/components/store/CartDrawer";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
@@ -59,7 +73,11 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={`${inter.variable} h-full`} suppressHydrationWarning>
+    <html
+      lang={locale}
+      className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} h-full`}
+      suppressHydrationWarning
+    >
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -67,7 +85,7 @@ export default async function LocaleLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col font-sans antialiased bg-white text-[#0A0A0A] dark:bg-[#0A0A0A] dark:text-[#FAFAFA] transition-colors duration-300">
+      <body className="min-h-full flex flex-col font-sans antialiased bg-white text-[#000000] dark:bg-[#000000] dark:text-[#FFFFFF] transition-colors duration-300">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

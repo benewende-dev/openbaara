@@ -71,7 +71,7 @@ export default function AboutPage() {
                   {TECH_STACK[category].map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1.5 rounded-lg bg-surface dark:bg-[#1A1A1A] border border-border dark:border-border-dark text-sm font-medium"
+                      className="px-3 py-1.5 rounded-lg bg-surface dark:bg-[#111111] border border-border dark:border-border-dark text-sm font-medium"
                     >
                       {tech}
                     </span>

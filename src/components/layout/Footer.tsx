@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { LINKS } from "@/lib/constants";
+import { Logo } from "@/components/layout/Logo";
 import { Mail } from "lucide-react";
 
 // Inline SVG components for brand icons since they are removed in Lucide v1.x
@@ -111,9 +112,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className="inline-block font-black text-xl tracking-tight mb-4">
-              <span className="text-primary">OPEN</span>
-              <span>BAARA</span>
+            <Link href="/" className="inline-block mb-4">
+              <Logo size={30} />
             </Link>
             <p className="text-sm text-muted dark:text-muted-dark leading-relaxed mb-6">
               {t("description")}
@@ -220,13 +220,13 @@ export function Footer() {
                 onChange={(e) => setNewsletterEmail(e.target.value)}
                 required
                 disabled={status === "loading"}
-                className="flex-1 px-3 py-2 rounded-lg border border-border dark:border-border-dark bg-white dark:bg-[#141414] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+                className="flex-1 px-3 py-2 rounded-lg border border-border dark:border-border-dark bg-white dark:bg-[#111111] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
                 id="footer-newsletter-email"
               />
               <button
                 type="submit"
                 disabled={status === "loading" || !newsletterEmail}
-                className="px-4 py-2 bg-primary text-white rounded-lg text-sm font-medium hover:bg-primary-dark transition-colors disabled:opacity-50"
+                className="px-4 py-2 bg-primary text-black rounded-lg text-sm font-medium hover:bg-primary-dark transition-colors disabled:opacity-50"
                 id="footer-newsletter-submit"
               >
                 {status === "loading" ? "..." : "OK"}

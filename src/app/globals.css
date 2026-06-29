@@ -5,22 +5,28 @@
 
 /* ─── Custom Design Tokens ─── */
 @theme {
-  --color-primary: #FF7A00;
-  --color-primary-light: #FF9A33;
-  --color-primary-dark: #E06800;
-  --color-secondary: #009E60;
-  --color-secondary-light: #00B86E;
-  --color-secondary-dark: #008A53;
-  --color-surface: #F7F7F7;
-  --color-surface-dark: #141414;
+  /* ── Accent unique : vert matrix ── */
+  --color-primary: #00D95A;
+  --color-primary-light: #2BFF88;
+  --color-primary-dark: #00A847;
+  --color-secondary: #00D95A;
+  --color-secondary-light: #2BFF88;
+  --color-secondary-dark: #00A847;
+
+  /* ── Neutres purs (blanc / noir + gris neutres, style OpenAI) ── */
+  --color-ink: #000000;
+  --color-surface: #FAFAFA;
+  --color-surface-dark: #0A0A0A;
   --color-surface-elevated: #FFFFFF;
-  --color-surface-elevated-dark: #1A1A1A;
+  --color-surface-elevated-dark: #111111;
   --color-muted: #6B7280;
-  --color-muted-dark: #9CA3AF;
-  --color-border: #E5E7EB;
+  --color-muted-dark: #A1A1A1;
+  --color-border: #EAEAEA;
   --color-border-dark: #262626;
 
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-inter), "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-space-grotesk), var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, "SFMono-Regular", monospace;
 
   --animate-fade-up: fade-up 0.6s ease-out both;
   --animate-fade-in: fade-in 0.5s ease-out both;
@@ -56,8 +62,8 @@
     50% { background-position: 100% 50%; }
   }
   @keyframes pulse-glow {
-    0%, 100% { box-shadow: 0 0 5px rgba(255, 122, 0, 0.3); }
-    50% { box-shadow: 0 0 20px rgba(255, 122, 0, 0.6); }
+    0%, 100% { box-shadow: 0 0 5px rgba(0, 217, 90, 0.35); }
+    50% { box-shadow: 0 0 20px rgba(0, 217, 90, 0.7); }
   }
   @keyframes float {
     0%, 100% { transform: translateY(0); }
@@ -72,20 +78,46 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Headings carry the display typeface site-wide */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
 body {
   font-family: var(--font-sans);
   background: #FFFFFF;
-  color: #0A0A0A;
+  color: #000000;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .dark body {
-  background: #0A0A0A;
-  color: #FAFAFA;
+  background:
+    radial-gradient(1000px 680px at 80% -12%, rgba(0, 217, 90, 0.08), transparent 58%),
+    #000000;
+  color: #FFFFFF;
+}
+
+/* ─── Typography helpers ─── */
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Mono uppercase label (tech "kicker") */
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
 }
 
 ::selection {
-  background: rgba(255, 122, 0, 0.3);
+  background: rgba(0, 217, 90, 0.28);
   color: inherit;
 }
 
@@ -98,13 +130,13 @@ body {
 }
 
 .dark .glass {
-  background: rgba(10, 10, 10, 0.7);
+  background: rgba(0, 0, 0, 0.72);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* ─── Gradient Text ─── */
 .gradient-text {
-  background: linear-gradient(135deg, #FF7A00, #FF9A33, #009E60);
+  background: linear-gradient(135deg, #2BFF88, #00D95A, #00A847);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -114,9 +146,56 @@ body {
 
 /* ─── Gradient Background ─── */
 .gradient-bg {
-  background: linear-gradient(135deg, #FF7A00 0%, #FF9A33 25%, #009E60 75%, #00B86E 100%);
+  background: linear-gradient(135deg, #00A847 0%, #00D95A 50%, #2BFF88 100%);
   background-size: 400% 400%;
   animation: gradient-shift 8s ease infinite;
+}
+
+/* ─── Hero mesh + texture ─── */
+.dot-grid {
+  background-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.10) 1px, transparent 1.4px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 35%, transparent 80%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 35%, transparent 80%);
+}
+.dark .dot-grid {
+  background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.10) 1px, transparent 1.4px);
+}
+
+.glow-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(70px);
+  pointer-events: none;
+}
+
+/* Subtle film grain for depth */
+.noise::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Glowing primary button */
+.btn-glow {
+  box-shadow: 0 8px 30px -8px rgba(0, 217, 90, 0.5);
+}
+.btn-glow:hover {
+  box-shadow: 0 12px 40px -6px rgba(0, 217, 90, 0.68);
+}
+
+/* Tech card surface with soft inner light */
+.tech-card {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--color-border);
+  backdrop-filter: blur(8px);
+}
+.dark .tech-card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01));
+  border: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 /* ─── Card Hover Effects ─── */
@@ -142,7 +221,7 @@ body {
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, #FF7A00, #009E60);
+  background: linear-gradient(135deg, #2BFF88, #00A847);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
   -webkit-mask-composite: xor;

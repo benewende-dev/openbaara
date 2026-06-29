@@ -85,8 +85,8 @@ export default function StorePage() {
                   onClick={() => setFilter(f.key)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                     filter === f.key
-                      ? "bg-primary text-white"
-                      : "bg-surface dark:bg-[#1A1A1A] text-muted dark:text-muted-dark hover:bg-primary/10 hover:text-primary"
+                      ? "bg-primary text-black"
+                      : "bg-surface dark:bg-[#111111] text-muted dark:text-muted-dark hover:bg-primary/10 hover:text-primary"
                   }`}
                   id={`store-filter-${f.key}`}
                 >
@@ -102,7 +102,7 @@ export default function StorePage() {
                 placeholder={t("searchPlaceholder")}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-border dark:border-border-dark bg-white dark:bg-[#141414] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+                className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-border dark:border-border-dark bg-white dark:bg-[#111111] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
                 id="store-search"
               />
             </div>
@@ -122,7 +122,7 @@ export default function StorePage() {
 
               return (
                 <AnimatedItem key={product.id}>
-                  <div className="card-hover group rounded-2xl bg-white dark:bg-[#141414] border border-border dark:border-border-dark p-6 flex flex-col h-full">
+                  <div className="card-hover group rounded-2xl bg-white dark:bg-[#111111] border border-border dark:border-border-dark p-6 flex flex-col h-full">
                     {/* Top row: category + badge */}
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center gap-2 text-xs text-muted dark:text-muted-dark">
@@ -183,7 +183,7 @@ export default function StorePage() {
                             quantity: 1,
                           })
                         }
-                        className="flex items-center justify-center gap-2 w-full py-3 bg-primary text-white rounded-xl font-semibold hover:bg-primary-dark transition-colors"
+                        className="flex items-center justify-center gap-2 w-full py-3 bg-primary text-black rounded-xl font-semibold hover:bg-primary-dark transition-colors"
                         id={`store-buy-${product.id}`}
                       >
                         <ShoppingCart className="w-4 h-4" />
@@ -193,7 +193,7 @@ export default function StorePage() {
                     {product.cta === "try-free" && (
                       <Link
                         href="/cv-generator"
-                        className="flex items-center justify-center gap-2 w-full py-3 bg-secondary text-white rounded-xl font-semibold hover:bg-secondary-dark transition-colors"
+                        className="flex items-center justify-center gap-2 w-full py-3 bg-secondary text-black rounded-xl font-semibold hover:bg-secondary-dark transition-colors"
                         id={`store-try-${product.id}`}
                       >
                         {t("tryFree")}
@@ -203,7 +203,7 @@ export default function StorePage() {
                     {product.cta === "book-call" && (
                       <Link
                         href="/contact"
-                        className="flex items-center justify-center gap-2 w-full py-3 border-2 border-primary text-primary rounded-xl font-semibold hover:bg-primary hover:text-white transition-colors"
+                        className="flex items-center justify-center gap-2 w-full py-3 border-2 border-primary text-primary rounded-xl font-semibold hover:bg-primary hover:text-black transition-colors"
                         id={`store-book-${product.id}`}
                       >
                         <Phone className="w-4 h-4" />

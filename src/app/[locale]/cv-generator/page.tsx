@@ -37,15 +37,15 @@ interface CVData {
 }
 
 const templates = [
-  { id: "abidjan", name: "Abidjan", free: true, accent: "#FF7A00" },
-  { id: "sahel", name: "Sahel", free: false, accent: "#009E60" },
+  { id: "matrix", name: "Matrix", free: true, accent: "#00D95A" },
+  { id: "noir", name: "Noir", free: false, accent: "#111111" },
   { id: "cosmos", name: "Cosmos", free: false, accent: "#6366F1" },
 ] as const;
 
 export default function CVGeneratorPage() {
   const t = useTranslations("cv");
   const previewRef = useRef<HTMLDivElement>(null);
-  const [selectedTemplate, setSelectedTemplate] = useState("abidjan");
+  const [selectedTemplate, setSelectedTemplate] = useState("matrix");
   const [skillInput, setSkillInput] = useState("");
   const [langInput, setLangInput] = useState("");
 
@@ -129,7 +129,7 @@ export default function CVGeneratorPage() {
   };
 
   const currentTemplate = templates.find((t) => t.id === selectedTemplate)!;
-  const inputClass = "w-full px-4 py-2.5 rounded-xl border border-border dark:border-border-dark bg-surface dark:bg-[#0A0A0A] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50";
+  const inputClass = "w-full px-4 py-2.5 rounded-xl border border-border dark:border-border-dark bg-surface dark:bg-[#000000] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50";
 
   return (
     <div className="section-padding">
@@ -216,7 +216,7 @@ export default function CVGeneratorPage() {
               <h3 className="font-bold mb-3">{t("skills")}</h3>
               <div className="flex gap-2 mb-2">
                 <input value={skillInput} onChange={(e) => setSkillInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addSkill())} placeholder={t("addSkill")} className={`${inputClass} flex-1`} id="cv-skill-input" />
-                <button onClick={addSkill} className="px-4 py-2 bg-primary text-white rounded-xl text-sm font-medium" id="cv-add-skill">+</button>
+                <button onClick={addSkill} className="px-4 py-2 bg-primary text-black rounded-xl text-sm font-medium" id="cv-add-skill">+</button>
               </div>
               <div className="flex flex-wrap gap-2">
                 {data.skills.map((s, i) => (
@@ -233,7 +233,7 @@ export default function CVGeneratorPage() {
               <h3 className="font-bold mb-3">{t("languages")}</h3>
               <div className="flex gap-2 mb-2">
                 <input value={langInput} onChange={(e) => setLangInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addLanguage())} placeholder={t("addLanguage")} className={`${inputClass} flex-1`} id="cv-lang-input" />
-                <button onClick={addLanguage} className="px-4 py-2 bg-secondary text-white rounded-xl text-sm font-medium" id="cv-add-lang">+</button>
+                <button onClick={addLanguage} className="px-4 py-2 bg-secondary text-black rounded-xl text-sm font-medium" id="cv-add-lang">+</button>
               </div>
               <div className="flex flex-wrap gap-2">
                 {data.languages.map((l, i) => (
@@ -362,7 +362,7 @@ export default function CVGeneratorPage() {
             {/* Export button */}
             <button
               onClick={handleExportPDF}
-              className="flex items-center justify-center gap-2 w-full mt-4 py-3.5 bg-primary text-white rounded-xl font-bold hover:bg-primary-dark transition-colors"
+              className="flex items-center justify-center gap-2 w-full mt-4 py-3.5 bg-primary text-black rounded-xl font-bold hover:bg-primary-dark transition-colors"
               id="cv-export-pdf"
             >
               <Download className="w-5 h-5" />
@@ -371,8 +371,8 @@ export default function CVGeneratorPage() {
 
             {/* Email capture */}
             <div className="mt-4 flex gap-2">
-              <input type="email" placeholder={t("emailPlaceholder")} className="flex-1 px-4 py-2.5 rounded-xl border border-border dark:border-border-dark bg-white dark:bg-[#141414] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" id="cv-email-capture" />
-              <button className="px-4 py-2.5 bg-secondary text-white rounded-xl text-sm font-medium hover:bg-secondary-dark transition-colors" id="cv-save">
+              <input type="email" placeholder={t("emailPlaceholder")} className="flex-1 px-4 py-2.5 rounded-xl border border-border dark:border-border-dark bg-white dark:bg-[#111111] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" id="cv-email-capture" />
+              <button className="px-4 py-2.5 bg-secondary text-black rounded-xl text-sm font-medium hover:bg-secondary-dark transition-colors" id="cv-save">
                 <Mail className="w-4 h-4" />
               </button>
             </div>

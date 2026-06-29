@@ -1,9 +1,10 @@
-// ─── Brand colors (Ivorian flag) ───
+// ─── Brand colors (style OpenAI : blanc/noir purs + accent vert matrix) ───
 export const COLORS = {
-  orange: "#FF7A00",
-  green: "#009E60",
+  matrix: "#00D95A",
+  matrixLight: "#2BFF88",
+  matrixDark: "#00A847",
   white: "#FFFFFF",
-  black: "#0A0A0A",
+  black: "#000000",
 } as const;
 
 // ─── Social / external links ───

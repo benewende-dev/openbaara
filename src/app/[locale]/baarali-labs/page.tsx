@@ -37,7 +37,7 @@ export default function BaaraliLabsPage() {
         <AnimatedStagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
           {areas.map(({ key, Icon }) => (
             <AnimatedItem key={key}>
-              <div className="card-hover rounded-2xl p-6 bg-white dark:bg-[#141414] border border-border dark:border-border-dark h-full">
+              <div className="card-hover rounded-2xl p-6 bg-white dark:bg-[#111111] border border-border dark:border-border-dark h-full">
                 <div className="p-3 rounded-xl bg-primary/10 text-primary w-fit mb-4">
                   <Icon className="w-6 h-6" />
                 </div>
@@ -53,10 +53,10 @@ export default function BaaraliLabsPage() {
         {/* Foundations & moat */}
         <AnimatedSection>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="rounded-2xl p-8 bg-[#0A0A0A] text-white">
+            <div className="rounded-2xl p-8 bg-surface dark:bg-[#111111] border border-border dark:border-border-dark">
               <Code2 className="w-8 h-8 text-secondary mb-4" />
               <h3 className="text-xl font-bold mb-3">{t("foundations")}</h3>
-              <p className="text-white/60 leading-relaxed">{t("foundationsList")}</p>
+              <p className="text-muted dark:text-muted-dark leading-relaxed">{t("foundationsList")}</p>
             </div>
             <div className="rounded-2xl p-8 bg-gradient-to-br from-primary/10 to-secondary/10 border border-primary/20">
               <Database className="w-8 h-8 text-primary mb-4" />

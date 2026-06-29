@@ -38,7 +38,7 @@ export default function InvestorsPage() {
         <AnimatedStagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {highlights.map(({ key, Icon }) => (
             <AnimatedItem key={key}>
-              <div className="card-hover rounded-2xl p-6 bg-white dark:bg-[#141414] border border-border dark:border-border-dark text-center h-full">
+              <div className="card-hover rounded-2xl p-6 bg-white dark:bg-[#111111] border border-border dark:border-border-dark text-center h-full">
                 <div className="p-3 rounded-xl bg-primary/10 text-primary mx-auto w-fit mb-4">
                   <Icon className="w-6 h-6" />
                 </div>
@@ -50,13 +50,13 @@ export default function InvestorsPage() {
 
         {/* The Ask */}
         <AnimatedSection className="mb-16">
-          <div className="rounded-2xl bg-[#0A0A0A] text-white p-8 md:p-12 text-center">
+          <div className="rounded-2xl bg-surface dark:bg-[#111111] border border-border dark:border-border-dark p-8 md:p-12 text-center">
             <h2 className="text-2xl md:text-3xl font-black mb-4">L&apos;opportunité</h2>
-            <p className="text-white/60 max-w-2xl mx-auto leading-relaxed mb-8">{t("ask")}</p>
+            <p className="text-muted dark:text-muted-dark max-w-2xl mx-auto leading-relaxed mb-8">{t("ask")}</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/contact"
-                className="flex items-center gap-2 px-8 py-3.5 bg-primary text-white rounded-xl font-bold hover:bg-primary-dark transition-colors"
+                className="flex items-center gap-2 px-8 py-3.5 bg-primary text-black rounded-xl font-bold hover:bg-primary-dark transition-colors"
                 id="investors-book-call"
               >
                 <Calendar className="w-5 h-5" />
@@ -64,7 +64,7 @@ export default function InvestorsPage() {
               </Link>
               <a
                 href="mailto:contact@openbaara.com"
-                className="flex items-center gap-2 px-8 py-3.5 border border-white/20 text-white rounded-xl font-bold hover:bg-white/5 transition-colors"
+                className="flex items-center gap-2 px-8 py-3.5 border border-border dark:border-white/20 text-[#000000] dark:text-white rounded-xl font-bold hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
               >
                 <Mail className="w-5 h-5" />
                 {t("ctaEmail")}

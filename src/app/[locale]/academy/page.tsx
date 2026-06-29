@@ -36,8 +36,8 @@ export default function AcademyPage() {
               <div key={level} className="flex items-center">
                 <span className={`px-5 py-2.5 rounded-full text-sm font-bold ${
                   i === 0
-                    ? "bg-primary text-white"
-                    : "bg-surface dark:bg-[#1A1A1A] text-muted dark:text-muted-dark border border-border dark:border-border-dark"
+                    ? "bg-primary text-black"
+                    : "bg-surface dark:bg-[#111111] text-muted dark:text-muted-dark border border-border dark:border-border-dark"
                 }`}>
                   {t(level)}
                 </span>
@@ -53,7 +53,7 @@ export default function AcademyPage() {
         <AnimatedStagger className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
           {courses.map((course) => (
             <AnimatedItem key={course.id}>
-              <div className="card-hover rounded-2xl p-6 bg-white dark:bg-[#141414] border border-border dark:border-border-dark">
+              <div className="card-hover rounded-2xl p-6 bg-white dark:bg-[#111111] border border-border dark:border-border-dark">
                 <div className="flex items-start gap-4">
                   <div className="p-3 rounded-xl bg-primary/10 text-primary shrink-0">
                     <BookOpen className="w-6 h-6" />
@@ -73,15 +73,15 @@ export default function AcademyPage() {
 
         {/* CLI/IDE Tools section */}
         <AnimatedSection className="mb-16">
-          <div className="rounded-2xl bg-[#0A0A0A] text-white p-8 md:p-12">
+          <div className="rounded-2xl bg-surface dark:bg-[#111111] border border-border dark:border-border-dark p-8 md:p-12">
             <div className="flex items-center gap-3 mb-4">
               <Terminal className="w-6 h-6 text-primary" />
               <h2 className="text-2xl font-black">{t("cliTools")}</h2>
             </div>
-            <p className="text-white/60 mb-8 max-w-2xl">{t("cliDescription")}</p>
+            <p className="text-muted dark:text-muted-dark mb-8 max-w-2xl">{t("cliDescription")}</p>
             <div className="flex flex-wrap gap-3">
               {CLI_TOOLS.map((tool) => (
-                <span key={tool.name} className="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-sm font-medium">
+                <span key={tool.name} className="px-4 py-2 rounded-xl bg-black/5 dark:bg-white/5 border border-border dark:border-white/10 text-sm font-medium">
                   {tool.name}
                 </span>
               ))}
@@ -93,7 +93,7 @@ export default function AcademyPage() {
         <AnimatedSection className="text-center">
           <Link
             href="/boutique"
-            className="group inline-flex items-center gap-2 px-8 py-4 bg-primary text-white rounded-xl font-bold text-lg hover:bg-primary-dark transition-all"
+            className="group inline-flex items-center gap-2 px-8 py-4 bg-primary text-black rounded-xl font-bold text-lg hover:bg-primary-dark transition-all"
             id="academy-cta"
           >
             {t("ctaCourses")}

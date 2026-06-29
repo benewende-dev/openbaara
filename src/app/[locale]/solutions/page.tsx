@@ -94,7 +94,7 @@ export default function SolutionsPage() {
         <AnimatedStagger className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
           {services.map(({ key, Icon }) => (
             <AnimatedItem key={key}>
-              <div className="card-hover rounded-2xl p-6 md:p-8 bg-white dark:bg-[#141414] border border-border dark:border-border-dark">
+              <div className="card-hover rounded-2xl p-6 md:p-8 bg-white dark:bg-[#111111] border border-border dark:border-border-dark">
                 <div className="p-3 rounded-xl bg-secondary/10 text-secondary w-fit mb-4">
                   <Icon className="w-6 h-6" />
                 </div>
@@ -142,7 +142,7 @@ export default function SolutionsPage() {
 
         {/* B2B Contact form */}
         <AnimatedSection>
-          <div className="max-w-2xl mx-auto rounded-2xl bg-white dark:bg-[#141414] border border-border dark:border-border-dark p-8">
+          <div className="max-w-2xl mx-auto rounded-2xl bg-white dark:bg-[#111111] border border-border dark:border-border-dark p-8">
             <h2 className="text-2xl font-black mb-6 text-center">{t("ctaAudit")}</h2>
             {status === "success" && (
               <div className="mb-6 p-4 rounded-xl bg-secondary/10 border border-secondary/20 text-secondary text-sm font-semibold">
@@ -163,7 +163,7 @@ export default function SolutionsPage() {
                   onChange={(e) => setCompany(e.target.value)}
                   required
                   disabled={status === "loading"}
-                  className="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-surface dark:bg-[#0A0A0A] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  className="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-surface dark:bg-[#000000] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
                   id="solutions-form-company"
                 />
                 <input
@@ -173,7 +173,7 @@ export default function SolutionsPage() {
                   onChange={(e) => setName(e.target.value)}
                   required
                   disabled={status === "loading"}
-                  className="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-surface dark:bg-[#0A0A0A] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  className="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-surface dark:bg-[#000000] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
                   id="solutions-form-name"
                 />
               </div>
@@ -185,7 +185,7 @@ export default function SolutionsPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   disabled={status === "loading"}
-                  className="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-surface dark:bg-[#0A0A0A] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  className="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-surface dark:bg-[#000000] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
                   id="solutions-form-email"
                 />
                 <input
@@ -195,7 +195,7 @@ export default function SolutionsPage() {
                   onChange={(e) => setSector(e.target.value)}
                   required
                   disabled={status === "loading"}
-                  className="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-surface dark:bg-[#0A0A0A] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  className="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-surface dark:bg-[#000000] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
                   id="solutions-form-sector"
                 />
               </div>
@@ -205,13 +205,13 @@ export default function SolutionsPage() {
                 onChange={(e) => setMessage(e.target.value)}
                 disabled={status === "loading"}
                 rows={4}
-                className="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-surface dark:bg-[#0A0A0A] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
+                className="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-surface dark:bg-[#000000] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
                 id="solutions-form-message"
               />
               <button
                 type="submit"
                 disabled={status === "loading" || !company || !name || !email || !sector}
-                className="w-full py-3.5 bg-primary text-white rounded-xl font-semibold hover:bg-primary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-3.5 bg-primary text-black rounded-xl font-semibold hover:bg-primary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 id="solutions-form-submit"
               >
                 {status === "loading" ? tCommon("loading") : t("formSubmit")}

@@ -24,7 +24,7 @@ export function CTARecruitSection() {
           </p>
           <Link
             href="/carrieres"
-            className="group inline-flex items-center gap-2 px-8 py-4 bg-primary text-white rounded-xl font-bold text-lg hover:bg-primary-dark transition-all hover:shadow-lg hover:shadow-primary/20"
+            className="group inline-flex items-center gap-2 px-8 py-4 bg-primary text-black rounded-xl font-bold text-lg hover:bg-primary-dark transition-all hover:shadow-lg hover:shadow-primary/20"
             id="cta-recruit-positions"
           >
             {t("cta")}
