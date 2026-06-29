@@ -2,45 +2,22 @@
 
 import { useTranslations } from "next-intl";
 import { useState, useRef } from "react";
+import { Link } from "@/i18n/routing";
 import { AnimatedSection } from "@/components/shared/AnimatedSection";
-import { FileText, Plus, X, Download, Lock, Mail, Loader2, Check } from "lucide-react";
+import { FileText, Plus, X, Download, Mail, Loader2, Check, Crown, ArrowRight } from "lucide-react";
+import {
+  CVPreview,
+  type CVData,
+  type CVTemplate,
+  type Experience,
+  type Education,
+} from "@/components/cv/CVPreview";
 
-interface Experience {
-  id: string;
-  company: string;
-  position: string;
-  startDate: string;
-  endDate: string;
-  description: string;
-}
-
-interface Education {
-  id: string;
-  school: string;
-  degree: string;
-  field: string;
-  startDate: string;
-  endDate: string;
-}
-
-interface CVData {
-  fullName: string;
-  jobTitle: string;
-  email: string;
-  phone: string;
-  location: string;
-  summary: string;
-  experiences: Experience[];
-  educations: Education[];
-  skills: string[];
-  languages: string[];
-}
-
-const templates = [
-  { id: "matrix", name: "Matrix", free: true, accent: "#00D95A" },
-  { id: "noir", name: "Noir", free: false, accent: "#111111" },
-  { id: "cosmos", name: "Cosmos", free: false, accent: "#6366F1" },
-] as const;
+const templates: CVTemplate[] = [
+  { id: "matrix", name: "Matrix", free: true, accent: "#00D95A", layout: "classic" },
+  { id: "noir", name: "Noir", free: false, accent: "#111827", layout: "sidebar" },
+  { id: "cosmos", name: "Cosmos", free: false, accent: "#6366F1", layout: "modern" },
+];
 
 export default function CVGeneratorPage() {
   const t = useTranslations("cv");
@@ -282,113 +259,52 @@ export default function CVGeneratorPage() {
             {/* Template selector */}
             <div className="mb-4">
               <h3 className="font-bold mb-3">{t("templateSelect")}</h3>
-              <div className="flex gap-2">
+              <div className="grid grid-cols-3 gap-2">
                 {templates.map((tpl) => (
                   <button
                     key={tpl.id}
-                    onClick={() => tpl.free && setSelectedTemplate(tpl.id)}
-                    className={`relative flex-1 px-4 py-3 rounded-xl border text-sm font-medium transition-all ${
+                    onClick={() => setSelectedTemplate(tpl.id)}
+                    className={`relative px-3 py-3 rounded-xl border text-sm font-medium text-left transition-all ${
                       selectedTemplate === tpl.id
                         ? "border-primary bg-primary/5 text-primary"
-                        : tpl.free
-                        ? "border-border dark:border-border-dark hover:border-primary/50"
-                        : "border-border dark:border-border-dark opacity-50 cursor-not-allowed"
+                        : "border-border dark:border-border-dark hover:border-primary/50"
                     }`}
                     id={`cv-tpl-${tpl.id}`}
                   >
-                    {tpl.name}
-                    {tpl.free ? (
-                      <span className="block text-xs text-secondary">{t("templateFree")}</span>
-                    ) : (
-                      <span className="flex items-center gap-1 text-xs text-muted"><Lock className="w-3 h-3" />{t("templatePremium")}</span>
+                    {!tpl.free && (
+                      <span className="absolute -top-2 -right-1.5 inline-flex items-center justify-center w-5 h-5 rounded-full bg-primary text-black">
+                        <Crown className="w-2.5 h-2.5" />
+                      </span>
                     )}
+                    {tpl.name}
+                    <span className="block text-xs text-muted dark:text-muted-dark">
+                      {tpl.free ? t("templateFree") : t("templatePremium")}
+                    </span>
                   </button>
                 ))}
               </div>
             </div>
 
-            {/* CV Preview */}
-            <div ref={previewRef} className="rounded-xl shadow-lg overflow-hidden" style={{ backgroundColor: "#ffffff", color: "#111111", minHeight: "600px" }}>
-              {/* Header bar */}
-              <div className="px-8 py-6" style={{ backgroundColor: currentTemplate.accent }}>
-                <h2 className="text-2xl font-black" style={{ color: "#ffffff" }}>{data.fullName || t("previewName")}</h2>
-                <p className="font-medium" style={{ color: "rgba(255,255,255,0.85)" }}>{data.jobTitle || t("previewRole")}</p>
-                <div className="flex flex-wrap gap-4 mt-2 text-sm" style={{ color: "rgba(255,255,255,0.75)" }}>
-                  {data.email && <span>{data.email}</span>}
-                  {data.phone && <span>{data.phone}</span>}
-                  {data.location && <span>{data.location}</span>}
-                </div>
-              </div>
+            {/* Premium CTA (template payant sélectionné) */}
+            {!currentTemplate.free && (
+              <Link
+                href="/boutique"
+                className="group mb-4 flex items-center justify-between gap-3 rounded-xl border border-primary/30 bg-primary/5 p-3"
+                id="cv-premium-cta"
+              >
+                <span className="flex items-center gap-2 text-sm min-w-0">
+                  <Crown className="w-4 h-4 text-primary shrink-0" />
+                  <span className="text-muted dark:text-muted-dark truncate">{t("premiumNote")}</span>
+                </span>
+                <span className="flex items-center gap-1 text-sm font-semibold text-primary whitespace-nowrap">
+                  {t("getTemplate")}
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                </span>
+              </Link>
+            )}
 
-              <div className="p-8 space-y-6">
-                {/* Summary */}
-                {data.summary && (
-                  <div>
-                    <h3 className="text-sm font-bold uppercase tracking-wider mb-2" style={{ color: currentTemplate.accent }}>
-                      {t("previewProfile")}
-                    </h3>
-                    <p className="text-sm leading-relaxed" style={{ color: "#374151" }}>{data.summary}</p>
-                  </div>
-                )}
-
-                {/* Experience */}
-                {data.experiences.length > 0 && (
-                  <div>
-                    <h3 className="text-sm font-bold uppercase tracking-wider mb-3" style={{ color: currentTemplate.accent }}>
-                      {t("experience")}
-                    </h3>
-                    {data.experiences.map((exp) => (
-                      <div key={exp.id} className="mb-4">
-                        <p className="font-bold text-sm">{exp.position}{exp.company ? ` — ${exp.company}` : ""}</p>
-                        <p className="text-xs mb-1" style={{ color: "#6b7280" }}>{exp.startDate} — {exp.endDate}</p>
-                        {exp.description && <p className="text-sm" style={{ color: "#4b5563" }}>{exp.description}</p>}
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-                {/* Education */}
-                {data.educations.length > 0 && (
-                  <div>
-                    <h3 className="text-sm font-bold uppercase tracking-wider mb-3" style={{ color: currentTemplate.accent }}>
-                      {t("education")}
-                    </h3>
-                    {data.educations.map((edu) => (
-                      <div key={edu.id} className="mb-3">
-                        <p className="font-bold text-sm">{edu.degree}{edu.field ? ` — ${edu.field}` : ""}</p>
-                        <p className="text-xs" style={{ color: "#6b7280" }}>{edu.school}</p>
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-                {/* Skills */}
-                {data.skills.length > 0 && (
-                  <div>
-                    <h3 className="text-sm font-bold uppercase tracking-wider mb-2" style={{ color: currentTemplate.accent }}>
-                      {t("skills")}
-                    </h3>
-                    <div className="flex flex-wrap gap-1.5">
-                      {data.skills.map((s, i) => (
-                        <span key={i} className="px-2.5 py-1 rounded-md text-xs font-medium" style={{ backgroundColor: `${currentTemplate.accent}15`, color: currentTemplate.accent }}>
-                          {s}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* Languages */}
-                {data.languages.length > 0 && (
-                  <div>
-                    <h3 className="text-sm font-bold uppercase tracking-wider mb-2" style={{ color: currentTemplate.accent }}>
-                      {t("languages")}
-                    </h3>
-                    <p className="text-sm" style={{ color: "#374151" }}>{data.languages.join(" · ")}</p>
-                  </div>
-                )}
-              </div>
-            </div>
+            {/* CV Preview (multi-layouts) */}
+            <CVPreview ref={previewRef} data={data} template={currentTemplate} />
 
             {/* Export button */}
             <button
