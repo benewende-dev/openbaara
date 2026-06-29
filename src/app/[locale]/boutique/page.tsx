@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Link } from "@/i18n/routing";
 import { useCart } from "@/features/store/CartContext";
 import { products, pickLocale, type ProductCategory } from "@/data/products";
+import { LINKS } from "@/lib/constants";
 import { formatXOF, formatUSD } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/shared/AnimatedSection";
@@ -228,7 +229,20 @@ export default function StorePage() {
                     </div>
 
                     {/* CTA */}
-                    {product.cta === "buy" && (
+                    {/* Cours : vente & accès dans Outio (vitrine → plateforme). */}
+                    {product.category === "course" && (
+                      <a
+                        href={`${LINKS.outio}/formations/${product.id}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-2 w-full py-3 bg-primary text-black rounded-xl font-semibold hover:bg-primary-dark transition-colors"
+                        id={`store-enroll-${product.id}`}
+                      >
+                        {t("enroll")}
+                        <ArrowRight className="w-4 h-4" />
+                      </a>
+                    )}
+                    {product.category !== "course" && product.cta === "buy" && (
                       <button
                         onClick={() =>
                           addItem({

@@ -4,7 +4,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { AnimatedSection, AnimatedStagger, AnimatedItem } from "@/components/shared/AnimatedSection";
 import { products, pickLocale } from "@/data/products";
-import { CLI_TOOLS } from "@/lib/constants";
+import { CLI_TOOLS, LINKS } from "@/lib/constants";
 import { GraduationCap, ArrowRight, Terminal, BookOpen, ChevronRight, BarChart3, Clock, PlayCircle } from "lucide-react";
 
 const levels = ["pathBeginner", "pathIntermediate", "pathAdvanced", "pathPro"] as const;
@@ -100,9 +100,21 @@ export default function AcademyPage() {
                       </div>
                     )}
 
-                    <p className="font-bold text-primary">
-                      {course.priceXOF?.toLocaleString("fr-FR")} FCFA
-                    </p>
+                    <div className="flex items-center justify-between gap-3 flex-wrap">
+                      <p className="font-bold text-primary">
+                        {course.priceXOF?.toLocaleString("fr-FR")} FCFA
+                      </p>
+                      <a
+                        href={`${LINKS.outio}/formations/${course.id}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2.5 transition-all"
+                        id={`academy-enroll-${course.id}`}
+                      >
+                        {ts("enroll")}
+                        <ArrowRight className="w-4 h-4" />
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
