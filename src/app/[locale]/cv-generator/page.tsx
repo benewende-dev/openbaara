@@ -13,6 +13,8 @@ import {
   type Education,
 } from "@/components/cv/CVPreview";
 
+type RefField = "name" | "role" | "contact";
+
 const uid = () => crypto.randomUUID();
 
 export default function CVGeneratorPage() {
@@ -33,9 +35,10 @@ export default function CVGeneratorPage() {
   const [data, setData] = useState<CVData>({
     fullName: "", jobTitle: "", email: "", phone: "", location: "",
     website: "", linkedin: "", github: "", photo: "",
+    nationality: "", dateOfBirth: "", drivingLicense: "",
     summary: "",
     experiences: [], educations: [], skills: [], languages: [],
-    certifications: [], projects: [], interests: [],
+    certifications: [], projects: [], interests: [], references: [],
   });
 
   const update = (field: keyof CVData, value: string) =>
@@ -115,6 +118,14 @@ export default function CVGeneratorPage() {
   };
   const removeInterest = (i: number) =>
     setData((d) => ({ ...d, interests: d.interests.filter((_, j) => j !== i) }));
+
+  // ── Références ──
+  const addReference = () =>
+    setData((d) => ({ ...d, references: [...d.references, { id: uid(), name: "", role: "", contact: "" }] }));
+  const updateReference = (id: string, field: RefField, value: string) =>
+    setData((d) => ({ ...d, references: d.references.map((r) => (r.id === id ? { ...r, [field]: value } : r)) }));
+  const removeReference = (id: string) =>
+    setData((d) => ({ ...d, references: d.references.filter((r) => r.id !== id) }));
 
   const handleSaveEmail = async () => {
     const email = captureEmail.trim();
@@ -205,6 +216,11 @@ export default function CVGeneratorPage() {
                 <input type="tel" placeholder={t("phone")} value={data.phone} onChange={(e) => update("phone", e.target.value)} className={inputClass} id="cv-phone" />
               </div>
               <input type="text" placeholder={t("location")} value={data.location} onChange={(e) => update("location", e.target.value)} className={inputClass} id="cv-location" />
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <input type="text" placeholder={t("nationality")} value={data.nationality} onChange={(e) => update("nationality", e.target.value)} className={inputClass} id="cv-nationality" />
+                <input type="text" placeholder={t("dateOfBirth")} value={data.dateOfBirth} onChange={(e) => update("dateOfBirth", e.target.value)} className={inputClass} id="cv-dob" />
+                <input type="text" placeholder={t("drivingLicense")} value={data.drivingLicense} onChange={(e) => update("drivingLicense", e.target.value)} className={inputClass} id="cv-license" />
+              </div>
               <textarea placeholder={t("summary")} value={data.summary} onChange={(e) => update("summary", e.target.value)} rows={3} className={`${inputClass} resize-none`} id="cv-summary" />
             </div>
 
@@ -364,6 +380,26 @@ export default function CVGeneratorPage() {
                   </span>
                 ))}
               </div>
+            </div>
+
+            {/* References */}
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="font-bold">{t("references")}</h3>
+                <button onClick={addReference} className="flex items-center gap-1 text-sm text-primary font-medium hover:underline" id="cv-add-ref">
+                  <Plus className="w-4 h-4" /> {t("addReference")}
+                </button>
+              </div>
+              {data.references.map((r) => (
+                <div key={r.id} className="relative p-4 mb-3 rounded-xl border border-border dark:border-border-dark space-y-2">
+                  <button onClick={() => removeReference(r.id)} className="absolute top-2 right-2 p-1 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-md"><X className="w-4 h-4" /></button>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <input placeholder={t("refName")} value={r.name} onChange={(e) => updateReference(r.id, "name", e.target.value)} className={inputClass} />
+                    <input placeholder={t("refRole")} value={r.role} onChange={(e) => updateReference(r.id, "role", e.target.value)} className={inputClass} />
+                  </div>
+                  <input placeholder={t("refContact")} value={r.contact} onChange={(e) => updateReference(r.id, "contact", e.target.value)} className={inputClass} />
+                </div>
+              ))}
             </div>
           </div>
 
