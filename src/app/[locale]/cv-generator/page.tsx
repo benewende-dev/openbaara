@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import { useState, useRef } from "react";
 import { AnimatedSection } from "@/components/shared/AnimatedSection";
-import { FileText, Plus, X, Download, Lock, Mail } from "lucide-react";
+import { FileText, Plus, X, Download, Lock, Mail, Loader2, Check } from "lucide-react";
 
 interface Experience {
   id: string;
@@ -44,10 +44,16 @@ const templates = [
 
 export default function CVGeneratorPage() {
   const t = useTranslations("cv");
+  const tCommon = useTranslations("common");
   const previewRef = useRef<HTMLDivElement>(null);
   const [selectedTemplate, setSelectedTemplate] = useState("matrix");
   const [skillInput, setSkillInput] = useState("");
   const [langInput, setLangInput] = useState("");
+
+  // Capture e-mail (newsletter)
+  const [captureEmail, setCaptureEmail] = useState("");
+  const [saveStatus, setSaveStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [saveError, setSaveError] = useState("");
 
   const [data, setData] = useState<CVData>({
     fullName: "",
@@ -112,6 +118,31 @@ export default function CVGeneratorPage() {
     if (langInput.trim()) {
       setData((d) => ({ ...d, languages: [...d.languages, langInput.trim()] }));
       setLangInput("");
+    }
+  };
+
+  const handleSaveEmail = async () => {
+    const email = captureEmail.trim();
+    if (!email) return;
+    setSaveStatus("loading");
+    setSaveError("");
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      const json = await res.json();
+      if (res.ok && json.success) {
+        setSaveStatus("success");
+        setCaptureEmail("");
+      } else {
+        setSaveStatus("error");
+        setSaveError(json.error || tCommon("formError"));
+      }
+    } catch {
+      setSaveStatus("error");
+      setSaveError(tCommon("formError"));
     }
   };
 
@@ -277,12 +308,12 @@ export default function CVGeneratorPage() {
             </div>
 
             {/* CV Preview */}
-            <div ref={previewRef} className="bg-white text-black rounded-xl shadow-lg overflow-hidden" style={{ minHeight: "600px" }}>
+            <div ref={previewRef} className="rounded-xl shadow-lg overflow-hidden" style={{ backgroundColor: "#ffffff", color: "#111111", minHeight: "600px" }}>
               {/* Header bar */}
               <div className="px-8 py-6" style={{ backgroundColor: currentTemplate.accent }}>
-                <h2 className="text-2xl font-black text-white">{data.fullName || "Votre Nom"}</h2>
-                <p className="text-white/80 font-medium">{data.jobTitle || "Titre du poste"}</p>
-                <div className="flex flex-wrap gap-4 mt-2 text-sm text-white/70">
+                <h2 className="text-2xl font-black" style={{ color: "#ffffff" }}>{data.fullName || t("previewName")}</h2>
+                <p className="font-medium" style={{ color: "rgba(255,255,255,0.85)" }}>{data.jobTitle || t("previewRole")}</p>
+                <div className="flex flex-wrap gap-4 mt-2 text-sm" style={{ color: "rgba(255,255,255,0.75)" }}>
                   {data.email && <span>{data.email}</span>}
                   {data.phone && <span>{data.phone}</span>}
                   {data.location && <span>{data.location}</span>}
@@ -294,9 +325,9 @@ export default function CVGeneratorPage() {
                 {data.summary && (
                   <div>
                     <h3 className="text-sm font-bold uppercase tracking-wider mb-2" style={{ color: currentTemplate.accent }}>
-                      Profil
+                      {t("previewProfile")}
                     </h3>
-                    <p className="text-sm leading-relaxed text-gray-700">{data.summary}</p>
+                    <p className="text-sm leading-relaxed" style={{ color: "#374151" }}>{data.summary}</p>
                   </div>
                 )}
 
@@ -304,13 +335,13 @@ export default function CVGeneratorPage() {
                 {data.experiences.length > 0 && (
                   <div>
                     <h3 className="text-sm font-bold uppercase tracking-wider mb-3" style={{ color: currentTemplate.accent }}>
-                      Expérience
+                      {t("experience")}
                     </h3>
                     {data.experiences.map((exp) => (
                       <div key={exp.id} className="mb-4">
                         <p className="font-bold text-sm">{exp.position}{exp.company ? ` — ${exp.company}` : ""}</p>
-                        <p className="text-xs text-gray-500 mb-1">{exp.startDate} — {exp.endDate}</p>
-                        {exp.description && <p className="text-sm text-gray-600">{exp.description}</p>}
+                        <p className="text-xs mb-1" style={{ color: "#6b7280" }}>{exp.startDate} — {exp.endDate}</p>
+                        {exp.description && <p className="text-sm" style={{ color: "#4b5563" }}>{exp.description}</p>}
                       </div>
                     ))}
                   </div>
@@ -320,12 +351,12 @@ export default function CVGeneratorPage() {
                 {data.educations.length > 0 && (
                   <div>
                     <h3 className="text-sm font-bold uppercase tracking-wider mb-3" style={{ color: currentTemplate.accent }}>
-                      Formation
+                      {t("education")}
                     </h3>
                     {data.educations.map((edu) => (
                       <div key={edu.id} className="mb-3">
                         <p className="font-bold text-sm">{edu.degree}{edu.field ? ` — ${edu.field}` : ""}</p>
-                        <p className="text-xs text-gray-500">{edu.school}</p>
+                        <p className="text-xs" style={{ color: "#6b7280" }}>{edu.school}</p>
                       </div>
                     ))}
                   </div>
@@ -335,7 +366,7 @@ export default function CVGeneratorPage() {
                 {data.skills.length > 0 && (
                   <div>
                     <h3 className="text-sm font-bold uppercase tracking-wider mb-2" style={{ color: currentTemplate.accent }}>
-                      Compétences
+                      {t("skills")}
                     </h3>
                     <div className="flex flex-wrap gap-1.5">
                       {data.skills.map((s, i) => (
@@ -351,9 +382,9 @@ export default function CVGeneratorPage() {
                 {data.languages.length > 0 && (
                   <div>
                     <h3 className="text-sm font-bold uppercase tracking-wider mb-2" style={{ color: currentTemplate.accent }}>
-                      Langues
+                      {t("languages")}
                     </h3>
-                    <p className="text-sm text-gray-700">{data.languages.join(" · ")}</p>
+                    <p className="text-sm" style={{ color: "#374151" }}>{data.languages.join(" · ")}</p>
                   </div>
                 )}
               </div>
@@ -369,12 +400,46 @@ export default function CVGeneratorPage() {
               {t("exportPdf")}
             </button>
 
-            {/* Email capture */}
-            <div className="mt-4 flex gap-2">
-              <input type="email" placeholder={t("emailPlaceholder")} className="flex-1 px-4 py-2.5 rounded-xl border border-border dark:border-border-dark bg-white dark:bg-[#111111] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" id="cv-email-capture" />
-              <button className="px-4 py-2.5 bg-secondary text-black rounded-xl text-sm font-medium hover:bg-secondary-dark transition-colors" id="cv-save">
-                <Mail className="w-4 h-4" />
-              </button>
+            {/* Newsletter capture */}
+            <div className="mt-4">
+              <p className="text-sm font-medium mb-2">{t("emailCapture")}</p>
+              {saveStatus === "success" ? (
+                <div className="flex items-center gap-2 text-sm font-semibold text-secondary">
+                  <Check className="w-4 h-4" />
+                  {t("saveSuccess")}
+                </div>
+              ) : (
+                <>
+                  <div className="flex gap-2">
+                    <input
+                      type="email"
+                      value={captureEmail}
+                      onChange={(e) => setCaptureEmail(e.target.value)}
+                      onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), handleSaveEmail())}
+                      placeholder={t("emailPlaceholder")}
+                      disabled={saveStatus === "loading"}
+                      className="flex-1 px-4 py-2.5 rounded-xl border border-border dark:border-border-dark bg-white dark:bg-[#111111] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+                      id="cv-email-capture"
+                    />
+                    <button
+                      onClick={handleSaveEmail}
+                      disabled={saveStatus === "loading" || !captureEmail.trim()}
+                      aria-label={t("save")}
+                      className="px-4 py-2.5 bg-secondary text-black rounded-xl text-sm font-medium hover:bg-secondary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
+                      id="cv-save"
+                    >
+                      {saveStatus === "loading" ? (
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                      ) : (
+                        <Mail className="w-4 h-4" />
+                      )}
+                    </button>
+                  </div>
+                  {saveStatus === "error" && (
+                    <p className="mt-2 text-xs font-semibold text-red-500">{saveError}</p>
+                  )}
+                </>
+              )}
             </div>
           </div>
         </div>
