@@ -13,15 +13,17 @@
   --color-secondary-light: #2BFF88;
   --color-secondary-dark: #00A847;
 
-  /* ── Neutres purs (blanc / noir + gris neutres, style OpenAI) ── */
+  /* ── Neutres : noir + blanc cassé chaud (clair) / noirs (sombre) ──
+     Mode clair réchauffé pour s'accorder au fond #F4F0E8 (plus de gris froid) ;
+     les cartes (surface-elevated) restent blanc pur pour ressortir. */
   --color-ink: #000000;
-  --color-surface: #FAFAFA;
+  --color-surface: #FBF7F0;
   --color-surface-dark: #0A0A0A;
   --color-surface-elevated: #FFFFFF;
   --color-surface-elevated-dark: #111111;
   --color-muted: #6B7280;
   --color-muted-dark: #A1A1A1;
-  --color-border: #EAEAEA;
+  --color-border: #E7E1D6;
   --color-border-dark: #262626;
 
   --font-sans: var(--font-inter), "Inter", system-ui, -apple-system, sans-serif;
