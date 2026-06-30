@@ -45,7 +45,7 @@ export default function ContactPage() {
         setStatus("error");
         setErrorMsg(data.error || tCommon("formError"));
       }
-    } catch (err) {
+    } catch {
       setStatus("error");
       setErrorMsg(tCommon("formError"));
     }
@@ -72,7 +72,7 @@ export default function ContactPage() {
         setNewsletterStatus("error");
         setNewsletterErrorMsg(data.error || tCommon("formError"));
       }
-    } catch (err) {
+    } catch {
       setNewsletterStatus("error");
       setNewsletterErrorMsg(tCommon("formError"));
     }
@@ -96,7 +96,7 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {/* Contact form */}
           <AnimatedSection>
-            <div className="rounded-2xl bg-white dark:bg-[#141414] border border-border dark:border-border-dark p-8">
+            <div className="rounded-2xl bg-white dark:bg-[#111111] border border-border dark:border-border-dark p-8">
               {status === "success" && (
                 <div className="mb-6 p-4 rounded-xl bg-secondary/10 border border-secondary/20 text-secondary text-sm font-semibold">
                   {tCommon("formSuccess")}
@@ -115,7 +115,7 @@ export default function ContactPage() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
-                    className="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-surface dark:bg-[#0A0A0A] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+                    className="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-surface dark:bg-[#000000] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
                     id="contact-form-name"
                     disabled={status === "loading"}
                   />
@@ -125,7 +125,7 @@ export default function ContactPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-surface dark:bg-[#0A0A0A] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+                    className="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-surface dark:bg-[#000000] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
                     id="contact-form-email"
                     disabled={status === "loading"}
                   />
@@ -135,7 +135,7 @@ export default function ContactPage() {
                   placeholder={t("formSubject")}
                   value={subject}
                   onChange={(e) => setSubject(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-surface dark:bg-[#0A0A0A] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  className="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-surface dark:bg-[#000000] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
                   id="contact-form-subject"
                   disabled={status === "loading"}
                 />
@@ -145,14 +145,14 @@ export default function ContactPage() {
                   onChange={(e) => setMessage(e.target.value)}
                   required
                   rows={6}
-                  className="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-surface dark:bg-[#0A0A0A] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
+                  className="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-surface dark:bg-[#000000] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
                   id="contact-form-message"
                   disabled={status === "loading"}
                 />
                 <button
                   type="submit"
                   disabled={status === "loading" || !name || !email || !message}
-                  className="flex items-center justify-center gap-2 w-full py-3.5 bg-primary text-white rounded-xl font-semibold hover:bg-primary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex items-center justify-center gap-2 w-full py-3.5 bg-primary text-black rounded-xl font-semibold hover:bg-primary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   id="contact-form-submit"
                 >
                   <Send className="w-4 h-4" />
@@ -166,7 +166,7 @@ export default function ContactPage() {
           <AnimatedSection delay={0.2}>
             <div className="space-y-6">
               {/* Contact info */}
-              <div className="rounded-2xl bg-white dark:bg-[#141414] border border-border dark:border-border-dark p-8">
+              <div className="rounded-2xl bg-white dark:bg-[#111111] border border-border dark:border-border-dark p-8">
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
                     <div className="p-3 rounded-xl bg-primary/10 text-primary">
@@ -174,7 +174,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="font-bold mb-1">{t("location")}</p>
-                      <p className="text-sm text-muted dark:text-muted-dark">Afrique de l&apos;Ouest · UEMOA</p>
+                      <p className="text-sm text-muted dark:text-muted-dark">{t("region")}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
@@ -192,12 +192,12 @@ export default function ContactPage() {
               </div>
 
               {/* Newsletter */}
-              <div className="rounded-2xl bg-[#0A0A0A] text-white p-8">
+              <div className="rounded-2xl bg-surface dark:bg-[#111111] border border-border dark:border-border-dark p-8">
                 <div className="flex items-center gap-3 mb-3">
                   <Bell className="w-5 h-5 text-primary" />
                   <h3 className="font-bold text-lg">{t("newsletter")}</h3>
                 </div>
-                <p className="text-white/60 text-sm mb-5">{t("newsletterDesc")}</p>
+                <p className="text-muted dark:text-muted-dark text-sm mb-5">{t("newsletterDesc")}</p>
                 {newsletterStatus === "success" && (
                   <div className="mb-4 p-3 rounded-xl bg-secondary/10 border border-secondary/20 text-secondary text-xs font-semibold">
                     {tCommon("formSuccess")}
@@ -215,14 +215,14 @@ export default function ContactPage() {
                     value={newsletterEmail}
                     onChange={(e) => setNewsletterEmail(e.target.value)}
                     required
-                    className="flex-1 px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+                    className="flex-1 px-4 py-3 rounded-xl bg-white dark:bg-white/5 border border-border dark:border-white/10 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
                     id="contact-newsletter-email"
                     disabled={newsletterStatus === "loading"}
                   />
                   <button
                     type="submit"
                     disabled={newsletterStatus === "loading" || !newsletterEmail}
-                    className="px-6 py-3 bg-primary text-white rounded-xl font-semibold hover:bg-primary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="px-6 py-3 bg-primary text-black rounded-xl font-semibold hover:bg-primary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     id="contact-newsletter-submit"
                   >
                     {newsletterStatus === "loading" ? tCommon("loading") : t("newsletterSubmit")}

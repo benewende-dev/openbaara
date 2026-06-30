@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { LINKS } from "@/lib/constants";
+import { Logo } from "@/components/layout/Logo";
 import { Mail } from "lucide-react";
 
 // Inline SVG components for brand icons since they are removed in Lucide v1.x
@@ -68,6 +69,13 @@ const companyNav = [
   { href: "/contact", labelKey: "contact" },
 ] as const;
 
+// Legal links use footer.* keys (legal / privacy / terms)
+const legalNav = [
+  { href: "/mentions-legales", labelKey: "legal" },
+  { href: "/confidentialite", labelKey: "privacy" },
+  { href: "/conditions", labelKey: "terms" },
+] as const;
+
 export function Footer() {
   const t = useTranslations("footer");
   const tNav = useTranslations("nav");
@@ -98,7 +106,7 @@ export function Footer() {
         setStatus("error");
         setErrorMsg(data.error || tCommon("formError"));
       }
-    } catch (err) {
+    } catch {
       setStatus("error");
       setErrorMsg(tCommon("formError"));
     }
@@ -111,9 +119,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className="inline-block font-black text-xl tracking-tight mb-4">
-              <span className="text-primary">OPEN</span>
-              <span>BAARA</span>
+            <Link href="/" className="inline-block mb-4">
+              <Logo size={30} />
             </Link>
             <p className="text-sm text-muted dark:text-muted-dark leading-relaxed mb-6">
               {t("description")}
@@ -128,24 +135,28 @@ export function Footer() {
               >
                 <GithubIcon className="w-4.5 h-4.5" />
               </a>
-              <a
-                href={LINKS.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
-                aria-label="LinkedIn"
-              >
-                <LinkedinIcon className="w-4.5 h-4.5" />
-              </a>
-              <a
-                href={LINKS.twitter}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
-                aria-label="Twitter"
-              >
-                <TwitterIcon className="w-4.5 h-4.5" />
-              </a>
+              {LINKS.linkedin !== "#" && (
+                <a
+                  href={LINKS.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <LinkedinIcon className="w-4.5 h-4.5" />
+                </a>
+              )}
+              {LINKS.twitter !== "#" && (
+                <a
+                  href={LINKS.twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+                  aria-label="Twitter"
+                >
+                  <TwitterIcon className="w-4.5 h-4.5" />
+                </a>
+              )}
               <a
                 href={`mailto:${LINKS.email}`}
                 className="p-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
@@ -220,13 +231,13 @@ export function Footer() {
                 onChange={(e) => setNewsletterEmail(e.target.value)}
                 required
                 disabled={status === "loading"}
-                className="flex-1 px-3 py-2 rounded-lg border border-border dark:border-border-dark bg-white dark:bg-[#141414] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+                className="flex-1 px-3 py-2 rounded-lg border border-border dark:border-border-dark bg-white dark:bg-[#111111] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
                 id="footer-newsletter-email"
               />
               <button
                 type="submit"
                 disabled={status === "loading" || !newsletterEmail}
-                className="px-4 py-2 bg-primary text-white rounded-lg text-sm font-medium hover:bg-primary-dark transition-colors disabled:opacity-50"
+                className="px-4 py-2 bg-primary text-black rounded-lg text-sm font-medium hover:bg-primary-dark transition-colors disabled:opacity-50"
                 id="footer-newsletter-submit"
               >
                 {status === "loading" ? "..." : "OK"}
@@ -235,8 +246,21 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Legal links */}
+        <nav className="pt-8 border-t border-border dark:border-border-dark flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
+          {legalNav.map((link) => (
+            <Link
+              key={link.labelKey}
+              href={link.href}
+              className="text-muted dark:text-muted-dark hover:text-primary transition-colors"
+            >
+              {t(link.labelKey)}
+            </Link>
+          ))}
+        </nav>
+
         {/* Bottom bar */}
-        <div className="pt-8 border-t border-border dark:border-border-dark flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted dark:text-muted-dark">
+        <div className="mt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted dark:text-muted-dark">
           <p>{t("copyright", { year: new Date().getFullYear() })}</p>
           <p className="flex items-center gap-1">
             {t("madeIn")}

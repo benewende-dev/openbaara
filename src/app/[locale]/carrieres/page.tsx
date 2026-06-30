@@ -43,6 +43,25 @@ export default function CareersPage() {
     setErrorMsg("");
 
     try {
+      let cvPayload: { name: string; type: string; content: string } | null = null;
+      if (cvFile) {
+        if (cvFile.size > 5 * 1024 * 1024) {
+          setStatus("error");
+          setErrorMsg(locale === "fr" ? "Le CV dépasse 5 Mo." : "The CV exceeds 5 MB.");
+          return;
+        }
+        cvPayload = {
+          name: cvFile.name,
+          type: cvFile.type,
+          content: await new Promise<string>((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(String(reader.result).split(",")[1] || "");
+            reader.onerror = () => reject(new Error("read_error"));
+            reader.readAsDataURL(cvFile);
+          }),
+        };
+      }
+
       const res = await fetch("/api/career", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -52,7 +71,7 @@ export default function CareersPage() {
           linkedin,
           github,
           message,
-          cvFile: cvFile ? { name: cvFile.name, size: cvFile.size } : null,
+          cvFile: cvPayload,
         }),
       });
       const data = await res.json();
@@ -68,7 +87,7 @@ export default function CareersPage() {
         setStatus("error");
         setErrorMsg(data.error || tCommon("formError"));
       }
-    } catch (err) {
+    } catch {
       setStatus("error");
       setErrorMsg(tCommon("formError"));
     }
@@ -93,7 +112,7 @@ export default function CareersPage() {
         <AnimatedStagger className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
           {values.map(({ key, Icon }) => (
             <AnimatedItem key={key}>
-              <div className="card-hover rounded-2xl p-6 bg-white dark:bg-[#141414] border border-border dark:border-border-dark">
+              <div className="card-hover rounded-2xl p-6 bg-white dark:bg-[#111111] border border-border dark:border-border-dark">
                 <div className="flex items-start gap-4">
                   <div className="p-3 rounded-xl bg-primary/10 text-primary shrink-0">
                     <Icon className="w-6 h-6" />
@@ -121,7 +140,7 @@ export default function CareersPage() {
           ) : (
             <div className="space-y-4">
               {jobs.map((job) => (
-                <div key={job.id} className="rounded-2xl p-6 bg-white dark:bg-[#141414] border border-border dark:border-border-dark flex items-center justify-between">
+                <div key={job.id} className="rounded-2xl p-6 bg-white dark:bg-[#111111] border border-border dark:border-border-dark flex items-center justify-between">
                   <div>
                     <h3 className="font-bold">{locale === "fr" ? job.titleFr : job.titleEn}</h3>
                     <p className="text-sm text-muted dark:text-muted-dark">{job.location} · {job.type}</p>
@@ -134,7 +153,7 @@ export default function CareersPage() {
 
         {/* Application form */}
         <AnimatedSection>
-          <div className="max-w-2xl mx-auto rounded-2xl bg-white dark:bg-[#141414] border border-border dark:border-border-dark p-8">
+          <div className="max-w-2xl mx-auto rounded-2xl bg-white dark:bg-[#111111] border border-border dark:border-border-dark p-8">
             <h2 className="text-2xl font-black mb-6 text-center">{t("spontaneous")}</h2>
             {status === "success" && (
               <div className="mb-6 p-4 rounded-xl bg-secondary/10 border border-secondary/20 text-secondary text-sm font-semibold">
@@ -155,7 +174,7 @@ export default function CareersPage() {
                   onChange={(e) => setName(e.target.value)}
                   required
                   disabled={status === "loading"}
-                  className="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-surface dark:bg-[#0A0A0A] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  className="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-surface dark:bg-[#000000] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
                   id="careers-form-name"
                 />
                 <input
@@ -165,7 +184,7 @@ export default function CareersPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   disabled={status === "loading"}
-                  className="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-surface dark:bg-[#0A0A0A] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  className="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-surface dark:bg-[#000000] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
                   id="careers-form-email"
                 />
               </div>
@@ -176,7 +195,7 @@ export default function CareersPage() {
                   value={linkedin}
                   onChange={(e) => setLinkedin(e.target.value)}
                   disabled={status === "loading"}
-                  className="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-surface dark:bg-[#0A0A0A] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  className="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-surface dark:bg-[#000000] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
                   id="careers-form-linkedin"
                 />
                 <input
@@ -185,7 +204,7 @@ export default function CareersPage() {
                   value={github}
                   onChange={(e) => setGithub(e.target.value)}
                   disabled={status === "loading"}
-                  className="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-surface dark:bg-[#0A0A0A] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  className="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-surface dark:bg-[#000000] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
                   id="careers-form-github"
                 />
               </div>
@@ -195,7 +214,7 @@ export default function CareersPage() {
                 onChange={(e) => setMessage(e.target.value)}
                 disabled={status === "loading"}
                 rows={4}
-                className="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-surface dark:bg-[#0A0A0A] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
+                className="w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-surface dark:bg-[#000000] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
                 id="careers-form-message"
               />
               
@@ -210,7 +229,7 @@ export default function CareersPage() {
               />
               <div
                 onClick={() => status !== "loading" && fileInputRef.current?.click()}
-                className="flex items-center gap-3 px-4 py-3 rounded-xl border border-dashed border-border dark:border-border-dark cursor-pointer hover:border-primary transition-colors bg-surface dark:bg-[#0A0A0A]"
+                className="flex items-center gap-3 px-4 py-3 rounded-xl border border-dashed border-border dark:border-border-dark cursor-pointer hover:border-primary transition-colors bg-surface dark:bg-[#000000]"
               >
                 <Upload className="w-5 h-5 text-muted" />
                 <span className="text-sm text-muted dark:text-muted-dark truncate">
@@ -221,7 +240,7 @@ export default function CareersPage() {
               <button
                 type="submit"
                 disabled={status === "loading" || !name || !email}
-                className="w-full py-3.5 bg-primary text-white rounded-xl font-semibold hover:bg-primary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-3.5 bg-primary text-black rounded-xl font-semibold hover:bg-primary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 id="careers-form-submit"
               >
                 {status === "loading" ? tCommon("loading") : t("formSubmit")}

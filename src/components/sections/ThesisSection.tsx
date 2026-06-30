@@ -36,7 +36,7 @@ export function ThesisSection() {
         <AnimatedStagger className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {items.map(({ key, Icon }) => (
             <AnimatedItem key={key}>
-              <div className="card-hover gradient-border rounded-2xl p-6 md:p-8 bg-white dark:bg-[#141414] border border-border dark:border-border-dark">
+              <div className="card-hover gradient-border rounded-2xl p-6 md:p-8 bg-white dark:bg-[#111111] border border-border dark:border-border-dark">
                 <div className="flex items-start gap-4">
                   <div className="p-3 rounded-xl bg-primary/10 text-primary shrink-0">
                     <Icon className="w-6 h-6" />

@@ -41,7 +41,7 @@ export function ToolsSection() {
             {[...CLI_TOOLS, ...CLI_TOOLS, ...CLI_TOOLS].map((tool, i) => (
               <div
                 key={`${tool.name}-${i}`}
-                className="shrink-0 flex items-center gap-3 px-6 py-4 rounded-2xl bg-white dark:bg-[#141414] border border-border dark:border-border-dark"
+                className="shrink-0 flex items-center gap-3 px-6 py-4 rounded-2xl bg-white dark:bg-[#111111] border border-border dark:border-border-dark"
               >
                 <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
                   <Terminal className="w-5 h-5 text-primary" />

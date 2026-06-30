@@ -19,19 +19,33 @@
   },
   "hero": {
     "badge": "Deep-Tech Holding · Abidjan · West Africa",
-    "title": "The orchestration brain powering Africa",
+    "title": "AI orchestration infrastructure, built in West Africa",
     "titleHighlight": "from software to the physical world",
-    "subtitle": "One reusable brain — today it drives AI agents in software, tomorrow machines, factories, vehicles.",
+    "subtitle": "One orchestration technology, reusable across activities. Our flagship product, Outio, is already live — and our roadmap leads, over time, from software to physical systems.",
     "ctaJoin": "Join the mission",
-    "ctaInvest": "Invest / Talk to us"
+    "ctaInvest": "Talk to us"
+  },
+  "outioSpotlight": {
+    "kicker": "Flagship product",
+    "name": "Outio",
+    "title": "The AI-powered creator super-app",
+    "description": "Outio brings content creation — text, image, video, audio, avatars —, brand identity and African music distribution together in a single platform, orchestrated by AI agents. It is the first concrete application of OpenBaara's technology, and its first revenue source.",
+    "features": [
+      "Creative studios: image, video, audio, avatar",
+      "Multi-agent orchestration",
+      "Music distribution to platforms",
+      "Payments and pricing tuned to the local market"
+    ],
+    "cta": "Discover Outio",
+    "note": "An OpenBaara division"
   },
   "thesis": {
     "badge": "Why now",
-    "title": "The historic moment",
-    "subtitle": "AI is crossing from software into the physical world. Open source foundations level the playing field. Nobody is building this technology for African realities.",
+    "title": "A technological shift, a void to fill",
+    "subtitle": "AI is gradually crossing from software into the physical world. Open source foundations level the playing field. Few players design this technology for African realities.",
     "void": {
       "title": "The African void",
-      "description": "Neither Silicon Valley nor Lagos is building AI for francophone West Africa. OpenBaara fills that void — a defensible white space."
+      "description": "Neither Silicon Valley nor Lagos designs AI for francophone West Africa. OpenBaara positions itself in this still-underserved — and defensible — space."
     },
     "anchor": {
       "title": "UEMOA anchor",
@@ -39,23 +53,23 @@
     },
     "opensource": {
       "title": "Open source as fuel",
-      "description": "'Apple model' doctrine: open source powers the engine, but the product, data, experience and brand remain proprietary."
+      "description": "Our doctrine: open source powers the engine, but the product, data, experience and brand remain proprietary."
     },
     "execution": {
       "title": "Sequential execution",
-      "description": "Revenue-first. We only open a new vertical when the door of the previous one is cleared. Unlimited ambition, total discipline."
+      "description": "Revenue-first: we only open a new activity once the previous one is consolidated. A long-term ambition, pursued with discipline."
     }
   },
   "divisions": {
     "badge": "Our divisions",
     "title": "One holding, compounding divisions",
-    "subtitle": "Every division is a link in the chain. Every win unlocks the next one.",
+    "subtitle": "Each division builds on the previous one and prepares the next.",
     "outio": {
       "name": "OUTIO",
-      "tagline": "The software engine & first revenue source",
-      "description": "AI creator super-app: text, image, video, cinema, audio, avatar, influencer, Brand DNA, African music distribution. Proof that the orchestration brain works and generates cash.",
+      "tagline": "Our flagship product — the AI-powered creator super-app",
+      "description": "Creator super-app: generation of text, images, video, audio and avatars, brand identity and African music distribution. The first concrete application of our orchestration technology — and our first revenue source.",
       "cta": "Discover Outio",
-      "status": "In progress"
+      "status": "Flagship"
     },
     "academy": {
       "name": "OPENBAARA ACADEMY",
@@ -81,16 +95,16 @@
     "labs": {
       "name": "BAARALI LABS",
       "tagline": "The research & production lab",
-      "description": "The deep-tech core: industrial vision, 3D scanning, lightweight robotics, edge-AI, then mobility. The moat = African data.",
+      "description": "The deep-tech core: industrial vision, 3D scanning, lightweight robotics, edge-AI, then mobility. Our edge rests on African data.",
       "cta": "Discover the lab",
       "status": "Research & Production"
     }
   },
   "sequence": {
     "badge": "The sequence",
-    "title": "Earning the right to the next step",
-    "subtitle": "Always the same brain. Each step cleared unlocks the next.",
-    "sameBrain": "ALWAYS THE SAME BRAIN",
+    "title": "A roadmap, step by step",
+    "subtitle": "One technology, applied gradually. Each consolidated step opens the next.",
+    "sameBrain": "One technology, from one step to the next",
     "steps": {
       "step1": {
         "title": "Software & AI",
@@ -132,12 +146,12 @@
   },
   "tools": {
     "badge": "Tools & Stack",
-    "title": "Built with the best agentic tools",
-    "subtitle": "We use and master the most advanced AI tools to build our products."
+    "title": "Built with leading agentic tools",
+    "subtitle": "We rely on advanced, production-proven AI tools to build our products."
   },
   "ctaRecruit": {
-    "title": "We're looking for the best.",
-    "subtitle": "Not the most credentialed — the most driven, the most determined, those who want to build something that matters.",
+    "title": "Build OpenBaara with us",
+    "subtitle": "We're looking for driven, curious people who want to contribute to an ambitious and meaningful project.",
     "cta": "See open positions"
   },
   "founder": {
@@ -147,46 +161,108 @@
     "longBio": "Self-taught over five years with a singular conviction: knowledge and mastery come first. Build what's needed, build to last — don't ride waves. Outio is the first tangible outcome and the starting point of a broader ambition.\n\nHis thesis: we're living through a global tech tipping point. AI is crossing from software into the physical world. Africa risks being left behind — this void must be filled. Open source changes the game: create and innovate locally, build technology transfer partnerships with open-minded partners — particularly in Asia —, and protect data through local servers.\n\nBorn in Gagnoa, western Côte d'Ivoire, of Ivorian-Burkinabè origin, based in Abidjan. This coast ↔ Sahel bridge is a strategic asset, not a biographical detail.",
     "quote": "The need is immense. We have the minds, the brains, and with the right resources, the power to drive real change. Africa must have its own applications and its own technological independence. I believe in it — and I'm going to make it happen.",
     "location": "Abidjan, Côte d'Ivoire",
-    "origin": "Ivorian-Burkinabè · Born in Gagnoa"
+    "origin": "Ivorian-Burkinabè · Born in Gagnoa",
+    "stackTitle": "Stack & Skills"
   },
   "investors": {
     "badge": "Investors",
-    "title": "Get in before launch",
-    "subtitle": "OpenBaara is pre-launch. The product is nearly ready. The opportunity is now.",
+    "title": "Invest at the pre-launch stage",
+    "subtitle": "OpenBaara is at the pre-launch stage. The product is in advanced finalization and entry is at an early stage.",
     "status": "Pre-launch",
-    "statusDescription": "Outio is ~80-90% complete. Launch imminent.",
-    "highlights": {
-      "product": "Product nearly ready to ship",
-      "platform": "Orchestration platform built",
-      "sequence": "First sequence link in place",
-      "opportunity": "Get in BEFORE launch"
+    "statusDescription": "Outio, our flagship product, is in advanced finalization.",
+    "progress": {
+      "title": "Product roadmap",
+      "advanced": "Advanced finalization · 85%",
+      "done": "Done",
+      "current": "In progress",
+      "upcoming": "Upcoming",
+      "steps": {
+        "platform": "Platform",
+        "product": "Outio product",
+        "finalization": "Finalization",
+        "launch": "Launch"
+      }
     },
+    "highlights": {
+      "product": "Product in advanced finalization",
+      "platform": "Orchestration platform operational",
+      "sequence": "First roadmap step underway",
+      "opportunity": "Entry at an early stage"
+    },
+    "askTitle": "The opportunity",
     "ask": "Finance the transition from launch to first traction: go-to-market, acquisition, infrastructure.",
     "tractionPlaceholder": "Traction metrics will appear here post-launch.",
     "marketNote": "Figures to be re-sourced",
     "ctaBookCall": "Book a call",
-    "ctaEmail": "Write to us"
+    "ctaEmail": "Write to us",
+    "thesis": {
+      "kicker": "The thesis",
+      "title": "AI value has shifted from access to assembly",
+      "body": "Raw models have become a commodity — open source, free, interchangeable. The edge is no longer the model, but the ability to assemble the right tools into a system that delivers concrete results, and to distribute it where no one else does. OpenBaara is that assembly and distribution layer, for markets global players don't serve.",
+      "quote": "The AI divide won't be between those who know how to use it, but between those who own it and those who depend on it."
+    },
+    "markets": {
+      "kicker": "Market",
+      "title": "Real markets, already sized",
+      "items": [
+        { "value": "$13.7B", "label": "AI agent orchestration market in 2026 (CAGR ~23%)", "source": "Dimension Market Research" },
+        { "value": "$46.8B", "label": "Agentic market projected for 2036, up from $6.3B in 2026", "source": "Deloitte · DMR" },
+        { "value": "$314.6M", "label": "Music streaming in Africa in 2026, toward $510M in 2027", "source": "IFPI Global Music Report 2026" }
+      ],
+      "note": "Figures from public reports (2026), dated — to be re-verified during due diligence."
+    },
+    "matrix": {
+      "kicker": "Tools × Markets",
+      "title": "Each division targets a specific market",
+      "rows": [
+        { "tool": "Outio — orchestration", "market": "Agent orchestration & SME automation", "detail": "A product already built, not a concept" },
+        { "tool": "Creative studios & distribution", "market": "African music and creators", "detail": "White-label distribution to platforms, local payouts" },
+        { "tool": "B2B Solutions", "market": "SMEs poorly served by foreign tools", "detail": "Localization: language, payment, pricing, connectivity" },
+        { "tool": "Baarali Labs", "market": "R&D frontier, beyond the wrapper", "detail": "Imitate → understand → discover" }
+      ]
+    },
+    "moat": {
+      "kicker": "Defensibility",
+      "title": "The moat isn't the model — it's the assembly",
+      "items": [
+        { "title": "Cost-arbitrage gateway", "description": "The model tier is picked automatically based on real cost: margin preserved, accessible pricing, anti-failure fallback invisible to the user." },
+        { "title": "Multi-agent orchestration", "description": "Parallel sub-agents, double-checking and synthesis — riding the hottest market wave." },
+        { "title": "Localized rails", "description": "Mobile Money / CinetPay payments and white-label music distribution: a barrier foreign players don't cross." },
+        { "title": "Data sovereignty", "description": "Execution possible on local models (Ollama): no data leakage, trust for the local market and enterprises." },
+        { "title": "Three-tier packaging", "description": "Presets, templates and user-built agents: the prompt-engineering barrier falls." }
+      ]
+    },
+    "sovereignty": {
+      "kicker": "Sovereignty",
+      "quote": "Will French-speaking Africa own AI, or be its raw material?",
+      "body": "OpenBaara moves its markets onto the owners' side: own the rails (sovereignty, local models), own the data (local moat), own the value (assembly, not mere access)."
+    },
+    "dossier": {
+      "title": "Get the full deck",
+      "body": "Detailed thesis, unit economics, product sequence and roadmap — on request.",
+      "cta": "Request the deck"
+    }
   },
   "careers": {
     "badge": "Careers",
     "title": "Join the mission",
-    "subtitle": "We're not looking for résumés — we're looking for minds determined to build African technological independence.",
+    "subtitle": "Beyond credentials, we value determination and the drive to contribute to African technological autonomy.",
     "values": {
       "revenue": {
         "title": "Revenue-first",
-        "description": "No 'we'll figure it out later.' Every action must move closer to revenue."
+        "description": "Every initiative aims at concrete impact and, in time, revenue."
       },
       "noNIH": {
         "title": "No 'Not Invented Here'",
-        "description": "If an open source tool does the job, we use it. Ego doesn't build anything."
+        "description": "If an open source tool meets the need, we use it. Effectiveness over ego."
       },
       "local": {
         "title": "Local anchoring",
         "description": "We build from Africa, for Africa. Abidjan is our base, not our limit."
       },
       "ambition": {
-        "title": "Unlimited ambition",
-        "description": "From software to autonomous vehicles. Each step unlocks the next."
+        "title": "Long-term ambition",
+        "description": "From software to physical systems: a path built step by step."
       }
     },
     "noPositions": "No open positions at the moment, but we're always looking for exceptional talent.",
@@ -221,6 +297,7 @@
         "description": "Local infrastructure, sensitive data protected. For organizations with sovereignty constraints."
       }
     },
+    "processTitle": "Our process",
     "process": {
       "step1": "Audit",
       "step2": "Design",
@@ -246,7 +323,7 @@
     "pathAdvanced": "Advanced",
     "pathPro": "Pro",
     "cliTools": "CLI & IDE Tools",
-    "cliDescription": "Master the tools that 10x your developer productivity.",
+    "cliDescription": "Master the tools that significantly accelerate developer productivity.",
     "ctaCourses": "See all courses"
   },
   "labs": {
@@ -278,7 +355,7 @@
     },
     "foundations": "Open source foundations",
     "foundationsList": "Cosmos · Locate Anything · GenRecon · TriSplat · Gamma World",
-    "moat": "The moat = African data",
+    "moat": "Our edge: African data",
     "moatDescription": "From integration to proprietary tech creation: fine-tuned models, locally assembled edge-AI devices."
   },
   "store": {
@@ -292,6 +369,7 @@
     "filterServices": "Services",
     "addToCart": "Add to cart",
     "buy": "Buy",
+    "enroll": "Enroll on Outio",
     "tryFree": "Try for free",
     "bookCall": "Book a call",
     "preRegister": "Pre-register",
@@ -301,7 +379,12 @@
     "new": "New",
     "popular": "Popular",
     "comingSoon": "Coming soon",
-    "noResults": "No products found."
+    "noResults": "No products found.",
+    "catCourse": "Course",
+    "catTool": "Tool",
+    "catService": "Service",
+    "lessonsLabel": "lessons",
+    "toolsLabel": "Tools covered"
   },
   "cart": {
     "title": "Cart",
@@ -313,18 +396,52 @@
   },
   "checkout": {
     "title": "Payment",
-    "subtitle": "Complete your order",
-    "paymentMethods": "Payment methods",
+    "subtitle": "Complete your order with Mobile Money",
+    "emptyTitle": "Your cart is empty",
+    "empty": "Add a course or a service before going to payment.",
+    "backToStore": "Back to the store",
+    "summaryTitle": "Your order",
+    "total": "Total to pay",
+    "contactTitle": "Your details",
+    "name": "Full name",
+    "namePh": "Awa Koné",
+    "email": "Email address",
+    "emailPh": "you@example.com",
+    "phone": "Phone (Mobile Money)",
+    "phonePh": "+225 07 00 00 00 00",
+    "method": "Payment method",
     "mobileMoney": "Mobile Money (CinetPay)",
-    "card": "Credit card",
     "mobileMoneyNote": "Orange Money · MTN Money · Wave · Moov Money",
-    "comingSoon": "Online payment coming soon. Contact us to finalize your order.",
-    "ctaContact": "Contact us to finalize"
+    "pay": "Pay {amount}",
+    "processing": "Redirecting to payment…",
+    "secure": "Secure payment via CinetPay. You will be redirected to complete it.",
+    "errInvalid": "Please provide your name, a valid email and your Mobile Money number.",
+    "errNotConfigured": "Online payment is not enabled yet. Write to us at contact@openbaara.com to finalize.",
+    "errFailed": "The payment could not be initiated. Try again or write to contact@openbaara.com.",
+    "return": {
+      "checking": "Verifying payment…",
+      "successTitle": "Payment confirmed",
+      "successBody": "Thank you! Your order is confirmed. You will receive a confirmation email.",
+      "pendingTitle": "Payment pending",
+      "pendingBody": "Your payment is being processed. You will receive a confirmation once it is validated.",
+      "failedTitle": "Payment not completed",
+      "failedBody": "The payment was not completed. No amount has been charged. You can try again.",
+      "backHome": "Back to home",
+      "viewStore": "Back to the store",
+      "retry": "Try again"
+    }
   },
   "cv": {
     "badge": "CV Generator",
     "title": "Create your modern CV",
     "subtitle": "Enter your information, choose a premium template and export to PDF — in minutes.",
+    "previewName": "Your name",
+    "previewRole": "Job title",
+    "previewProfile": "Profile",
+    "previewContact": "Contact",
+    "premiumNote": "Premium template — available in the store",
+    "getTemplate": "Get this template",
+    "saveSuccess": "Thank you! You're subscribed.",
     "formTitle": "Your information",
     "fullName": "Full name",
     "jobTitle": "Job title",
@@ -340,6 +457,36 @@
     "addSkill": "Add",
     "languages": "Languages",
     "addLanguage": "Add language",
+    "photo": "Photo",
+    "addPhoto": "Add a photo",
+    "removePhoto": "Remove photo",
+    "linksTitle": "Links",
+    "website": "Website",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "skillLevel": "Level",
+    "langLevelPh": "Level (e.g. Fluent)",
+    "certifications": "Certifications",
+    "addCertification": "Add a certification",
+    "certName": "Title",
+    "certIssuer": "Issuer",
+    "certYear": "Year",
+    "projects": "Projects",
+    "addProject": "Add a project",
+    "projName": "Project name",
+    "projLink": "Link",
+    "interests": "Interests",
+    "interestsPh": "Add an interest",
+    "moreFields": "Additional sections",
+    "personalDetails": "Personal details",
+    "nationality": "Nationality",
+    "dateOfBirth": "Date of birth",
+    "drivingLicense": "Driving license",
+    "references": "References",
+    "addReference": "Add a reference",
+    "refName": "Name",
+    "refRole": "Role",
+    "refContact": "Contact (email / phone)",
     "company": "Company",
     "position": "Position",
     "startDate": "Start date",
@@ -355,7 +502,7 @@
     "templateLocked": "Unlock in the store",
     "exportPdf": "Export to PDF",
     "preview": "Preview",
-    "emailCapture": "Save your CV — enter your email",
+    "emailCapture": "Stay up to date with OpenBaara",
     "emailPlaceholder": "your@email.com",
     "save": "Save"
   },
@@ -373,6 +520,7 @@
     "newsletterPlaceholder": "your@email.com",
     "newsletterSubmit": "Subscribe",
     "location": "Abidjan, Côte d'Ivoire",
+    "region": "West Africa · UEMOA",
     "email": "contact@openbaara.com"
   },
   "footer": {
@@ -382,7 +530,7 @@
     "legal": "Legal notice",
     "privacy": "Privacy policy",
     "terms": "Terms of use",
-    "copyright": "© {year} OPENBAARA. All rights reserved.",
+    "copyright": "© {year} OpenBaara SAS. All rights reserved.",
     "madeIn": "Made with ❤️ in Abidjan"
   },
   "common": {

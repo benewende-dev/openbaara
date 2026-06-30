@@ -1,16 +1,14 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { useState } from "react";
 import { Link } from "@/i18n/routing";
 import { useCart } from "@/features/store/CartContext";
-import { products, type ProductCategory } from "@/data/products";
+import { products, pickLocale, type ProductCategory } from "@/data/products";
+import { LINKS } from "@/lib/constants";
 import { formatXOF, formatUSD } from "@/lib/utils";
-import {
-  AnimatedSection,
-  AnimatedStagger,
-  AnimatedItem,
-} from "@/components/shared/AnimatedSection";
+import { motion } from "framer-motion";
+import { AnimatedSection } from "@/components/shared/AnimatedSection";
 import {
   Search,
   ShoppingCart,
@@ -22,6 +20,8 @@ import {
   GraduationCap,
   Wrench,
   Briefcase,
+  BarChart3,
+  PlayCircle,
 } from "lucide-react";
 
 const categoryIcons: Record<ProductCategory, typeof GraduationCap> = {
@@ -32,16 +32,18 @@ const categoryIcons: Record<ProductCategory, typeof GraduationCap> = {
 
 export default function StorePage() {
   const t = useTranslations("store");
+  const locale = useLocale();
   const { addItem } = useCart();
   const [filter, setFilter] = useState<ProductCategory | "all">("all");
   const [search, setSearch] = useState("");
 
   const filtered = products.filter((p) => {
     const matchCategory = filter === "all" || p.category === filter;
+    const q = search.toLowerCase();
     const matchSearch =
       search === "" ||
-      p.nameKey.toLowerCase().includes(search.toLowerCase()) ||
-      p.descriptionKey.toLowerCase().includes(search.toLowerCase());
+      pickLocale(p.name, locale).toLowerCase().includes(q) ||
+      pickLocale(p.description, locale).toLowerCase().includes(q);
     return matchCategory && matchSearch;
   });
 
@@ -57,6 +59,12 @@ export default function StorePage() {
     { key: "tool" as const, label: t("filterTools") },
     { key: "service" as const, label: t("filterServices") },
   ];
+
+  const categoryLabels: Record<ProductCategory, string> = {
+    course: t("catCourse"),
+    tool: t("catTool"),
+    service: t("catService"),
+  };
 
   return (
     <div className="section-padding">
@@ -85,8 +93,8 @@ export default function StorePage() {
                   onClick={() => setFilter(f.key)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                     filter === f.key
-                      ? "bg-primary text-white"
-                      : "bg-surface dark:bg-[#1A1A1A] text-muted dark:text-muted-dark hover:bg-primary/10 hover:text-primary"
+                      ? "bg-primary text-black"
+                      : "bg-surface dark:bg-[#111111] text-muted dark:text-muted-dark hover:bg-primary/10 hover:text-primary"
                   }`}
                   id={`store-filter-${f.key}`}
                 >
@@ -102,7 +110,7 @@ export default function StorePage() {
                 placeholder={t("searchPlaceholder")}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-border dark:border-border-dark bg-white dark:bg-[#141414] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+                className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-border dark:border-border-dark bg-white dark:bg-[#111111] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
                 id="store-search"
               />
             </div>
@@ -115,20 +123,26 @@ export default function StorePage() {
             {t("noResults")}
           </p>
         ) : (
-          <AnimatedStagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filtered.map((product) => {
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filtered.map((product, index) => {
               const CatIcon = categoryIcons[product.category];
               const badge = product.badge ? badgeMap[product.badge] : null;
 
               return (
-                <AnimatedItem key={product.id}>
-                  <div className="card-hover group rounded-2xl bg-white dark:bg-[#141414] border border-border dark:border-border-dark p-6 flex flex-col h-full">
+                <motion.div
+                  key={product.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, ease: "easeOut", delay: Math.min(index * 0.04, 0.4) }}
+                  className="h-full"
+                >
+                  <div className="card-hover group rounded-2xl bg-white dark:bg-[#111111] border border-border dark:border-border-dark p-6 flex flex-col h-full">
                     {/* Top row: category + badge */}
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center gap-2 text-xs text-muted dark:text-muted-dark">
                         <CatIcon className="w-4 h-4" />
                         <span className="uppercase tracking-wider font-medium">
-                          {product.category}
+                          {categoryLabels[product.category]}
                         </span>
                       </div>
                       {badge && (
@@ -142,10 +156,53 @@ export default function StorePage() {
                     </div>
 
                     {/* Product info */}
-                    <h3 className="text-lg font-bold mb-2">{product.nameKey}</h3>
+                    <h3 className="text-lg font-bold mb-2">{pickLocale(product.name, locale)}</h3>
                     <p className="text-sm text-muted dark:text-muted-dark leading-relaxed flex-1 mb-4">
-                      {product.descriptionKey}
+                      {pickLocale(product.description, locale)}
                     </p>
+
+                    {/* Course meta: level · duration · lessons */}
+                    {(product.level || product.duration || product.lessons) && (
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-3 text-xs text-muted dark:text-muted-dark">
+                        {product.level && (
+                          <span className="inline-flex items-center gap-1">
+                            <BarChart3 className="w-3.5 h-3.5 text-primary" />
+                            {pickLocale(product.level, locale)}
+                          </span>
+                        )}
+                        {product.duration && (
+                          <span className="inline-flex items-center gap-1">
+                            <Clock className="w-3.5 h-3.5 text-primary" />
+                            {pickLocale(product.duration, locale)}
+                          </span>
+                        )}
+                        {product.lessons && (
+                          <span className="inline-flex items-center gap-1">
+                            <PlayCircle className="w-3.5 h-3.5 text-primary" />
+                            {product.lessons} {t("lessonsLabel")}
+                          </span>
+                        )}
+                      </div>
+                    )}
+
+                    {/* Tools covered */}
+                    {product.tools && product.tools.length > 0 && (
+                      <div className="mb-4">
+                        <p className="text-[11px] uppercase tracking-wider font-medium text-muted dark:text-muted-dark mb-1.5">
+                          {t("toolsLabel")}
+                        </p>
+                        <div className="flex flex-wrap gap-1.5">
+                          {product.tools.map((tool) => (
+                            <span
+                              key={tool}
+                              className="px-2 py-0.5 rounded-md text-[11px] font-medium bg-primary/10 text-primary"
+                            >
+                              {tool}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
 
                     {/* Price */}
                     <div className="mb-4">
@@ -172,18 +229,31 @@ export default function StorePage() {
                     </div>
 
                     {/* CTA */}
-                    {product.cta === "buy" && (
+                    {/* Cours : vente & accès dans Outio (vitrine → plateforme). */}
+                    {product.category === "course" && (
+                      <a
+                        href={`${LINKS.outio}/formations/${product.id}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-2 w-full py-3 bg-primary text-black rounded-xl font-semibold hover:bg-primary-dark transition-colors"
+                        id={`store-enroll-${product.id}`}
+                      >
+                        {t("enroll")}
+                        <ArrowRight className="w-4 h-4" />
+                      </a>
+                    )}
+                    {product.category !== "course" && product.cta === "buy" && (
                       <button
                         onClick={() =>
                           addItem({
                             id: product.id,
-                            name: product.nameKey,
+                            name: pickLocale(product.name, locale),
                             priceXOF: product.priceXOF!,
                             priceUSD: product.priceUSD!,
                             quantity: 1,
                           })
                         }
-                        className="flex items-center justify-center gap-2 w-full py-3 bg-primary text-white rounded-xl font-semibold hover:bg-primary-dark transition-colors"
+                        className="flex items-center justify-center gap-2 w-full py-3 bg-primary text-black rounded-xl font-semibold hover:bg-primary-dark transition-colors"
                         id={`store-buy-${product.id}`}
                       >
                         <ShoppingCart className="w-4 h-4" />
@@ -193,7 +263,7 @@ export default function StorePage() {
                     {product.cta === "try-free" && (
                       <Link
                         href="/cv-generator"
-                        className="flex items-center justify-center gap-2 w-full py-3 bg-secondary text-white rounded-xl font-semibold hover:bg-secondary-dark transition-colors"
+                        className="flex items-center justify-center gap-2 w-full py-3 bg-secondary text-black rounded-xl font-semibold hover:bg-secondary-dark transition-colors"
                         id={`store-try-${product.id}`}
                       >
                         {t("tryFree")}
@@ -203,7 +273,7 @@ export default function StorePage() {
                     {product.cta === "book-call" && (
                       <Link
                         href="/contact"
-                        className="flex items-center justify-center gap-2 w-full py-3 border-2 border-primary text-primary rounded-xl font-semibold hover:bg-primary hover:text-white transition-colors"
+                        className="flex items-center justify-center gap-2 w-full py-3 border-2 border-primary text-primary rounded-xl font-semibold hover:bg-primary hover:text-black transition-colors"
                         id={`store-book-${product.id}`}
                       >
                         <Phone className="w-4 h-4" />
@@ -221,10 +291,10 @@ export default function StorePage() {
                       </button>
                     )}
                   </div>
-                </AnimatedItem>
+                </motion.div>
               );
             })}
-          </AnimatedStagger>
+          </div>
         )}
       </div>
     </div>

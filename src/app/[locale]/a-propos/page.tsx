@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { AnimatedSection, AnimatedStagger, AnimatedItem } from "@/components/shared/AnimatedSection";
+import { AnimatedSection } from "@/components/shared/AnimatedSection";
 import { TECH_STACK } from "@/lib/constants";
 import { User, MapPin, Quote } from "lucide-react";
 
@@ -60,7 +60,7 @@ export default function AboutPage() {
 
         {/* Tech stack */}
         <AnimatedSection>
-          <h2 className="text-2xl md:text-3xl font-black text-center mb-10">Stack & Compétences</h2>
+          <h2 className="text-2xl md:text-3xl font-black text-center mb-10">{t("stackTitle")}</h2>
           <div className="space-y-8">
             {stackCategories.map((category) => (
               <div key={category}>
@@ -71,7 +71,7 @@ export default function AboutPage() {
                   {TECH_STACK[category].map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1.5 rounded-lg bg-surface dark:bg-[#1A1A1A] border border-border dark:border-border-dark text-sm font-medium"
+                      className="px-3 py-1.5 rounded-lg bg-surface dark:bg-[#111111] border border-border dark:border-border-dark text-sm font-medium"
                     >
                       {tech}
                     </span>

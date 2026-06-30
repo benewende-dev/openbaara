@@ -25,6 +25,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       "(prefers-color-scheme: dark)"
     ).matches;
     const initial = stored || (prefersDark ? "dark" : "light");
+    // Synchronisation au montage avec localStorage / préférence système
+    // (impossible côté serveur) — setState volontaire ici.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setTheme(initial);
 
     // Ensure the DOM class is in sync

@@ -7,6 +7,7 @@ import {
   AnimatedStagger,
   AnimatedItem,
 } from "@/components/shared/AnimatedSection";
+import { LINKS } from "@/lib/constants";
 import {
   Zap,
   GraduationCap,
@@ -17,41 +18,11 @@ import {
 } from "lucide-react";
 
 const divisions = [
-  {
-    key: "outio",
-    Icon: Zap,
-    href: "#",
-    external: true,
-    gradient: "from-orange-500 to-amber-400",
-  },
-  {
-    key: "academy",
-    Icon: GraduationCap,
-    href: "/academy",
-    external: false,
-    gradient: "from-emerald-500 to-teal-400",
-  },
-  {
-    key: "solutions",
-    Icon: Building2,
-    href: "/solutions",
-    external: false,
-    gradient: "from-blue-500 to-cyan-400",
-  },
-  {
-    key: "studio",
-    Icon: Wrench,
-    href: "/boutique",
-    external: false,
-    gradient: "from-purple-500 to-violet-400",
-  },
-  {
-    key: "labs",
-    Icon: FlaskConical,
-    href: "/baarali-labs",
-    external: false,
-    gradient: "from-rose-500 to-pink-400",
-  },
+  { key: "outio", Icon: Zap, href: LINKS.outio, external: true },
+  { key: "academy", Icon: GraduationCap, href: "/academy", external: false },
+  { key: "solutions", Icon: Building2, href: "/solutions", external: false },
+  { key: "studio", Icon: Wrench, href: "/boutique", external: false },
+  { key: "labs", Icon: FlaskConical, href: "/baarali-labs", external: false },
 ] as const;
 
 export function DivisionsSection() {
@@ -73,19 +44,17 @@ export function DivisionsSection() {
         </AnimatedSection>
 
         <AnimatedStagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {divisions.map(({ key, Icon, href, external, gradient }) => (
+          {divisions.map(({ key, Icon, href, external }) => (
             <AnimatedItem key={key} className={key === "outio" ? "md:col-span-2 lg:col-span-1" : ""}>
-              <div className="card-hover group relative rounded-2xl p-6 md:p-8 bg-white dark:bg-[#141414] border border-border dark:border-border-dark h-full flex flex-col">
+              <div className="card-hover group relative rounded-2xl p-6 md:p-8 bg-white dark:bg-[#111111] border border-border dark:border-border-dark h-full flex flex-col">
                 {/* Status badge */}
                 <span className="absolute top-4 right-4 text-xs font-medium px-2.5 py-1 rounded-full bg-primary/10 text-primary">
                   {t(`${key}.status`)}
                 </span>
 
                 {/* Icon */}
-                <div
-                  className={`w-12 h-12 rounded-xl bg-gradient-to-br ${gradient} flex items-center justify-center mb-5`}
-                >
-                  <Icon className="w-6 h-6 text-white" />
+                <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center mb-5">
+                  <Icon className="w-6 h-6 text-black" />
                 </div>
 
                 {/* Content */}

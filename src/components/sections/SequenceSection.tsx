@@ -11,7 +11,7 @@ export function SequenceSection() {
   const t = useTranslations("sequence");
 
   return (
-    <section className="section-padding bg-surface dark:bg-[#0A0A0A] text-[#0A0A0A] dark:text-white overflow-hidden">
+    <section className="section-padding bg-surface dark:bg-[#000000] text-[#000000] dark:text-white overflow-hidden">
       <div className="container-wide mx-auto">
         <AnimatedSection className="text-center mb-16">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-sm font-medium text-primary mb-6">
@@ -60,7 +60,7 @@ export function SequenceSection() {
                       className={`w-4 h-4 rounded-full border-2 ${
                         isActive
                           ? "bg-primary border-primary animate-pulse-glow"
-                          : "bg-white dark:bg-[#1A1A1A] border-[#0A0A0A]/20 dark:border-white/20"
+                          : "bg-white dark:bg-[#111111] border-[#000000]/20 dark:border-white/20"
                       }`}
                     />
                   </div>
