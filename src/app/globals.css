@@ -86,9 +86,9 @@ h1, h2, h3 {
 
 body {
   font-family: var(--font-sans);
-  /* Fond clair aligné sur Outio (blanc cassé chaud) — plus propre sous le vert
-     matrix ; les cartes blanches (surface-elevated) ressortent dessus. */
-  background: #FBF8F4;
+  /* Fond clair = blanc cassé chaud (esprit Outio, un cran plus marqué que son
+     #FBF8F4 pour rester perceptible sous les cartes blanches d'OpenBaara). */
+  background: #F4F0E8;
   color: #000000;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
