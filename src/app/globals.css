@@ -86,7 +86,9 @@ h1, h2, h3 {
 
 body {
   font-family: var(--font-sans);
-  background: #FFFFFF;
+  /* Fond clair aligné sur Outio (blanc cassé chaud) — plus propre sous le vert
+     matrix ; les cartes blanches (surface-elevated) ressortent dessus. */
+  background: #FBF8F4;
   color: #000000;
   transition: background-color 0.3s ease, color 0.3s ease;
 }

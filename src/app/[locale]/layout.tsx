@@ -85,7 +85,7 @@ export default async function LocaleLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col font-sans antialiased bg-white text-[#000000] dark:bg-[#000000] dark:text-[#FFFFFF] transition-colors duration-300">
+      <body className="min-h-full flex flex-col font-sans antialiased bg-[#FBF8F4] text-[#000000] dark:bg-[#000000] dark:text-[#FFFFFF] transition-colors duration-300">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
