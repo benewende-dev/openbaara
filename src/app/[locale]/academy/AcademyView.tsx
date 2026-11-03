@@ -40,8 +40,8 @@ export function AcademyView({ products }: { products: Product[] }) {
               <div key={level} className="flex items-center">
                 <span className={`px-5 py-2.5 rounded-full text-sm font-bold ${
                   i === 0
-                    ? "bg-primary text-black"
-                    : "bg-surface dark:bg-[#111111] text-muted dark:text-muted-dark border border-border dark:border-border-dark"
+                    ? "bg-primary text-on-primary"
+                    : "bg-surface dark:bg-surface-elevated text-muted dark:text-muted-dark border border-border dark:border-border-dark"
                 }`}>
                   {t(level)}
                 </span>
@@ -57,7 +57,7 @@ export function AcademyView({ products }: { products: Product[] }) {
         <AnimatedStagger className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
           {courses.map((course) => (
             <AnimatedItem key={course.id}>
-              <div className="card-hover rounded-2xl p-6 bg-white dark:bg-[#111111] border border-border dark:border-border-dark">
+              <div className="card-hover rounded-2xl p-6 bg-surface-elevated border border-border dark:border-border-dark">
                 <div className="flex items-start gap-4">
                   <div className="p-3 rounded-xl bg-primary/10 text-primary shrink-0">
                     <BookOpen className="w-6 h-6" />
@@ -125,7 +125,7 @@ export function AcademyView({ products }: { products: Product[] }) {
 
         {/* CLI/IDE Tools section */}
         <AnimatedSection className="mb-16">
-          <div className="rounded-2xl bg-surface dark:bg-[#111111] border border-border dark:border-border-dark p-8 md:p-12">
+          <div className="rounded-2xl bg-surface dark:bg-surface-elevated border border-border dark:border-border-dark p-8 md:p-12">
             <div className="flex items-center gap-3 mb-4">
               <Terminal className="w-6 h-6 text-primary" />
               <h2 className="text-2xl font-black">{t("cliTools")}</h2>
@@ -145,7 +145,7 @@ export function AcademyView({ products }: { products: Product[] }) {
         <AnimatedSection className="text-center">
           <Link
             href="/boutique"
-            className="group inline-flex items-center gap-2 px-8 py-4 bg-primary text-black rounded-xl font-bold text-lg hover:bg-primary-dark transition-all"
+            className="group inline-flex items-center gap-2 px-8 py-4 bg-primary text-on-primary rounded-xl font-bold text-lg hover:bg-primary-dark transition-all"
             id="academy-cta"
           >
             {t("ctaCourses")}

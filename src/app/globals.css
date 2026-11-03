@@ -5,30 +5,26 @@
 
 /* ─── Custom Design Tokens ─── */
 @theme {
-  /* ── Accent unique : vert matrix ── */
-  --color-primary: #00D95A;
-  --color-primary-light: #2BFF88;
-  --color-primary-dark: #00A847;
-  --color-secondary: #00D95A;
-  --color-secondary-light: #2BFF88;
-  --color-secondary-dark: #00A847;
+  /* ── Design v2 : neutres chauds, un seul accent vert profond ──
+     Les couleurs suivent les variables de thème définies plus bas (:root / .dark). */
+  --color-primary: var(--accent);
+  --color-primary-light: var(--accent);
+  --color-primary-dark: color-mix(in srgb, var(--accent) 82%, var(--fg));
+  --color-secondary: var(--accent);
+  --color-on-primary: var(--accent-fg);
+  --color-ink: var(--fg);
+  --color-surface: var(--bg2);
+  --color-surface-dark: var(--bg2);
+  --color-surface-elevated: var(--surface);
+  --color-surface-elevated-dark: var(--surface);
+  --color-muted: var(--muted);
+  --color-muted-dark: var(--muted);
+  --color-border: var(--line);
+  --color-border-dark: var(--line);
 
-  /* ── Neutres : noir + blanc cassé chaud (clair) / noirs (sombre) ──
-     Mode clair réchauffé pour s'accorder au fond #F4F0E8 (plus de gris froid) ;
-     les cartes (surface-elevated) restent blanc pur pour ressortir. */
-  --color-ink: #000000;
-  --color-surface: #FBF7F0;
-  --color-surface-dark: #0A0A0A;
-  --color-surface-elevated: #FFFFFF;
-  --color-surface-elevated-dark: #111111;
-  --color-muted: #6B7280;
-  --color-muted-dark: #A1A1A1;
-  --color-border: #E7E1D6;
-  --color-border-dark: #262626;
-
-  --font-sans: var(--font-inter), "Inter", system-ui, -apple-system, sans-serif;
-  --font-display: var(--font-space-grotesk), var(--font-inter), system-ui, sans-serif;
-  --font-mono: var(--font-jetbrains-mono), ui-monospace, "SFMono-Regular", monospace;
+  --font-sans: var(--font-geist), system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-geist), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
 
   --animate-fade-up: fade-up 0.6s ease-out both;
   --animate-fade-in: fade-in 0.5s ease-out both;
@@ -64,8 +60,8 @@
     50% { background-position: 100% 50%; }
   }
   @keyframes pulse-glow {
-    0%, 100% { box-shadow: 0 0 5px rgba(0, 217, 90, 0.35); }
-    50% { box-shadow: 0 0 20px rgba(0, 217, 90, 0.7); }
+    0%, 100% { box-shadow: 0 0 5px color-mix(in srgb, var(--accent) 30%, transparent); }
+    50% { box-shadow: 0 0 20px color-mix(in srgb, var(--accent) 50%, transparent); }
   }
   @keyframes float {
     0%, 100% { transform: translateY(0); }
@@ -81,25 +77,29 @@ html {
 }
 
 /* Headings carry the display typeface site-wide */
-h1, h2, h3 {
-  font-family: var(--font-display);
-  letter-spacing: -0.02em;
+@layer base {
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+:root {
+  --bg: #F6F6F4; --bg2: #EDEDEA; --surface: #FFFFFF; --fg: #121214; --fg2: #3E3E44; --muted: #6B6B72;
+  --line: #E1E1DC; --line2: #CFCFCA; --accent: #1D6B52; --accent-fg: #FFFFFF; --accent-soft: #E2EEE8;
+  --err: #B3261E;
+}
+.dark {
+  --bg: #0F1011; --bg2: #151618; --surface: #1A1B1D; --fg: #ECECE8; --fg2: #B8B8B3; --muted: #8B8B86;
+  --line: #26272A; --line2: #36373B; --accent: #72C9A5; --accent-fg: #0F1011; --accent-soft: #17271F;
+  --err: #F08B84;
 }
 
 body {
   font-family: var(--font-sans);
-  /* Fond clair = blanc cassé chaud (esprit Outio, un cran plus marqué que son
-     #FBF8F4 pour rester perceptible sous les cartes blanches d'OpenBaara). */
-  background: #F4F0E8;
-  color: #000000;
+  background: var(--bg);
+  color: var(--fg);
   transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.dark body {
-  background:
-    radial-gradient(1000px 680px at 80% -12%, rgba(0, 217, 90, 0.08), transparent 58%),
-    #000000;
-  color: #FFFFFF;
 }
 
 /* ─── Typography helpers ─── */
@@ -121,7 +121,7 @@ body {
 }
 
 ::selection {
-  background: rgba(0, 217, 90, 0.28);
+  background: color-mix(in srgb, var(--accent) 24%, transparent);
   color: inherit;
 }
 
@@ -140,7 +140,7 @@ body {
 
 /* ─── Gradient Text ─── */
 .gradient-text {
-  background: linear-gradient(135deg, #2BFF88, #00D95A, #00A847);
+  background: linear-gradient(135deg, var(--accent), var(--accent), var(--accent));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -150,7 +150,7 @@ body {
 
 /* ─── Gradient Background ─── */
 .gradient-bg {
-  background: linear-gradient(135deg, #00A847 0%, #00D95A 50%, #2BFF88 100%);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent) 50%, var(--accent) 100%);
   background-size: 400% 400%;
   animation: gradient-shift 8s ease infinite;
 }
@@ -185,10 +185,10 @@ body {
 
 /* Glowing primary button */
 .btn-glow {
-  box-shadow: 0 8px 30px -8px rgba(0, 217, 90, 0.5);
+  box-shadow: 0 8px 30px -8px color-mix(in srgb, var(--accent) 35%, transparent);
 }
 .btn-glow:hover {
-  box-shadow: 0 12px 40px -6px rgba(0, 217, 90, 0.68);
+  box-shadow: 0 12px 40px -6px color-mix(in srgb, var(--accent) 45%, transparent);
 }
 
 /* Tech card surface with soft inner light */
@@ -225,7 +225,7 @@ body {
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, #2BFF88, #00A847);
+  background: linear-gradient(135deg, var(--accent), var(--accent));
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
   -webkit-mask-composite: xor;

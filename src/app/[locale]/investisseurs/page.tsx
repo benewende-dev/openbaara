@@ -1,318 +1,178 @@
-"use client";
-
-import { useTranslations } from "next-intl";
+import type { Metadata } from "next";
 import { Link } from "@/i18n/routing";
-import { AnimatedSection, AnimatedStagger, AnimatedItem } from "@/components/shared/AnimatedSection";
-import {
-  TrendingUp,
-  Rocket,
-  Layers,
-  Target,
-  Calendar,
-  Mail,
-  CheckCircle2,
-  BarChart3,
-  Gauge,
-  Network,
-  CreditCard,
-  ShieldCheck,
-  Boxes,
-  Zap,
-  Palette,
-  Building2,
-  FlaskConical,
-  FileText,
-  Check,
-} from "lucide-react";
+import { ventures } from "@/data/ventures";
+import { WHY_NOW, VALUE, FOUNDER } from "@/data/studio";
+import { Arrow } from "@/components/site/Arrow";
+import { langOf } from "@/components/site/lang";
+import { MeetingForm } from "./MeetingForm";
 
-const highlights = [
-  { key: "product", Icon: Rocket },
-  { key: "platform", Icon: Layers },
-  { key: "sequence", Icon: Target },
-  { key: "opportunity", Icon: TrendingUp },
-] as const;
+const COPY = {
+  fr: {
+    meta: "Investisseurs",
+    title: "Investir dans OpenBaara.",
+    lead: "Un portefeuille de ventures qui partagent leurs fondations techniques, leur équipe et leur méthode, dans des marchés encore largement à servir. Deux façons d'y prendre part, selon votre horizon et votre thèse.",
+    meet: "Demander un rendez-vous",
+    docs: "Les documents",
+    studio: "Dans le studio",
+    studioP: "Une participation dans OpenBaara. Vous êtes exposé à toutes les ventures, présentes et futures, à l'équipe et aux briques communes. Le risque est réparti sur plusieurs marchés, et chaque nouveau lancement vient enrichir le portefeuille.",
+    venture: "Dans une venture",
+    ventureP: "Une entrée ciblée au capital de l'entreprise de votre choix, au moment qui correspond à votre thèse. La venture reste adossée aux moyens du studio : équipe, technologie, méthode et réseau.",
+    portfolio: "Portefeuille",
+    cols: ["Venture", "Secteur", "Marché", "Stade", "Prochaine étape"],
+    why: "Pourquoi maintenant",
+    value: "Comment le studio crée de la valeur",
+    documents: "Documents",
+    docList: [
+      ["Dossier investisseur", "PDF, mis à jour chaque trimestre", "Sur demande", "Demander", "#rdv"],
+      ["Présentation du studio", "Diaporama de 15 pages", "Sur demande", "Demander", "#rdv"],
+      ["Fiches des ventures", "Une page par venture", "Public", "Consulter", "/ventures"],
+      ["Données financières", "Salle de données, après accord de confidentialité", "Après accord", "Demander", "#rdv"],
+      ["Vision d'OpenBaara", "Le texte de fond du studio", "Public", "Lire", "/societe#vision"],
+    ],
+    rdv: "Demander un rendez-vous",
+    rdvP: "Un premier échange de 30 minutes avec le fondateur, en visio ou à Abidjan. Indiquez vos disponibilités : nous revenons vers vous avec une invitation sous deux jours ouvrés.",
+  },
+  en: {
+    meta: "Investors",
+    title: "Invest in OpenBaara.",
+    lead: "A portfolio of ventures that share their technical foundations, team and method, in markets that are still largely under-served. Two ways to take part, depending on your horizon and your thesis.",
+    meet: "Request a meeting",
+    docs: "The documents",
+    studio: "In the studio",
+    studioP: "A stake in OpenBaara. You are exposed to every venture, present and future, to the team and to the shared building blocks. Risk is spread across several markets, and every new launch adds to the portfolio.",
+    venture: "In a venture",
+    ventureP: "A targeted entry into the capital of the company of your choice, at the moment that fits your thesis. The venture remains backed by the studio's resources: team, technology, method and network.",
+    portfolio: "Portfolio",
+    cols: ["Venture", "Sector", "Market", "Stage", "Next milestone"],
+    why: "Why now",
+    value: "How the studio creates value",
+    documents: "Documents",
+    docList: [
+      ["Investor pack", "PDF, updated every quarter", "On request", "Request", "#rdv"],
+      ["Studio presentation", "15-slide deck", "On request", "Request", "#rdv"],
+      ["Venture profiles", "One page per venture", "Public", "View", "/ventures"],
+      ["Financial data", "Data room, after a confidentiality agreement", "After NDA", "Request", "#rdv"],
+      ["OpenBaara's vision", "The studio's founding text", "Public", "Read", "/societe#vision"],
+    ],
+    rdv: "Request a meeting",
+    rdvP: "A first 30-minute conversation with the founder, by video or in Abidjan. Tell us when you are available: we'll come back to you with an invitation within two working days.",
+  },
+};
 
-const matrixIcons = [Zap, Palette, Building2, FlaskConical] as const;
-const moatIcons = [Gauge, Network, CreditCard, ShieldCheck, Boxes] as const;
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const c = COPY[await langOf(params)];
+  return { title: c.meta, description: c.lead };
+}
 
-type MarketItem = { value: string; label: string; source: string };
-type MatrixRow = { tool: string; market: string; detail: string };
-type MoatItem = { title: string; description: string };
-
-const DOSSIER_MAILTO =
-  "mailto:contact@openbaara.com?subject=Dossier%20investisseur%20OpenBaara";
-
-// Jalons d'avancement produit (l'étape « Finalisation » est en cours)
-const PROGRESS_STEPS = ["platform", "product", "finalization", "launch"] as const;
-const CURRENT_STEP = 2; // index de l'étape en cours
-
-export default function InvestorsPage() {
-  const t = useTranslations("investors");
-
-  const markets = t.raw("markets.items") as MarketItem[];
-  const matrixRows = t.raw("matrix.rows") as MatrixRow[];
-  const moat = t.raw("moat.items") as MoatItem[];
+export default async function InvestorsPage({ params }: { params: Promise<{ locale: string }> }) {
+  const lang = await langOf(params);
+  const c = COPY[lang];
 
   return (
-    <div className="section-padding">
-      <div className="container-wide mx-auto">
-        {/* Header */}
-        <AnimatedSection className="text-center mb-16">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-sm font-medium text-primary mb-6">
-            <TrendingUp className="w-4 h-4" />
-            {t("badge")}
-          </span>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight mb-4">
-            {t("title")}
-          </h1>
-          <p className="text-lg text-muted dark:text-muted-dark max-w-3xl mx-auto mb-6">{t("subtitle")}</p>
-          <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/10 text-primary font-bold animate-pulse-glow">
-            <CheckCircle2 className="w-5 h-5" />
-            {t("status")}: {t("statusDescription")}
-          </span>
-
-          {/* Feuille de route — jalons d'avancement */}
-          <div className="max-w-2xl mx-auto mt-12">
-            <div className="flex items-center justify-between mb-6">
-              <span className="text-sm font-semibold">{t("progress.title")}</span>
-              <span className="text-sm font-bold text-primary">{t("progress.advanced")}</span>
-            </div>
-            <div className="flex items-start">
-              {PROGRESS_STEPS.map((key, i) => {
-                const state = i < CURRENT_STEP ? "done" : i === CURRENT_STEP ? "current" : "upcoming";
-                return (
-                  <div key={key} className="flex-1 flex flex-col items-center relative">
-                    {/* Connecteur gauche (segment i-1 → i) */}
-                    {i > 0 && (
-                      <span
-                        className={`absolute top-[13px] left-0 right-1/2 h-1 ${
-                          i <= CURRENT_STEP ? "bg-primary" : "bg-border dark:bg-border-dark"
-                        }`}
-                      />
-                    )}
-                    {/* Connecteur droit (segment i → i+1) */}
-                    {i < PROGRESS_STEPS.length - 1 && (
-                      <span
-                        className={`absolute top-[13px] left-1/2 right-0 h-1 ${
-                          i < CURRENT_STEP ? "bg-primary" : "bg-border dark:bg-border-dark"
-                        }`}
-                      />
-                    )}
-                    {/* Nœud */}
-                    <div className="relative z-10">
-                      {state === "done" ? (
-                        <div className="w-7 h-7 rounded-full bg-primary text-black flex items-center justify-center">
-                          <Check className="w-4 h-4" strokeWidth={3} />
-                        </div>
-                      ) : state === "current" ? (
-                        <div className="w-7 h-7 rounded-full bg-primary text-black flex items-center justify-center ring-4 ring-primary/20 animate-pulse-glow">
-                          <span className="w-2.5 h-2.5 rounded-full bg-black" />
-                        </div>
-                      ) : (
-                        <div className="w-7 h-7 rounded-full border-2 border-border dark:border-border-dark bg-surface dark:bg-[#111111]" />
-                      )}
-                    </div>
-                    {/* Libellés */}
-                    <span
-                      className={`mt-2.5 text-xs text-center leading-tight ${
-                        state === "upcoming"
-                          ? "text-muted dark:text-muted-dark"
-                          : state === "current"
-                          ? "text-primary font-semibold"
-                          : "font-medium"
-                      }`}
-                    >
-                      {t(`progress.steps.${key}`)}
-                    </span>
-                    <span className="mt-0.5 text-[10px] uppercase tracking-wider text-muted dark:text-muted-dark">
-                      {t(`progress.${state}`)}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
+    <>
+      <section className="wrap g-hero pt-16 md:pt-20 pb-20 md:pb-24">
+        <h1 className="h1 fade">{c.title}</h1>
+        <div className="fade f1 flex flex-col gap-[22px]">
+          <p className="lead">{c.lead}</p>
+          <div className="flex flex-wrap items-center gap-5">
+            <a href="#rdv" className="btn btn-p">{c.meet}</a>
+            <a href="#documents" className="link">{c.docs} <Arrow /></a>
           </div>
-        </AnimatedSection>
+        </div>
+      </section>
 
-        {/* Highlights */}
-        <AnimatedStagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {highlights.map(({ key, Icon }) => (
-            <AnimatedItem key={key}>
-              <div className="card-hover rounded-2xl p-6 bg-white dark:bg-[#111111] border border-border dark:border-border-dark text-center h-full">
-                <div className="p-3 rounded-xl bg-primary/10 text-primary mx-auto w-fit mb-4">
-                  <Icon className="w-6 h-6" />
-                </div>
-                <p className="font-bold text-sm">{t(`highlights.${key}`)}</p>
-              </div>
-            </AnimatedItem>
-          ))}
-        </AnimatedStagger>
-
-        {/* Thesis */}
-        <AnimatedSection className="mb-16">
-          <div className="rounded-2xl bg-surface dark:bg-[#111111] border border-border dark:border-border-dark p-8 md:p-12">
-            <span className="kicker text-primary">{t("thesis.kicker")}</span>
-            <h2 className="mt-3 font-display text-2xl md:text-3xl font-bold tracking-tight mb-4">
-              {t("thesis.title")}
-            </h2>
-            <p className="text-muted dark:text-muted-dark leading-relaxed max-w-3xl mb-6">
-              {t("thesis.body")}
-            </p>
-            <blockquote className="border-l-2 border-primary pl-4 font-display text-lg md:text-xl font-medium">
-              {t("thesis.quote")}
-            </blockquote>
+      <section className="wrap sec">
+        <div className="g-two-cells grid border-t border-[var(--line)]">
+          <div data-reveal className="flex flex-col gap-3">
+            <h2 className="h3" style={{ fontSize: 26 }}>{c.studio}</h2>
+            <p className="body">{c.studioP}</p>
           </div>
-        </AnimatedSection>
-
-        {/* Markets */}
-        <AnimatedSection className="mb-16">
-          <div className="text-center mb-8">
-            <span className="kicker text-primary">{t("markets.kicker")}</span>
-            <h2 className="mt-3 font-display text-2xl md:text-3xl font-bold tracking-tight">
-              {t("markets.title")}
-            </h2>
+          <div data-reveal className="flex flex-col gap-3">
+            <h2 className="h3" style={{ fontSize: 26 }}>{c.venture}</h2>
+            <p className="body">{c.ventureP}</p>
           </div>
-          <AnimatedStagger className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {markets.map((m, i) => (
-              <AnimatedItem key={i}>
-                <div className="rounded-2xl p-6 md:p-8 bg-white dark:bg-[#111111] border border-border dark:border-border-dark h-full">
-                  <div className="font-display text-3xl md:text-4xl font-bold gradient-text mb-3">
-                    {m.value}
-                  </div>
-                  <p className="text-sm leading-relaxed mb-3">{m.label}</p>
-                  <p className="text-xs text-muted dark:text-muted-dark">{m.source}</p>
-                </div>
-              </AnimatedItem>
+        </div>
+      </section>
+
+      <section className="wrap sec flex flex-col gap-8">
+        <h2 className="h2" data-reveal>{c.portfolio}</h2>
+        <table className="dtable" data-reveal>
+          <thead>
+            <tr>{c.cols.map((h) => <th key={h} scope="col">{h}</th>)}</tr>
+          </thead>
+          <tbody>
+            {ventures.map((v) => (
+              <tr key={v.slug}>
+                <td><Link href={`/ventures/${v.slug}`} className="link">{v.name}</Link></td>
+                <td>{v.sector[lang]}</td>
+                <td>{v.market[lang]}</td>
+                <td className="!text-[var(--fg)]">{v.stage[lang]}</td>
+                <td>{v.next[lang]}</td>
+              </tr>
             ))}
-          </AnimatedStagger>
-          <p className="text-xs text-muted/60 dark:text-muted-dark/60 text-center mt-4">
-            {t("markets.note")}
-          </p>
-        </AnimatedSection>
+          </tbody>
+        </table>
+      </section>
 
-        {/* Tools × Markets matrix */}
-        <AnimatedSection className="mb-16">
-          <div className="text-center mb-8">
-            <span className="kicker text-primary">{t("matrix.kicker")}</span>
-            <h2 className="mt-3 font-display text-2xl md:text-3xl font-bold tracking-tight">
-              {t("matrix.title")}
-            </h2>
+      <section className="band">
+        <div className="wrap g-split py-20 md:py-[104px]">
+          <h2 className="h2">{c.why}</h2>
+          <div className="flex flex-col gap-10">
+            {WHY_NOW.map((w) => (
+              <div key={w.t.fr} data-reveal className="flex flex-col gap-2.5">
+                <span className="h3" style={{ fontSize: 26 }}>{w.t[lang]}</span>
+                <p className="body">{w.d[lang]}</p>
+              </div>
+            ))}
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {matrixRows.map((r, i) => {
-              const Icon = matrixIcons[i] ?? Zap;
-              return (
-                <div
-                  key={i}
-                  className="flex items-start gap-4 rounded-2xl p-6 bg-white dark:bg-[#111111] border border-border dark:border-border-dark"
-                >
-                  <div className="p-2.5 rounded-xl bg-primary/10 text-primary shrink-0">
-                    <Icon className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold">{r.tool}</h3>
-                    <p className="text-sm text-primary font-medium">{r.market}</p>
-                    <p className="text-sm text-muted dark:text-muted-dark mt-1">{r.detail}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </AnimatedSection>
+        </div>
+      </section>
 
-        {/* Moat */}
-        <AnimatedSection className="mb-16">
-          <div className="text-center mb-8">
-            <span className="kicker text-primary">{t("moat.kicker")}</span>
-            <h2 className="mt-3 font-display text-2xl md:text-3xl font-bold tracking-tight">
-              {t("moat.title")}
-            </h2>
-          </div>
-          <AnimatedStagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {moat.map((m, i) => {
-              const Icon = moatIcons[i] ?? Gauge;
-              return (
-                <AnimatedItem key={i}>
-                  <div className="card-hover rounded-2xl p-6 bg-white dark:bg-[#111111] border border-border dark:border-border-dark h-full">
-                    <div className="p-3 rounded-xl bg-primary/10 text-primary w-fit mb-4">
-                      <Icon className="w-6 h-6" />
-                    </div>
-                    <h3 className="font-bold mb-2">{m.title}</h3>
-                    <p className="text-sm text-muted dark:text-muted-dark leading-relaxed">
-                      {m.description}
-                    </p>
-                  </div>
-                </AnimatedItem>
-              );
-            })}
-          </AnimatedStagger>
-        </AnimatedSection>
-
-        {/* Sovereignty */}
-        <AnimatedSection className="mb-16">
-          <div className="rounded-2xl bg-surface dark:bg-[#111111] border border-border dark:border-border-dark p-8 md:p-12 text-center">
-            <span className="kicker text-primary">{t("sovereignty.kicker")}</span>
-            <blockquote className="mt-4 font-display text-2xl md:text-3xl font-bold tracking-tight max-w-3xl mx-auto">
-              {t("sovereignty.quote")}
-            </blockquote>
-            <p className="mt-5 text-muted dark:text-muted-dark max-w-2xl mx-auto leading-relaxed">
-              {t("sovereignty.body")}
-            </p>
-          </div>
-        </AnimatedSection>
-
-        {/* The Ask */}
-        <AnimatedSection className="mb-16">
-          <div className="rounded-2xl bg-surface dark:bg-[#111111] border border-border dark:border-border-dark p-8 md:p-12 text-center">
-            <h2 className="text-2xl md:text-3xl font-black mb-4">{t("askTitle")}</h2>
-            <p className="text-muted dark:text-muted-dark max-w-2xl mx-auto leading-relaxed mb-8">{t("ask")}</p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                href="/contact"
-                className="flex items-center gap-2 px-8 py-3.5 bg-primary text-black rounded-xl font-bold hover:bg-primary-dark transition-colors"
-                id="investors-book-call"
-              >
-                <Calendar className="w-5 h-5" />
-                {t("ctaBookCall")}
-              </Link>
-              <a
-                href="mailto:contact@openbaara.com"
-                className="flex items-center gap-2 px-8 py-3.5 border border-border dark:border-white/20 text-[#000000] dark:text-white rounded-xl font-bold hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
-              >
-                <Mail className="w-5 h-5" />
-                {t("ctaEmail")}
-              </a>
+      <section className="wrap sec-top g-split">
+        <h2 className="h2" data-reveal>{c.value}</h2>
+        <dl className="g-dl gap-10">
+          {VALUE.map((x) => (
+            <div key={x.t.fr} data-reveal className="topline">
+              <dt className="h3">{x.t[lang]}</dt>
+              <dd className="body m-0">{x.d[lang]}</dd>
             </div>
-          </div>
-        </AnimatedSection>
+          ))}
+        </dl>
+      </section>
 
-        {/* Dossier */}
-        <AnimatedSection className="mb-16">
-          <div className="rounded-2xl border border-border dark:border-border-dark p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="text-center md:text-left">
-              <h2 className="font-display text-xl md:text-2xl font-bold mb-1">{t("dossier.title")}</h2>
-              <p className="text-sm text-muted dark:text-muted-dark max-w-xl">{t("dossier.body")}</p>
-            </div>
-            <a
-              href={DOSSIER_MAILTO}
-              className="shrink-0 inline-flex items-center gap-2 px-7 py-3.5 bg-primary text-black rounded-xl font-bold hover:bg-primary-dark transition-colors"
-              id="investors-request-dossier"
-            >
-              <FileText className="w-5 h-5" />
-              {t("dossier.cta")}
-            </a>
-          </div>
-        </AnimatedSection>
+      <section id="documents" className="wrap sec sec-top g-split scroll-mt-16">
+        <h2 className="h2" data-reveal>{c.documents}</h2>
+        <ul data-reveal className="m-0 list-none p-0">
+          {c.docList.map(([title, desc, access, action, href]) => (
+            <li key={title} className="grid grid-cols-[1fr_auto] items-center gap-x-6 gap-y-1 border-t border-[var(--line)] py-[18px] sm:grid-cols-[1fr_auto_auto]">
+              <span className="flex flex-col gap-0.5">
+                <span className="font-semibold">{title}</span>
+                <span className="small muted">{desc}</span>
+              </span>
+              <span className="small muted hide-sm">{access}</span>
+              {href.startsWith("#") ? (
+                <a href={href} className="link small">{action} <Arrow /></a>
+              ) : (
+                <Link href={href} className="link small">{action} <Arrow /></Link>
+              )}
+            </li>
+          ))}
+        </ul>
+      </section>
 
-        {/* Traction placeholder */}
-        <AnimatedSection>
-          <div className="rounded-2xl border-2 border-dashed border-border dark:border-border-dark p-8 md:p-12 text-center">
-            <BarChart3 className="w-12 h-12 text-muted/30 dark:text-muted-dark/30 mx-auto mb-4" />
-            <p className="text-muted dark:text-muted-dark font-medium">{t("tractionPlaceholder")}</p>
-            <p className="text-xs text-muted/50 dark:text-muted-dark/50 mt-2">({t("marketNote")})</p>
+      <section id="rdv" className="scroll-mt-16 border-t border-[var(--line)]">
+        <div className="wrap grid gap-12 pt-20 pb-24 md:grid-cols-[1fr_1.6fr] md:gap-16 md:pt-[104px] md:pb-[120px]">
+          <div className="flex flex-col gap-5">
+            <h2 className="h2">{c.rdv}</h2>
+            <p className="body">{c.rdvP}</p>
+            <span className="flex flex-col pt-2">
+              <span className="font-semibold">{FOUNDER.name}</span>
+              <span className="small muted">{FOUNDER.role[lang]}</span>
+            </span>
           </div>
-        </AnimatedSection>
-      </div>
-    </div>
+          <MeetingForm lang={lang} />
+        </div>
+      </section>
+    </>
   );
 }

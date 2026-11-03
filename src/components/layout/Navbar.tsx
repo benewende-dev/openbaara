@@ -1,170 +1,109 @@
 "use client";
 
-import { useState } from "react";
-import { useTranslations, useLocale } from "next-intl";
+import { useEffect, useState } from "react";
+import { useLocale } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/routing";
 import { useCart } from "@/features/store/CartContext";
 import { Logo } from "@/components/layout/Logo";
-import { useTheme } from "@/components/layout/ThemeProvider";
-import {
-  Menu,
-  X,
-  ShoppingCart,
-  Sun,
-  Moon,
-  Globe,
-} from "lucide-react";
+import { Menu, X, ShoppingBag } from "lucide-react";
 
-const navLinks = [
-  { href: "/", labelKey: "home" },
-  { href: "/boutique", labelKey: "store" },
-  { href: "/solutions", labelKey: "solutions" },
-  { href: "/academy", labelKey: "academy" },
-  { href: "/baarali-labs", labelKey: "labs" },
-  { href: "/investisseurs", labelKey: "investors" },
-  { href: "/carrieres", labelKey: "careers" },
-  { href: "/contact", labelKey: "contact" },
+const LINKS = [
+  { href: "/ventures", fr: "Ventures", en: "Ventures" },
+  { href: "/societe", fr: "Société", en: "Company" },
+  { href: "/services", fr: "Services", en: "Services" },
+  { href: "/academy", fr: "Academy", en: "Academy" },
+  { href: "/investisseurs", fr: "Investisseurs", en: "Investors" },
 ] as const;
 
+const COPY = {
+  fr: { main: "Navigation principale", contact: "Nous contacter", lang: "Read in English", cart: "Panier", open: "Ouvrir le menu", close: "Fermer le menu" },
+  en: { main: "Main navigation", contact: "Contact us", lang: "Lire en français", cart: "Cart", open: "Open menu", close: "Close menu" },
+};
+
 export function Navbar() {
-  const t = useTranslations("nav");
-  const locale = useLocale();
+  const locale = useLocale() === "en" ? "en" : "fr";
+  const c = COPY[locale];
   const pathname = usePathname();
   const router = useRouter();
-  const { theme, mounted, toggleTheme } = useTheme();
   const { itemCount, toggleCart } = useCart();
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
-  const switchLocale = () => {
-    const next = locale === "fr" ? "en" : "fr";
-    router.replace(pathname, { locale: next });
-  };
+  // Fermer le menu mobile à chaque changement de page.
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setOpen(false);
+  }, [pathname]);
+
+  const switchLocale = () => router.replace(pathname, { locale: locale === "fr" ? "en" : "fr" });
+  const isCurrent = (href: string) => pathname === href || pathname.startsWith(href + "/");
+  const showCart = itemCount > 0 || ["/boutique", "/academy", "/checkout"].some(isCurrent);
 
   return (
-    <>
-      <header className="fixed top-0 left-0 right-0 z-50 glass">
-        <nav className="container-wide mx-auto flex items-center justify-between px-4 md:px-6 h-16 md:h-18">
-          {/* Logo */}
-          <Link href="/" className="flex items-center" id="nav-logo">
-            <Logo size={28} />
-          </Link>
-
-          {/* Desktop nav */}
-          <div className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.labelKey}
-                href={link.href}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-black/5 dark:hover:bg-white/5 ${
-                  pathname === link.href
-                    ? "text-primary font-semibold"
-                    : "text-[#000000]/70 dark:text-[#FFFFFF]/70"
-                }`}
-                id={`nav-${link.labelKey}`}
-              >
-                {t(link.labelKey)}
-              </Link>
-            ))}
-          </div>
-
-          {/* Right actions */}
-          <div className="flex items-center gap-2">
-            {/* Language toggle */}
-            <button
-              onClick={switchLocale}
-              className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-sm font-medium hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
-              aria-label="Switch language"
-              id="nav-lang-toggle"
+    <header className="sticky top-0 z-40 border-b border-[var(--line)] bg-[color-mix(in_srgb,var(--bg)_84%,transparent)] backdrop-blur-[14px] backdrop-saturate-[1.4]">
+      <div className="wrap flex h-16 items-center gap-10">
+        <Link href="/" aria-label="OpenBaara" className="no-underline">
+          <Logo />
+        </Link>
+        <nav aria-label={c.main} className="hidden lg:flex flex-1 gap-7">
+          {LINKS.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              aria-current={isCurrent(l.href) ? "page" : undefined}
+              className="py-1.5 text-sm font-medium text-[var(--fg2)] border-b-[1.5px] border-transparent transition-colors hover:text-[var(--fg)] aria-[current=page]:text-[var(--fg)] aria-[current=page]:border-[var(--fg)]"
             >
-              <Globe className="w-4 h-4" />
-              <span>{t("switchLang")}</span>
-            </button>
-
-            {/* Theme toggle */}
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
-              aria-label="Toggle theme"
-              id="nav-theme-toggle"
-            >
-              {!mounted ? (
-                <span className="w-4.5 h-4.5 block" />
-              ) : theme === "dark" ? (
-                <Sun className="w-4.5 h-4.5" />
-              ) : (
-                <Moon className="w-4.5 h-4.5" />
-              )}
-            </button>
-
-            {/* Cart */}
-            <button
-              onClick={toggleCart}
-              className="relative p-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
-              aria-label="Cart"
-              id="nav-cart"
-            >
-              <ShoppingCart className="w-4.5 h-4.5" />
+              {l[locale]}
+            </Link>
+          ))}
+        </nav>
+        <div className="ml-auto lg:ml-0 flex items-center gap-2">
+          <button type="button" onClick={switchLocale} className="tab text-[13px]" aria-label={c.lang} lang={locale === "fr" ? "en" : "fr"}>
+            {locale === "fr" ? "EN" : "FR"}
+          </button>
+          {showCart && (
+            <button type="button" onClick={toggleCart} className="tab relative" aria-label={`${c.cart} (${itemCount})`}>
+              <ShoppingBag className="h-[18px] w-[18px]" aria-hidden="true" />
               {itemCount > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 bg-primary text-black text-[10px] font-bold w-4.5 h-4.5 rounded-full flex items-center justify-center">
+                <span className="num absolute -right-1 -top-1 flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-[var(--fg)] px-1 text-[11px] font-semibold text-[var(--bg)]">
                   {itemCount}
                 </span>
               )}
             </button>
-
-            {/* Mobile menu toggle */}
-            <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="p-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors lg:hidden"
-              aria-label="Toggle menu"
-              id="nav-mobile-toggle"
-            >
-              {mobileOpen ? (
-                <X className="w-5 h-5" />
-              ) : (
-                <Menu className="w-5 h-5" />
-              )}
-            </button>
-          </div>
-        </nav>
-      </header>
-
-      {/* Mobile menu overlay */}
-      {mobileOpen && (
-        <div className="fixed inset-0 z-40 lg:hidden">
-          <div
-            className="absolute inset-0 bg-black/20 dark:bg-black/40"
-            onClick={() => setMobileOpen(false)}
-          />
-          <nav className="absolute top-16 left-0 right-0 glass border-t border-border dark:border-border-dark bg-white/95 dark:bg-[#000000]/95 p-4 flex flex-col gap-1 animate-fade-in">
-            {navLinks.map((link) => (
+          )}
+          <Link href="/societe#contact" className="btn btn-p hidden sm:inline-flex h-9 px-3.5">
+            {c.contact}
+          </Link>
+          <button
+            type="button"
+            className="tab lg:hidden"
+            onClick={() => setOpen((o) => !o)}
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            aria-label={open ? c.close : c.open}
+          >
+            {open ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
+          </button>
+        </div>
+      </div>
+      {open && (
+        <nav id="mobile-nav" aria-label={c.main} className="lg:hidden border-t border-[var(--line)] bg-[var(--bg)]">
+          <div className="wrap flex flex-col py-3">
+            {LINKS.map((l) => (
               <Link
-                key={link.labelKey}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-                className={`px-4 py-3 rounded-xl text-base font-medium transition-colors ${
-                  pathname === link.href
-                    ? "text-primary bg-primary/5 font-semibold"
-                    : "text-[#000000]/70 dark:text-[#FFFFFF]/70 hover:bg-black/5 dark:hover:bg-white/5"
-                }`}
-                id={`nav-mobile-${link.labelKey}`}
+                key={l.href}
+                href={l.href}
+                aria-current={isCurrent(l.href) ? "page" : undefined}
+                className="py-3 text-lg font-medium text-[var(--fg2)] border-b border-[var(--line)] aria-[current=page]:text-[var(--fg)]"
               >
-                {t(link.labelKey)}
+                {l[locale]}
               </Link>
             ))}
-            <Link
-              href="/carrieres"
-              onClick={() => setMobileOpen(false)}
-              className="mt-2 px-4 py-3 rounded-xl bg-primary text-black text-center font-semibold"
-              id="nav-mobile-join"
-            >
-              {t("joinMission")}
+            <Link href="/societe#contact" className="btn btn-p mt-4 mb-2">
+              {c.contact}
             </Link>
-          </nav>
-        </div>
+          </div>
+        </nav>
       )}
-
-      {/* Spacer for fixed navbar */}
-      <div className="h-16 md:h-18" />
-    </>
+    </header>
   );
 }

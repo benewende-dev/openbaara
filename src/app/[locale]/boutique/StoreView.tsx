@@ -92,8 +92,8 @@ export function StoreView({ products }: { products: Product[] }) {
                   onClick={() => setFilter(f.key)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                     filter === f.key
-                      ? "bg-primary text-black"
-                      : "bg-surface dark:bg-[#111111] text-muted dark:text-muted-dark hover:bg-primary/10 hover:text-primary"
+                      ? "bg-primary text-on-primary"
+                      : "bg-surface dark:bg-surface-elevated text-muted dark:text-muted-dark hover:bg-primary/10 hover:text-primary"
                   }`}
                   id={`store-filter-${f.key}`}
                 >
@@ -109,7 +109,7 @@ export function StoreView({ products }: { products: Product[] }) {
                 placeholder={t("searchPlaceholder")}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-border dark:border-border-dark bg-white dark:bg-[#111111] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+                className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-border dark:border-border-dark bg-surface-elevated text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
                 id="store-search"
               />
             </div>
@@ -135,7 +135,7 @@ export function StoreView({ products }: { products: Product[] }) {
                   transition={{ duration: 0.4, ease: "easeOut", delay: Math.min(index * 0.04, 0.4) }}
                   className="h-full"
                 >
-                  <div className="card-hover group rounded-2xl bg-white dark:bg-[#111111] border border-border dark:border-border-dark p-6 flex flex-col h-full">
+                  <div className="card-hover group rounded-2xl bg-surface-elevated border border-border dark:border-border-dark p-6 flex flex-col h-full">
                     {/* Top row: category + badge */}
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center gap-2 text-xs text-muted dark:text-muted-dark">
@@ -234,7 +234,7 @@ export function StoreView({ products }: { products: Product[] }) {
                             quantity: 1,
                           })
                         }
-                        className="flex items-center justify-center gap-2 w-full py-3 bg-primary text-black rounded-xl font-semibold hover:bg-primary-dark transition-colors"
+                        className="flex items-center justify-center gap-2 w-full py-3 bg-primary text-on-primary rounded-xl font-semibold hover:bg-primary-dark transition-colors"
                         id={`store-buy-${product.id}`}
                       >
                         <ShoppingCart className="w-4 h-4" />
@@ -254,7 +254,7 @@ export function StoreView({ products }: { products: Product[] }) {
                     {product.cta === "book-call" && (
                       <Link
                         href="/contact"
-                        className="flex items-center justify-center gap-2 w-full py-3 border-2 border-primary text-primary rounded-xl font-semibold hover:bg-primary hover:text-black transition-colors"
+                        className="flex items-center justify-center gap-2 w-full py-3 border-2 border-primary text-primary rounded-xl font-semibold hover:bg-primary hover:text-on-primary transition-colors"
                         id={`store-book-${product.id}`}
                       >
                         <Phone className="w-4 h-4" />

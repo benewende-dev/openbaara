@@ -12,6 +12,19 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  // Anciennes pages remplacées par la refonte : les liens déjà partagés restent valides.
+  async redirects() {
+    const moved = [
+      ["/a-propos", "/societe"],
+      ["/contact", "/societe#contact"],
+      ["/solutions", "/services"],
+      ["/baarali-labs", "/ventures/baarali-entreprise"],
+    ];
+    return moved.flatMap(([from, to]) => [
+      { source: `/:locale(fr|en)${from}`, destination: `/:locale${to}`, permanent: true },
+      { source: from, destination: `/fr${to}`, permanent: true },
+    ]);
+  },
 };
 
 export default withNextIntl(nextConfig);

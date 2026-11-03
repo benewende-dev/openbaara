@@ -56,7 +56,7 @@ function ReturnInner() {
   return (
     <div className="section-padding">
       <div className="mx-auto w-full max-w-lg text-center">
-        <div className={`mx-auto w-16 h-16 rounded-2xl bg-surface dark:bg-[#111111] border border-border dark:border-border-dark flex items-center justify-center mb-6 ${config.tone}`}>
+        <div className={`mx-auto w-16 h-16 rounded-2xl bg-surface dark:bg-surface-elevated border border-border dark:border-border-dark flex items-center justify-center mb-6 ${config.tone}`}>
           <Icon className={`w-8 h-8 ${config.spin ? "animate-spin" : ""}`} />
         </div>
         <h1 className="font-display text-2xl md:text-3xl font-bold tracking-tight mb-3">
@@ -71,7 +71,7 @@ function ReturnInner() {
             {view === "refused" && (
               <Link
                 href="/checkout"
-                className="px-6 py-3 bg-primary text-black rounded-xl font-semibold hover:bg-primary-dark transition-colors"
+                className="px-6 py-3 bg-primary text-on-primary rounded-xl font-semibold hover:bg-primary-dark transition-colors"
               >
                 {t("retry")}
               </Link>

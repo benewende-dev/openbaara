@@ -52,3 +52,35 @@ export async function getCatalogue(kinds?: ProductKind[], now = new Date()): Pro
     };
   });
 }
+
+export type ServicePackage = {
+  slug: string;
+  category: string;
+  name: LocalizedText;
+  priceXof: number | null;
+  delivery: LocalizedText;
+  audience: LocalizedText;
+  features: LocalizedText[];
+  recommended: boolean;
+  isMonthly: boolean;
+};
+
+/** Forfaits de la page Services, au prix en vigueur. */
+export async function getPackages(now = new Date()): Promise<ServicePackage[]> {
+  const rows = await prisma.product.findMany({
+    where: { published: true, kind: "package" },
+    include: { prices: { where: { validFrom: { lte: now } } } },
+    orderBy: [{ sortOrder: "asc" }, { createdAt: "asc" }],
+  });
+  return rows.map((p) => ({
+    slug: p.slug,
+    category: p.category,
+    name: { fr: p.nameFr, en: p.nameEn },
+    priceXof: currentPrice(p.prices, now)?.amountXof ?? null,
+    delivery: { fr: p.deliveryFr ?? "", en: p.deliveryEn ?? "" },
+    audience: { fr: p.audienceFr ?? "", en: p.audienceEn ?? "" },
+    features: Array.isArray(p.features) ? (p.features as LocalizedText[]) : [],
+    recommended: p.recommended,
+    isMonthly: Boolean(((p.meta ?? {}) as Meta).isMonthly),
+  }));
+}

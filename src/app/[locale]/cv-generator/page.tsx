@@ -202,7 +202,7 @@ export default function CVGeneratorPage() {
             {/* Photo + Personal info */}
             <div className="space-y-3">
               <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-full overflow-hidden border border-border dark:border-border-dark bg-surface dark:bg-[#111111] flex items-center justify-center shrink-0">
+                <div className="w-16 h-16 rounded-full overflow-hidden border border-border dark:border-border-dark bg-surface dark:bg-surface-elevated flex items-center justify-center shrink-0">
                   {data.photo ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={data.photo} alt="" className="w-full h-full object-cover" />
@@ -302,7 +302,7 @@ export default function CVGeneratorPage() {
               <h3 className="font-bold mb-3">{t("skills")}</h3>
               <div className="flex gap-2 mb-3">
                 <input value={skillInput} onChange={(e) => setSkillInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addSkill())} placeholder={t("addSkill")} className={`${inputClass} flex-1`} id="cv-skill-input" />
-                <button onClick={addSkill} className="px-4 py-2 bg-primary text-black rounded-xl text-sm font-medium" id="cv-add-skill">+</button>
+                <button onClick={addSkill} className="px-4 py-2 bg-primary text-on-primary rounded-xl text-sm font-medium" id="cv-add-skill">+</button>
               </div>
               <div className="space-y-2">
                 {data.skills.map((s) => (
@@ -383,7 +383,7 @@ export default function CVGeneratorPage() {
               <h3 className="font-bold mb-3">{t("interests")}</h3>
               <div className="flex gap-2 mb-2">
                 <input value={interestInput} onChange={(e) => setInterestInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addInterest())} placeholder={t("interestsPh")} className={`${inputClass} flex-1`} id="cv-interest-input" />
-                <button onClick={addInterest} className="px-4 py-2 bg-primary text-black rounded-xl text-sm font-medium" id="cv-add-interest">+</button>
+                <button onClick={addInterest} className="px-4 py-2 bg-primary text-on-primary rounded-xl text-sm font-medium" id="cv-add-interest">+</button>
               </div>
               <div className="flex flex-wrap gap-2">
                 {data.interests.map((it, i) => (
@@ -434,7 +434,7 @@ export default function CVGeneratorPage() {
                     id={`cv-tpl-${tpl.id}`}
                   >
                     {!tpl.free && (
-                      <span className="absolute -top-2 -right-1.5 inline-flex items-center justify-center w-5 h-5 rounded-full bg-primary text-black">
+                      <span className="absolute -top-2 -right-1.5 inline-flex items-center justify-center w-5 h-5 rounded-full bg-primary text-on-primary">
                         <Crown className="w-2.5 h-2.5" />
                       </span>
                     )}
@@ -468,7 +468,7 @@ export default function CVGeneratorPage() {
             <CVPreview ref={previewRef} data={data} template={currentTemplate} />
 
             {/* Export */}
-            <button onClick={handleExportPDF} className="flex items-center justify-center gap-2 w-full mt-4 py-3.5 bg-primary text-black rounded-xl font-bold hover:bg-primary-dark transition-colors" id="cv-export-pdf">
+            <button onClick={handleExportPDF} className="flex items-center justify-center gap-2 w-full mt-4 py-3.5 bg-primary text-on-primary rounded-xl font-bold hover:bg-primary-dark transition-colors" id="cv-export-pdf">
               <Download className="w-5 h-5" />
               {t("exportPdf")}
             </button>
@@ -491,7 +491,7 @@ export default function CVGeneratorPage() {
                       onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), handleSaveEmail())}
                       placeholder={t("emailPlaceholder")}
                       disabled={saveStatus === "loading"}
-                      className="flex-1 px-4 py-2.5 rounded-xl border border-border dark:border-border-dark bg-white dark:bg-[#111111] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+                      className="flex-1 px-4 py-2.5 rounded-xl border border-border dark:border-border-dark bg-surface-elevated text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
                       id="cv-email-capture"
                     />
                     <button onClick={handleSaveEmail} disabled={saveStatus === "loading" || !captureEmail.trim()} aria-label={t("save")}

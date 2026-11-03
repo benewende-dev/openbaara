@@ -112,7 +112,7 @@ export default function CheckoutPage() {
   };
 
   const input =
-    "w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-white dark:bg-[#0A0A0A] text-sm focus:outline-none focus:ring-2 focus:ring-primary/50";
+    "w-full px-4 py-3 rounded-xl border border-border dark:border-border-dark bg-surface-elevated text-sm focus:outline-none focus:ring-2 focus:ring-primary/50";
   const methodLabel: Record<Method, [string, string]> = {
     pispi: [t("methodPispi"), t("methodPispiNote")],
     mobile_money: [t("methodMobileMoney"), t("mobileMoneyNote")],
@@ -140,7 +140,7 @@ export default function CheckoutPage() {
             <p className="text-muted dark:text-muted-dark mb-6">{t("empty")}</p>
             <Link
               href="/boutique"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-black rounded-xl font-semibold hover:bg-primary-dark transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-on-primary rounded-xl font-semibold hover:bg-primary-dark transition-colors"
             >
               {t("backToStore")}
             </Link>
@@ -149,7 +149,7 @@ export default function CheckoutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
             {/* Récapitulatif */}
             <aside className="lg:col-span-2 order-1 lg:order-2">
-              <div className="rounded-2xl border border-border dark:border-border-dark bg-surface dark:bg-[#111111] p-6">
+              <div className="rounded-2xl border border-border dark:border-border-dark bg-surface dark:bg-surface-elevated p-6">
                 <h2 className="font-bold mb-4">{t("summaryTitle")}</h2>
                 <ul className="space-y-3 mb-4">
                   {state.items.map((item) => (
@@ -256,7 +256,7 @@ export default function CheckoutPage() {
                 <button
                   type="submit"
                   disabled={status === "loading" || quoting || !totals || !method || !name || !email || !phone}
-                  className="w-full py-3.5 bg-primary text-black rounded-xl font-bold hover:bg-primary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full py-3.5 bg-primary text-on-primary rounded-xl font-bold hover:bg-primary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   id="checkout-pay"
                 >
                   {status === "loading" ? (
