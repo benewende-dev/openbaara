@@ -6,6 +6,6 @@ import { routing } from "./i18n/routing";
 export const proxy = createMiddleware(routing);
 
 export const config = {
-  // Toutes les routes sauf API, fichiers statiques, _next, _vercel.
-  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
+  // Toutes les routes sauf API, console (/admin, sans langue), fichiers statiques, _next, _vercel.
+  matcher: ["/((?!api|admin|_next|_vercel|.*\\..*).*)"],
 };

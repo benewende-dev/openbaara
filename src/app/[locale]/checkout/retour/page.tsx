@@ -13,18 +13,18 @@ function ReturnInner() {
   const t = useTranslations("checkout.return");
   const { clearCart } = useCart();
   const params = useSearchParams();
-  const id = params.get("id");
+  const ref = params.get("ref");
   const [view, setView] = useState<View>("checking");
 
   useEffect(() => {
     let active = true;
     (async () => {
-      if (!id) {
+      if (!ref) {
         if (active) setView("refused");
         return;
       }
       try {
-        const res = await fetch(`/api/payments/cinetpay/status?id=${encodeURIComponent(id)}`);
+        const res = await fetch(`/api/orders/status?ref=${encodeURIComponent(ref)}`);
         const data = await res.json();
         if (!active) return;
         if (data.status === "accepted") {
@@ -42,7 +42,7 @@ function ReturnInner() {
     return () => {
       active = false;
     };
-  }, [id, clearCart]);
+  }, [ref, clearCart]);
 
   const config = {
     checking: { Icon: Loader2, spin: true, tone: "text-muted dark:text-muted-dark", title: t("checking"), body: "" },

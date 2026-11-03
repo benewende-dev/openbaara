@@ -1,11 +1,6 @@
 import { NextResponse } from "next/server";
-import { checkCinetPayTransaction } from "@/lib/payments/cinetpay";
-import { sendLeadEmail, isEmailConfigured, escapeHtml } from "@/lib/email";
-
-// Dédoublonnage best-effort en mémoire (par instance) pour éviter d'envoyer
-// plusieurs e-mails admin si CinetPay rejoue la notification.
-// Sans base de données, ce n'est pas une garantie inter-instances.
-const handled = new Set<string>();
+import { confirmPayment } from "@/lib/shop/orders";
+import { sendOrderPaidEmails } from "@/lib/shop/notify";
 
 async function extractTransactionId(request: Request): Promise<string | null> {
   const ct = request.headers.get("content-type") || "";
@@ -21,28 +16,12 @@ async function extractTransactionId(request: Request): Promise<string | null> {
   }
 }
 
+// CinetPay peut rejouer la notification : confirmPayment est idempotent,
+// et le statut est toujours relu par l'API check, jamais pris dans ce corps.
 export async function POST(request: Request) {
-  const transactionId = await extractTransactionId(request);
-  // On répond toujours 200 à CinetPay une fois la notification reçue.
-  if (!transactionId) return NextResponse.json({ ok: true });
-
-  // Source de vérité = l'API check (on ne fait jamais confiance au POST).
-  const check = await checkCinetPayTransaction(transactionId);
-
-  if (check.status === "accepted" && !handled.has(transactionId)) {
-    handled.add(transactionId);
-    if (handled.size > 5000) handled.clear();
-
-    if (isEmailConfigured()) {
-      await sendLeadEmail({
-        subject: `[Commande payée] ${transactionId}`,
-        html: `<h2>Nouvelle commande payée (CinetPay)</h2>
-          <p><strong>Transaction :</strong> ${escapeHtml(transactionId)}</p>
-          <p><strong>Montant :</strong> ${check.amount ?? "—"} FCFA</p>
-          <p><strong>Détails :</strong> ${escapeHtml(check.metadata || "—")}</p>`,
-      });
-    }
-  }
-
+  const ref = await extractTransactionId(request);
+  if (!ref) return NextResponse.json({ ok: true });
+  const r = await confirmPayment("cinetpay", ref);
+  if (r.newlyPaid && r.orderId) await sendOrderPaidEmails(r.orderId);
   return NextResponse.json({ ok: true });
 }

@@ -25,12 +25,14 @@ export async function sendLeadEmail(opts: {
   html: string;
   replyTo?: string;
   attachments?: Attachment[];
+  /** Destinataire ; par défaut l'adresse qui reçoit les leads. */
+  to?: string;
 }): Promise<{ ok: boolean; error?: string }> {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) return { ok: false, error: "not_configured" };
 
   const from = process.env.LEAD_FROM_EMAIL || "OpenBaara <onboarding@resend.dev>";
-  const to = process.env.LEAD_TO_EMAIL || "contact@openbaara.com";
+  const to = opts.to || process.env.LEAD_TO_EMAIL || "contact@openbaara.com";
 
   try {
     const res = await fetch(RESEND_ENDPOINT, {

@@ -2,14 +2,14 @@
 
 import { useCart, type CartItem as CartItemType } from "@/features/store/CartContext";
 import { useTranslations } from "next-intl";
-import { formatXOF, formatUSD } from "@/lib/utils";
+import { formatXOF } from "@/lib/utils";
 import { X, Minus, Plus, ShoppingBag } from "lucide-react";
 import { Link } from "@/i18n/routing";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function CartDrawer() {
   const t = useTranslations("cart");
-  const { state, removeItem, updateQuantity, toggleCart, totalXOF, totalUSD } =
+  const { state, removeItem, updateQuantity, toggleCart, totalXOF } =
     useCart();
 
   return (
@@ -79,9 +79,6 @@ export function CartDrawer() {
                   <span>{t("total")}</span>
                   <div className="text-right">
                     <p>{formatXOF(totalXOF)}</p>
-                    <p className="text-sm text-muted dark:text-muted-dark font-normal">
-                      {formatUSD(totalUSD)}
-                    </p>
                   </div>
                 </div>
                 <Link

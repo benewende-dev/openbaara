@@ -29,6 +29,8 @@ export interface Product {
   tools?: string[];
 }
 
+// Source du remplissage initial de la base (prisma/seed.ts). Le site lit désormais
+// le catalogue en base : un changement ici n'a d'effet que sur une base vide.
 export const products: Product[] = [
   // ─── Cours (Academy) ───
   {
@@ -204,8 +206,8 @@ export const products: Product[] = [
     category: "tool",
     name: { fr: "Générateur de Brand DNA", en: "Brand DNA Generator" },
     description: {
-      fr: "Construisez l'identité de marque de votre entreprise avec l'IA — positionnement, ton, charte et déclinaisons. Propulsé par Outio.",
-      en: "Build your company's brand identity with AI — positioning, tone, guidelines and assets. Powered by Outio.",
+      fr: "Construisez l'identité de marque de votre entreprise avec l'IA — positionnement, ton, charte et déclinaisons.",
+      en: "Build your company's brand identity with AI — positioning, tone, guidelines and assets.",
     },
     priceXOF: 25000,
     priceUSD: 40,
