@@ -43,6 +43,7 @@ model Product {
   prices       Price[]
   orderItems   OrderItem[]
   entitlements Entitlement[]
+  modules      CourseModule[]
 
   @@index([kind, published])
   @@map("products")
@@ -105,6 +106,9 @@ model Customer {
   orders       Order[]
   entitlements Entitlement[]
   redemptions  PromoRedemption[]
+  progress     LessonProgress[]
+  loginTokens  CustomerLoginToken[]
+  sessions     CustomerSession[]
 
   @@map("customers")
 }
@@ -210,6 +214,96 @@ model Entitlement {
 
   @@unique([customerId, productId])
   @@map("entitlements")
+}
+
+// ─── Cours de l'Academy ────────────────────────────────
+// Un cours est un produit de type « course » ; son programme est fait de modules et de leçons.
+// Une leçon n'est visible des apprenants qu'une fois publiée.
+
+enum LessonKind {
+  video
+  text
+  exercise
+}
+
+model CourseModule {
+  id        String   @id @default(cuid())
+  productId String
+  titleFr   String
+  titleEn   String
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+
+  product Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  lessons Lesson[]
+
+  @@index([productId])
+  @@map("course_modules")
+}
+
+model Lesson {
+  id          String     @id @default(cuid())
+  moduleId    String
+  kind        LessonKind @default(video)
+  titleFr     String
+  titleEn     String
+  bodyFr      String     @default("") // texte de la leçon, consignes d'exercice ou ressources
+  bodyEn      String     @default("")
+  durationMin Int?
+  videoId     String? // identifiant de la vidéo chez l'hébergeur (Bunny Stream)
+  freePreview Boolean    @default(false) // visible sans achat
+  published   Boolean    @default(false)
+  sortOrder   Int        @default(0)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  module   CourseModule     @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  progress LessonProgress[]
+
+  @@index([moduleId])
+  @@map("lessons")
+}
+
+model LessonProgress {
+  id          String   @id @default(cuid())
+  customerId  String
+  lessonId    String
+  completedAt DateTime @default(now())
+
+  customer Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  lesson   Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@unique([customerId, lessonId])
+  @@map("lesson_progress")
+}
+
+// ─── Connexion des apprenants : lien à usage unique envoyé par e-mail ───
+
+model CustomerLoginToken {
+  id         String    @id @default(cuid())
+  tokenHash  String    @unique
+  customerId String
+  expiresAt  DateTime
+  usedAt     DateTime?
+  createdAt  DateTime  @default(now())
+
+  customer Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  @@index([customerId])
+  @@map("customer_login_tokens")
+}
+
+model CustomerSession {
+  id         String   @id @default(cuid())
+  tokenHash  String   @unique
+  customerId String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+
+  customer Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  @@index([customerId])
+  @@map("customer_sessions")
 }
 
 // ─── Devis (page Services) ─────────────────────────────

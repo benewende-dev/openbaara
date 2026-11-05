@@ -76,6 +76,14 @@ function ReturnInner() {
                 {t("retry")}
               </Link>
             )}
+            {view === "accepted" && (
+              <Link
+                href="/espace"
+                className="px-6 py-3 bg-primary text-on-primary rounded-xl font-semibold hover:bg-primary-dark transition-colors"
+              >
+                {t("mySpace")}
+              </Link>
+            )}
             <Link
               href="/boutique"
               className="px-6 py-3 border border-border dark:border-border-dark rounded-xl font-semibold hover:bg-black/5 dark:hover:bg-white/5 transition-colors"

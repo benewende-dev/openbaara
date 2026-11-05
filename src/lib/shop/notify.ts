@@ -27,7 +27,8 @@ export async function sendOrderPaidEmails(orderId: string): Promise<void> {
     html: `<p>${en ? "Hello" : "Bonjour"} ${escapeHtml(order.customer.name)},</p>
       <p>${en ? "Your payment has been received. Your access is open." : "Votre paiement est bien reçu. Vos accès sont ouverts."}</p>
       ${table}
-      <p><a href="${site}/${order.locale}/academy">${en ? "Go to the Academy" : "Aller à l'Academy"}</a></p>
+      <p><a href="${site}/${order.locale}/espace">${en ? "Open my learning space" : "Ouvrir mon espace"}</a></p>
+      <p>${en ? "Sign in with this email address: we'll send you a one-time link." : "Connectez-vous avec cette adresse e-mail : vous recevrez un lien de connexion."}</p>
       <p>${en ? "Reference" : "Référence"} : ${escapeHtml(order.ref)}</p>`,
   });
   await sendLeadEmail({

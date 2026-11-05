@@ -130,7 +130,8 @@
       "failedBody": "The payment was not completed. No amount has been charged. You can try again.",
       "backHome": "Back to home",
       "viewStore": "Back to the store",
-      "retry": "Try again"
+      "retry": "Try again",
+      "mySpace": "Open my space"
     }
   },
   "cv": {

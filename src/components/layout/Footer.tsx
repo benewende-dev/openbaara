@@ -43,6 +43,7 @@ const OFFERS = [
   { href: "/academy", fr: "Academy", en: "Academy" },
   { href: "/boutique", fr: "Boutique", en: "Store" },
   { href: "/cv-generator", fr: "Générateur de CV", en: "CV builder" },
+  { href: "/espace", fr: "Mon espace", en: "My space" },
 ] as const;
 
 const THEMES: ThemePref[] = ["light", "dark", "system"];

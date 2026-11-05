@@ -130,7 +130,8 @@
       "failedBody": "Le paiement n'a pas été finalisé. Aucun montant n'a été débité. Vous pouvez réessayer.",
       "backHome": "Retour à l'accueil",
       "viewStore": "Retour à la boutique",
-      "retry": "Réessayer"
+      "retry": "Réessayer",
+      "mySpace": "Ouvrir mon espace"
     }
   },
   "cv": {
