@@ -1,19 +1,20 @@
 import type { MetadataRoute } from "next";
+import { ventures } from "@/data/ventures";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://openbaara.com";
   const locales = ["fr", "en"];
   const paths = [
     "",
-    "/a-propos",
-    "/academy",
-    "/baarali-labs",
-    "/boutique",
-    "/carrieres",
-    "/contact",
-    "/cv-generator",
+    "/ventures",
+    ...ventures.map((v) => `/ventures/${v.slug}`),
+    "/societe",
+    "/services",
     "/investisseurs",
-    "/solutions",
+    "/academy",
+    "/boutique",
+    "/cv-generator",
+    "/carrieres",
   ];
 
   const sitemapEntries: MetadataRoute.Sitemap = [];

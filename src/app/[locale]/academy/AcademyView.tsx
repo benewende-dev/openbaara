@@ -1,0 +1,158 @@
+"use client";
+
+import { useTranslations, useLocale } from "next-intl";
+import { Link } from "@/i18n/routing";
+import { AnimatedSection, AnimatedStagger, AnimatedItem } from "@/components/shared/AnimatedSection";
+import { pickLocale, type Product } from "@/data/products";
+import { CLI_TOOLS } from "@/lib/constants";
+import { useCart } from "@/features/store/CartContext";
+import { GraduationCap, ArrowRight, Terminal, BookOpen, ChevronRight, BarChart3, Clock, PlayCircle, ShoppingCart } from "lucide-react";
+
+const levels = ["pathBeginner", "pathIntermediate", "pathAdvanced", "pathPro"] as const;
+
+export function AcademyView({ products }: { products: Product[] }) {
+  const t = useTranslations("academy");
+  const ts = useTranslations("store");
+  const locale = useLocale();
+  const { addItem } = useCart();
+  const courses = products.filter((p) => p.category === "course");
+
+  return (
+    <div className="section-padding">
+      <div className="container-wide mx-auto">
+        {/* Header */}
+        <AnimatedSection className="text-center mb-16">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-secondary/20 bg-secondary/5 text-sm font-medium text-secondary mb-6">
+            <GraduationCap className="w-4 h-4" />
+            {t("badge")}
+          </span>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight mb-4">
+            {t("title")}
+          </h1>
+          <p className="text-lg text-muted dark:text-muted-dark max-w-3xl mx-auto">{t("subtitle")}</p>
+        </AnimatedSection>
+
+        {/* Learning path */}
+        <AnimatedSection className="mb-16">
+          <h2 className="text-2xl font-black text-center mb-8">{t("pathTitle")}</h2>
+          <div className="flex flex-wrap items-center justify-center gap-2 md:gap-0">
+            {levels.map((level, i) => (
+              <div key={level} className="flex items-center">
+                <span className={`px-5 py-2.5 rounded-full text-sm font-bold ${
+                  i === 0
+                    ? "bg-primary text-on-primary"
+                    : "bg-surface dark:bg-surface-elevated text-muted dark:text-muted-dark border border-border dark:border-border-dark"
+                }`}>
+                  {t(level)}
+                </span>
+                {i < levels.length - 1 && (
+                  <ChevronRight className="w-4 h-4 text-muted mx-1 hidden md:block" />
+                )}
+              </div>
+            ))}
+          </div>
+        </AnimatedSection>
+
+        {/* Courses grid */}
+        <AnimatedStagger className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+          {courses.map((course) => (
+            <AnimatedItem key={course.id}>
+              <div className="card-hover rounded-2xl p-6 bg-surface-elevated border border-border dark:border-border-dark">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-xl bg-primary/10 text-primary shrink-0">
+                    <BookOpen className="w-6 h-6" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-bold mb-1">{pickLocale(course.name, locale)}</h3>
+                    <p className="text-sm text-muted dark:text-muted-dark mb-3">{pickLocale(course.description, locale)}</p>
+
+                    {(course.level || course.duration || course.lessons) && (
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-3 text-xs text-muted dark:text-muted-dark">
+                        {course.level && (
+                          <span className="inline-flex items-center gap-1">
+                            <BarChart3 className="w-3.5 h-3.5 text-primary" />
+                            {pickLocale(course.level, locale)}
+                          </span>
+                        )}
+                        {course.duration && (
+                          <span className="inline-flex items-center gap-1">
+                            <Clock className="w-3.5 h-3.5 text-primary" />
+                            {pickLocale(course.duration, locale)}
+                          </span>
+                        )}
+                        {course.lessons && (
+                          <span className="inline-flex items-center gap-1">
+                            <PlayCircle className="w-3.5 h-3.5 text-primary" />
+                            {course.lessons} {ts("lessonsLabel")}
+                          </span>
+                        )}
+                      </div>
+                    )}
+
+                    {course.tools && course.tools.length > 0 && (
+                      <div className="flex flex-wrap gap-1.5 mb-3">
+                        {course.tools.map((tool) => (
+                          <span
+                            key={tool}
+                            className="px-2 py-0.5 rounded-md text-[11px] font-medium bg-primary/10 text-primary"
+                          >
+                            {tool}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    <div className="flex items-center justify-between gap-3 flex-wrap">
+                      <p className="font-bold text-primary">
+                        {course.priceXOF?.toLocaleString("fr-FR")} FCFA
+                      </p>
+                      <button
+                        type="button"
+                        onClick={() => addItem({ id: course.id, name: pickLocale(course.name, locale), priceXOF: course.priceXOF!, quantity: 1 })}
+                        className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2.5 transition-all"
+                        id={`academy-enroll-${course.id}`}
+                        >
+                        {ts("addToCart")}
+                        <ShoppingCart className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </AnimatedItem>
+          ))}
+        </AnimatedStagger>
+
+        {/* CLI/IDE Tools section */}
+        <AnimatedSection className="mb-16">
+          <div className="rounded-2xl bg-surface dark:bg-surface-elevated border border-border dark:border-border-dark p-8 md:p-12">
+            <div className="flex items-center gap-3 mb-4">
+              <Terminal className="w-6 h-6 text-primary" />
+              <h2 className="text-2xl font-black">{t("cliTools")}</h2>
+            </div>
+            <p className="text-muted dark:text-muted-dark mb-8 max-w-2xl">{t("cliDescription")}</p>
+            <div className="flex flex-wrap gap-3">
+              {CLI_TOOLS.map((tool) => (
+                <span key={tool.name} className="px-4 py-2 rounded-xl bg-black/5 dark:bg-white/5 border border-border dark:border-white/10 text-sm font-medium">
+                  {tool.name}
+                </span>
+              ))}
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* CTA */}
+        <AnimatedSection className="text-center">
+          <Link
+            href="/boutique"
+            className="group inline-flex items-center gap-2 px-8 py-4 bg-primary text-on-primary rounded-xl font-bold text-lg hover:bg-primary-dark transition-all"
+            id="academy-cta"
+          >
+            {t("ctaCourses")}
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </AnimatedSection>
+      </div>
+    </div>
+  );
+}

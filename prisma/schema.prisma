@@ -1,0 +1,391 @@
+// OpenBaara — base de la boutique, de l'Academy et de la console.
+// Seule source pour le catalogue, les prix, les codes promo, les commandes et les accès.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── Catalogue ─────────────────────────────────────────
+
+enum ProductKind {
+  course // cours de l'Academy, accès ouvert au paiement
+  tool // outil en ligne (générateur de CV…)
+  package // forfait Services (site, boutique, app…)
+  service // prestation sur devis
+}
+
+model Product {
+  id            String      @id @default(cuid())
+  slug          String      @unique // identifiant stable, utilisé par le site et les paniers
+  kind          ProductKind
+  category      String // vitrine, ecommerce, mobile, saas, ia, maintenance, academy, outils…
+  nameFr        String
+  nameEn        String
+  descriptionFr String      @default("")
+  descriptionEn String      @default("")
+  deliveryFr    String? // délai affiché (« 5 semaines »)
+  deliveryEn    String?
+  audienceFr    String? // « Entreprises établies »
+  audienceEn    String?
+  features      Json        @default("[]") // [{ fr, en }]
+  meta          Json        @default("{}") // niveau, leçons, outils, mensuel…
+  recommended   Boolean     @default(false)
+  purchasable   Boolean     @default(true) // payable en ligne (sinon : devis ou rendez-vous)
+  published     Boolean     @default(false)
+  sortOrder     Int         @default(0)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  prices       Price[]
+  orderItems   OrderItem[]
+  entitlements Entitlement[]
+  modules      CourseModule[]
+
+  @@index([kind, published])
+  @@map("products")
+}
+
+/// Un prix daté. Le prix en vigueur est le plus récent dont validFrom est passé ;
+/// un prix futur est un changement programmé. On n'écrase jamais un prix : on en ajoute un.
+model Price {
+  id          String   @id @default(cuid())
+  productId   String
+  amountXof   Int? // null = sur devis
+  validFrom   DateTime @default(now())
+  note        String?
+  createdById String?
+  createdAt   DateTime @default(now())
+
+  product   Product    @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdBy AdminUser? @relation(fields: [createdById], references: [id], onDelete: SetNull)
+
+  @@index([productId, validFrom])
+  @@map("prices")
+}
+
+enum PromoKind {
+  percent
+  fixed
+}
+
+model PromoCode {
+  id             String    @id @default(cuid())
+  code           String    @unique // toujours en majuscules
+  kind           PromoKind
+  value          Int // pourcentage (1–100) ou montant en F CFA
+  productSlugs   String[]  @default([]) // vide = tout le catalogue
+  startsAt       DateTime?
+  endsAt         DateTime?
+  maxUses        Int?
+  onePerCustomer Boolean   @default(false)
+  active         Boolean   @default(true)
+  usedCount      Int       @default(0)
+  note           String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  orders      Order[]
+  redemptions PromoRedemption[]
+
+  @@map("promo_codes")
+}
+
+// ─── Clients et commandes ──────────────────────────────
+
+model Customer {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  phone     String?
+  createdAt DateTime @default(now())
+
+  orders       Order[]
+  entitlements Entitlement[]
+  redemptions  PromoRedemption[]
+  progress     LessonProgress[]
+  loginTokens  CustomerLoginToken[]
+  sessions     CustomerSession[]
+
+  @@map("customers")
+}
+
+enum OrderStatus {
+  pending
+  paid
+  failed
+  cancelled
+  refunded
+}
+
+model Order {
+  id          String      @id @default(cuid())
+  ref         String      @unique // référence transmise au prestataire de paiement
+  customerId  String
+  status      OrderStatus @default(pending)
+  subtotalXof Int
+  discountXof Int         @default(0)
+  totalXof    Int
+  promoCodeId String?
+  provider    String // pispi | cinetpay
+  locale      String      @default("fr")
+  createdAt   DateTime    @default(now())
+  paidAt      DateTime?
+
+  customer   Customer         @relation(fields: [customerId], references: [id])
+  promoCode  PromoCode?       @relation(fields: [promoCodeId], references: [id], onDelete: SetNull)
+  items      OrderItem[]
+  payments   Payment[]
+  redemption PromoRedemption?
+
+  @@index([status, createdAt])
+  @@map("orders")
+}
+
+model OrderItem {
+  id        String @id @default(cuid())
+  orderId   String
+  productId String
+  name      String // nom au moment de l'achat
+  unitXof   Int
+  quantity  Int    @default(1)
+
+  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id])
+
+  @@index([orderId])
+  @@map("order_items")
+}
+
+enum PaymentStatus {
+  pending
+  accepted
+  refused
+}
+
+/// Chaque vérification auprès du prestataire. providerRef unique : une notification rejouée
+/// retombe sur la même ligne au lieu d'en créer une seconde.
+model Payment {
+  id          String        @id @default(cuid())
+  orderId     String
+  provider    String
+  providerRef String        @unique
+  status      PaymentStatus @default(pending)
+  amountXof   Int
+  raw         Json?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@index([orderId])
+  @@map("payments")
+}
+
+model PromoRedemption {
+  id         String   @id @default(cuid())
+  promoId    String
+  orderId    String   @unique
+  customerId String
+  createdAt  DateTime @default(now())
+
+  promo    PromoCode @relation(fields: [promoId], references: [id], onDelete: Cascade)
+  order    Order     @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  customer Customer  @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  @@index([promoId, customerId])
+  @@map("promo_redemptions")
+}
+
+/// Accès à un cours ou à un outil, ouvert au paiement.
+model Entitlement {
+  id         String   @id @default(cuid())
+  customerId String
+  productId  String
+  orderId    String?
+  source     String   @default("purchase") // purchase | admin
+  createdAt  DateTime @default(now())
+
+  customer Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  product  Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([customerId, productId])
+  @@map("entitlements")
+}
+
+// ─── Cours de l'Academy ────────────────────────────────
+// Un cours est un produit de type « course » ; son programme est fait de modules et de leçons.
+// Une leçon n'est visible des apprenants qu'une fois publiée.
+
+enum LessonKind {
+  video
+  text
+  exercise
+}
+
+model CourseModule {
+  id        String   @id @default(cuid())
+  productId String
+  titleFr   String
+  titleEn   String
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+
+  product Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  lessons Lesson[]
+
+  @@index([productId])
+  @@map("course_modules")
+}
+
+model Lesson {
+  id          String     @id @default(cuid())
+  moduleId    String
+  kind        LessonKind @default(video)
+  titleFr     String
+  titleEn     String
+  bodyFr      String     @default("") // texte de la leçon, consignes d'exercice ou ressources
+  bodyEn      String     @default("")
+  durationMin Int?
+  videoId     String? // identifiant de la vidéo chez l'hébergeur (Bunny Stream)
+  freePreview Boolean    @default(false) // visible sans achat
+  published   Boolean    @default(false)
+  sortOrder   Int        @default(0)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  module   CourseModule     @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  progress LessonProgress[]
+
+  @@index([moduleId])
+  @@map("lessons")
+}
+
+model LessonProgress {
+  id          String   @id @default(cuid())
+  customerId  String
+  lessonId    String
+  completedAt DateTime @default(now())
+
+  customer Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  lesson   Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@unique([customerId, lessonId])
+  @@map("lesson_progress")
+}
+
+// ─── Connexion des apprenants : lien à usage unique envoyé par e-mail ───
+
+model CustomerLoginToken {
+  id         String    @id @default(cuid())
+  tokenHash  String    @unique
+  customerId String
+  expiresAt  DateTime
+  usedAt     DateTime?
+  createdAt  DateTime  @default(now())
+
+  customer Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  @@index([customerId])
+  @@map("customer_login_tokens")
+}
+
+model CustomerSession {
+  id         String   @id @default(cuid())
+  tokenHash  String   @unique
+  customerId String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+
+  customer Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  @@index([customerId])
+  @@map("customer_sessions")
+}
+
+// ─── Devis (page Services) ─────────────────────────────
+
+enum QuoteStatus {
+  new
+  call_scheduled
+  quote_sent
+  signed
+  lost
+}
+
+model QuoteRequest {
+  id         String      @id @default(cuid())
+  name       String
+  email      String
+  phone      String?
+  company    String?
+  category   String
+  size       Int?
+  estimateLo Int?
+  estimateHi Int?
+  message    String?
+  status     QuoteStatus @default(new)
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+
+  @@index([status, createdAt])
+  @@map("quote_requests")
+}
+
+// ─── Console ───────────────────────────────────────────
+
+enum AdminRole {
+  owner // tout, y compris l'équipe
+  editor // catalogue, prix, codes promo, devis
+  support // lecture, commandes et devis
+}
+
+model AdminUser {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  name         String
+  passwordHash String
+  role         AdminRole @default(editor)
+  totpSecret   String? // double authentification, obligatoire après la première connexion
+  totpEnabled  Boolean   @default(false)
+  createdAt    DateTime  @default(now())
+  lastLoginAt  DateTime?
+
+  sessions AdminSession[]
+  audit    AuditLog[]
+  prices   Price[]
+
+  @@map("admin_users")
+}
+
+model AdminSession {
+  id        String   @id @default(cuid())
+  tokenHash String   @unique
+  adminId   String
+  verified  Boolean  @default(false) // double authentification passée
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  admin AdminUser @relation(fields: [adminId], references: [id], onDelete: Cascade)
+
+  @@map("admin_sessions")
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  adminId   String?
+  action    String // price.schedule, promo.create, product.publish…
+  entity    String
+  entityId  String?
+  before    Json?
+  after     Json?
+  createdAt DateTime @default(now())
+
+  admin AdminUser? @relation(fields: [adminId], references: [id], onDelete: SetNull)
+
+  @@index([createdAt])
+  @@map("audit_logs")
+}

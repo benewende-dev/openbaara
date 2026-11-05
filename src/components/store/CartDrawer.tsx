@@ -2,14 +2,14 @@
 
 import { useCart, type CartItem as CartItemType } from "@/features/store/CartContext";
 import { useTranslations } from "next-intl";
-import { formatXOF, formatUSD } from "@/lib/utils";
+import { formatXOF } from "@/lib/utils";
 import { X, Minus, Plus, ShoppingBag } from "lucide-react";
 import { Link } from "@/i18n/routing";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function CartDrawer() {
   const t = useTranslations("cart");
-  const { state, removeItem, updateQuantity, toggleCart, totalXOF, totalUSD } =
+  const { state, removeItem, updateQuantity, toggleCart, totalXOF } =
     useCart();
 
   return (
@@ -31,7 +31,7 @@ export function CartDrawer() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed right-0 top-0 bottom-0 w-full max-w-md bg-white dark:bg-[#141414] z-50 flex flex-col shadow-2xl"
+            className="fixed right-0 top-0 bottom-0 w-full max-w-md bg-surface-elevated z-50 flex flex-col shadow-2xl"
           >
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-border dark:border-border-dark">
@@ -79,15 +79,12 @@ export function CartDrawer() {
                   <span>{t("total")}</span>
                   <div className="text-right">
                     <p>{formatXOF(totalXOF)}</p>
-                    <p className="text-sm text-muted dark:text-muted-dark font-normal">
-                      {formatUSD(totalUSD)}
-                    </p>
                   </div>
                 </div>
                 <Link
-                  href="/boutique"
+                  href="/checkout"
                   onClick={toggleCart}
-                  className="block w-full py-3 bg-primary text-white text-center rounded-xl font-semibold hover:bg-primary-dark transition-colors"
+                  className="block w-full py-3 bg-primary text-on-primary text-center rounded-xl font-semibold hover:bg-primary-dark transition-colors"
                   id="cart-checkout"
                 >
                   {t("checkout")}
@@ -124,7 +121,7 @@ function CartItemRow({
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -20 }}
-      className="flex items-start gap-4 p-3 rounded-xl bg-surface dark:bg-[#1A1A1A]"
+      className="flex items-start gap-4 p-3 rounded-xl bg-surface dark:bg-surface-elevated"
     >
       <div className="flex-1 min-w-0">
         <p className="font-medium text-sm truncate">{item.name}</p>

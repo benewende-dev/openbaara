@@ -7,7 +7,6 @@ export interface CartItem {
   id: string;
   name: string;
   priceXOF: number;
-  priceUSD: number;
   quantity: number;
   isMonthly?: boolean;
 }
@@ -83,7 +82,6 @@ const CartContext = createContext<{
   clearCart: () => void;
   toggleCart: () => void;
   totalXOF: number;
-  totalUSD: number;
   itemCount: number;
 }>({
   state: { items: [], isOpen: false },
@@ -93,7 +91,6 @@ const CartContext = createContext<{
   clearCart: () => {},
   toggleCart: () => {},
   totalXOF: 0,
-  totalUSD: 0,
   itemCount: 0,
 });
 
@@ -126,10 +123,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
     (sum, i) => sum + i.priceXOF * i.quantity,
     0,
   );
-  const totalUSD = state.items.reduce(
-    (sum, i) => sum + i.priceUSD * i.quantity,
-    0,
-  );
   const itemCount = state.items.reduce((sum, i) => sum + i.quantity, 0);
 
   return (
@@ -143,7 +136,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
         clearCart: () => dispatch({ type: "CLEAR" }),
         toggleCart: () => dispatch({ type: "TOGGLE_CART" }),
         totalXOF,
-        totalUSD,
         itemCount,
       }}
     >
