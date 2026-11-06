@@ -61,5 +61,7 @@ export const FOUNDER = {
   role: { fr: "Fondateur et président", en: "Founder and chairman" },
   /** Biographie à fournir : la section l'affiche dès qu'elle est remplie. */
   bio: null as { fr: string; en: string } | null,
+  /** Portrait à fournir (fichier dans public/, ex. "/equipe/fondateur.jpg", format 4:5). */
+  photo: null as string | null,
   links: [] as { label: string; href: string }[],
 };

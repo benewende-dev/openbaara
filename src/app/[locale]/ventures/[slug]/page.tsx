@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Link } from "@/i18n/routing";
-import { ventures, getVenture, STAGES } from "@/data/ventures";
+import { ventures, getVenture, ventureImage, STAGES } from "@/data/ventures";
 import { Poster } from "@/components/site/Poster";
 import { Arrow } from "@/components/site/Arrow";
 import type { Lang } from "@/components/site/lang";
@@ -10,7 +10,7 @@ const COPY = {
   fr: {
     crumb: "Fil d'Ariane",
     others: "Autres ventures",
-    sector: "Secteur", market: "Marché", stage: "Stade", site: "Site", soon: "Bientôt",
+    sector: "Secteur", market: "Marché", stage: "Stade", site: "Site", soon: "Bientôt", colors: "Couleurs",
     cta: { demo: "Demander une démo", waitlist: "Rejoindre la liste d'attente", notify: "Être prévenu du lancement" },
     invest: "Investir",
     problem: "Le problème", answer: "Notre réponse",
@@ -25,7 +25,7 @@ const COPY = {
   en: {
     crumb: "Breadcrumb",
     others: "Other ventures",
-    sector: "Sector", market: "Market", stage: "Stage", site: "Website", soon: "Coming soon",
+    sector: "Sector", market: "Market", stage: "Stage", site: "Website", soon: "Coming soon", colors: "Colours",
     cta: { demo: "Request a demo", waitlist: "Join the waitlist", notify: "Get notified at launch" },
     invest: "Invest",
     problem: "The problem", answer: "Our answer",
@@ -92,6 +92,18 @@ export default async function VenturePage({ params }: Params) {
             <dd className="m-0">
               {v.site ? <a className="link" href={`https://${v.site}`} target="_blank" rel="noopener">{v.site}</a> : c.soon}
             </dd>
+            <dt className="muted">{c.colors}</dt>
+            <dd className="m-0 flex flex-col gap-1.5">
+              <span className="flex flex-wrap gap-3">
+                {v.palette.map((p) => (
+                  <span key={p.hex} className="inline-flex items-center gap-1.5 small">
+                    <span className="h-4 w-4 rounded border border-[var(--line2)]" style={{ background: p.hex }} aria-hidden="true" />
+                    {p.name[lang]} <span className="mono muted">{p.hex}</span>
+                  </span>
+                ))}
+              </span>
+              {v.paletteNote && <span className="small muted">{v.paletteNote[lang]}</span>}
+            </dd>
           </dl>
           <div className="flex flex-wrap items-center gap-5">
             <Link href={`/societe?venture=${v.slug}#contact`} className="btn btn-p">{c.cta[v.cta]}</Link>
@@ -102,7 +114,7 @@ export default async function VenturePage({ params }: Params) {
 
       <section className="wrap pb-6">
         <div className="grow-in origin-top">
-          <Poster color={v.color} name={v.name} ratio="21/9" size="lg" />
+          <Poster color={v.color} name={v.name} image={ventureImage(v.slug)} ratio="21/9" size="lg" sizes="(min-width: 1240px) 1160px, 100vw" priority />
         </div>
       </section>
 
@@ -193,7 +205,7 @@ export default async function VenturePage({ params }: Params) {
             <span className="h1">{next.name}</span>
             <span className="body">{next.line[lang]}</span>
           </span>
-          <Poster color={next.color} name={next.name} />
+          <Poster color={next.color} name={next.name} image={ventureImage(next.slug)} sizes="360px" />
         </Link>
       </section>
     </>

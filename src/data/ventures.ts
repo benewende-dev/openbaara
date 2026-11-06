@@ -10,7 +10,12 @@ export type VentureCategory = "ia" | "crea" | "mob" | "mode" | "fin";
 export type Venture = {
   slug: string;
   name: string;
+  /** Couleur de marque, reprise du dépôt de la venture. */
   color: string;
+  /** Palette réelle de la venture (fond, texte, accent), pour l'afficher telle quelle. */
+  palette: { hex: string; name: T }[];
+  /** D'où vient la palette. */
+  paletteNote?: T;
   category: VentureCategory;
   site: string | null;
   stageIdx: number;
@@ -54,7 +59,12 @@ export const ventures: Venture[] = [
   {
     slug: "baarali",
     name: "Baarali",
-    color: "#5B47D6",
+    color: "#1A6DFF",
+    palette: [
+      { hex: "#1A6DFF", name: t("Bleu Baarali", "Baarali blue") },
+      { hex: "#FFFFFF", name: t("Blanc", "White") },
+      { hex: "#18181B", name: t("Anthracite", "Anthracite") },
+    ],
     category: "ia",
     site: "baarali.com",
     stageIdx: 2,
@@ -108,7 +118,13 @@ export const ventures: Venture[] = [
   {
     slug: "sahely",
     name: "Sahely",
-    color: "#C2352F",
+    color: "#141414",
+    palette: [
+      { hex: "#141414", name: t("Noir", "Black") },
+      { hex: "#FFFFFF", name: t("Blanc", "White") },
+      { hex: "#F8F7F5", name: t("Surface", "Surface") },
+    ],
+    paletteNote: t("Noir et blanc ; le rouge est réservé aux erreurs.", "Black and white; red is kept for errors."),
     category: "mob",
     site: null,
     stageIdx: 1,
@@ -162,7 +178,12 @@ export const ventures: Venture[] = [
   {
     slug: "jemabi",
     name: "Jemabi",
-    color: "#B3502F",
+    color: "#FFC800",
+    palette: [
+      { hex: "#FFC800", name: t("Jaune Sahel", "Sahel yellow") },
+      { hex: "#12100B", name: t("Encre", "Ink") },
+      { hex: "#FBFAF7", name: t("Craie", "Chalk") },
+    ],
     category: "mode",
     site: null,
     stageIdx: 0,
@@ -216,7 +237,12 @@ export const ventures: Venture[] = [
   {
     slug: "nafolia",
     name: "Nafolia",
-    color: "#2C55D9",
+    color: "#2F5BFF",
+    palette: [
+      { hex: "#2F5BFF", name: t("Bleu Nafolia", "Nafolia blue") },
+      { hex: "#0A0B0F", name: t("Nuit", "Night") },
+      { hex: "#7C9BFF", name: t("Bleu clair", "Light blue") },
+    ],
     category: "fin",
     site: null,
     stageIdx: 0,
@@ -270,7 +296,12 @@ export const ventures: Venture[] = [
   {
     slug: "outio",
     name: "Outio",
-    color: "#B23C6E",
+    color: "#0071E3",
+    palette: [
+      { hex: "#0071E3", name: t("Bleu Outio", "Outio blue") },
+      { hex: "#BF5AF2", name: t("Violet", "Violet") },
+      { hex: "#000000", name: t("Noir", "Black") },
+    ],
     category: "crea",
     site: null,
     stageIdx: 0,
@@ -324,7 +355,12 @@ export const ventures: Venture[] = [
   {
     slug: "colisgo",
     name: "ColisGo",
-    color: "#C86E1E",
+    color: "#141414",
+    palette: [
+      { hex: "#141414", name: t("Noir", "Black") },
+      { hex: "#FFFFFF", name: t("Blanc", "White") },
+    ],
+    paletteNote: t("Identité à venir ; ColisGo repose sur la base de Sahely.", "Identity to come; ColisGo is built on the Sahely foundation."),
     category: "mob",
     site: null,
     stageIdx: 0,
@@ -378,7 +414,13 @@ export const ventures: Venture[] = [
   {
     slug: "baarali-entreprise",
     name: "Baarali Entreprise",
-    color: "#344A63",
+    color: "#101012",
+    palette: [
+      { hex: "#0B0B0C", name: t("Noir", "Black") },
+      { hex: "#FFFFFF", name: t("Blanc", "White") },
+      { hex: "#F4F4F5", name: t("Gris clair", "Light grey") },
+    ],
+    paletteNote: t("Volontairement sans couleur : le contraste fait la marque.", "Deliberately colourless: contrast is the brand."),
     category: "ia",
     site: null,
     stageIdx: 1,
@@ -430,6 +472,9 @@ export const ventures: Venture[] = [
     ],
   },
 ];
+
+/** Illustration de la venture (générée, cf. scripts/generate-illustrations.mjs). */
+export const ventureImage = (slug: string) => `/images/illustrations/${slug}.jpg`;
 
 export function getVenture(slug: string): Venture | undefined {
   return ventures.find((v) => v.slug === slug);

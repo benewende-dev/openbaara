@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { PRINCIPLES, COMPANY, FOUNDER } from "@/data/studio";
 import { getVenture } from "@/data/ventures";
 import { langOf } from "@/components/site/lang";
@@ -102,6 +103,10 @@ export default async function CompanyPage({
       <section className="band">
         <div className="wrap g-split py-20 md:py-[104px]">
           <h2 className="h2">{c.team}</h2>
+          <div className={FOUNDER.photo ? "grid items-start gap-8 sm:grid-cols-[240px_1fr] md:gap-10" : ""}>
+          {FOUNDER.photo && (
+            <Image src={FOUNDER.photo} alt={FOUNDER.name} width={480} height={600} className="aspect-[4/5] w-full max-w-[280px] rounded-[10px] object-cover" />
+          )}
           <div className="flex flex-col gap-3.5">
             <span className="h3" style={{ fontSize: 26 }}>{FOUNDER.name}</span>
             <span className="muted">{FOUNDER.role[lang]}</span>
@@ -111,6 +116,7 @@ export default async function CompanyPage({
                 {FOUNDER.links.map((l) => <a key={l.href} className="link" href={l.href} target="_blank" rel="noopener">{l.label}</a>)}
               </span>
             )}
+          </div>
           </div>
         </div>
       </section>

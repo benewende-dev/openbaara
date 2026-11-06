@@ -17,6 +17,7 @@ const COPY = {
     legal: "Mentions légales",
     privacy: "Confidentialité",
     terms: "Conditions de vente",
+    illustrations: "Les scènes illustrant les ventures sont des images générées.",
   },
   en: {
     tagline: "Technology venture studio. Abidjan, Côte d'Ivoire.",
@@ -28,6 +29,7 @@ const COPY = {
     legal: "Legal notice",
     privacy: "Privacy",
     terms: "Terms of sale",
+    illustrations: "The scenes illustrating the ventures are generated images.",
   },
 };
 
@@ -98,7 +100,7 @@ export function Footer() {
         </div>
       </div>
       <div className="wrap flex flex-wrap justify-between gap-4 pb-8">
-        <span className="small muted">© {new Date().getFullYear()} OpenBaara</span>
+        <span className="small muted">© {new Date().getFullYear()} OpenBaara · {c.illustrations}</span>
         <span className="small flex flex-wrap gap-5">
           <Link className="link !text-[var(--muted)]" href="/mentions-legales">{c.legal}</Link>
           <Link className="link !text-[var(--muted)]" href="/confidentialite">{c.privacy}</Link>

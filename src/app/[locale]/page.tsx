@@ -1,5 +1,6 @@
 import { Link } from "@/i18n/routing";
-import { ventures } from "@/data/ventures";
+import Image from "next/image";
+import { ventures, ventureImage } from "@/data/ventures";
 import { BRICKS } from "@/data/studio";
 import { Poster } from "@/components/site/Poster";
 import { Arrow } from "@/components/site/Arrow";
@@ -31,6 +32,7 @@ const COPY = {
     investorSpace: "L'espace investisseurs",
     academy: "Des formations à l'IA appliquée et au produit, enseignées par l'équipe qui construit les ventures, à partir de cas réels.",
     services: "Sites, boutiques en ligne, applications et agents IA, construits pour vous par l'équipe du studio.",
+    studioAlt: "Le quartier du Plateau, à Abidjan, vu depuis la lagune Ébrié à la tombée de la nuit",
   },
   en: {
     title: "We build West Africa's technology companies.",
@@ -57,6 +59,7 @@ const COPY = {
     investorSpace: "The investor space",
     academy: "Training in applied AI and product, taught by the team that builds the ventures, based on real cases.",
     services: "Websites, online stores, apps and AI agents, built for you by the studio team.",
+    studioAlt: "The Plateau district of Abidjan seen from the Ébrié lagoon at dusk",
   },
 };
 
@@ -76,6 +79,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             <Link href="/ventures" className="btn btn-p">{c.seeVentures}</Link>
             <Link href="/investisseurs" className="link">{c.invest} <Arrow /></Link>
           </div>
+        </div>
+      </section>
+
+      <section className="wrap pb-20 md:pb-28">
+        <div className="grow-in relative overflow-hidden rounded-[10px]" style={{ aspectRatio: "21/9" }}>
+          <Image src="/images/illustrations/studio.jpg" alt={c.studioAlt} fill priority sizes="(min-width: 1240px) 1160px, 100vw" className="object-cover" />
         </div>
       </section>
 
@@ -100,7 +109,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <div className="g-feature">
           <article data-reveal className="flex flex-col gap-4 md:row-span-3">
             <Link href={`/ventures/${first.slug}`} className="no-underline" tabIndex={-1} aria-hidden="true">
-              <Poster color={first.color} name={first.name} ratio="4/3.4" size="lg" />
+              <Poster color={first.color} name={first.name} image={ventureImage(first.slug)} ratio="4/3.4" size="lg" />
             </Link>
             <div className="flex items-start justify-between gap-6">
               <div className="flex flex-col gap-1.5">
@@ -113,7 +122,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           {rest.map((v) => (
             <article key={v.slug} data-reveal className="g-row items-start border-b border-[var(--line)] pb-5">
               <Link href={`/ventures/${v.slug}`} className="no-underline" tabIndex={-1} aria-hidden="true">
-                <Poster color={v.color} name={v.name} ratio="4/3" size="sm" />
+                <Poster color={v.color} name={v.name} image={ventureImage(v.slug)} ratio="4/3" size="sm" sizes="200px" />
               </Link>
               <div className="flex flex-col gap-1.5 pt-0.5">
                 <Link href={`/ventures/${v.slug}`} className="h3 link self-start">{v.name}</Link>
@@ -158,14 +167,14 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
       <section className="wrap sec grid gap-10 md:grid-cols-2 md:gap-5">
         <Link href="/academy" data-reveal className="flex flex-col gap-4 no-underline">
-          <Poster color="#3A3A40" name="Academy" ratio="16/10" />
+          <Poster color="#3A3A40" name="Academy" image="/images/illustrations/academy.jpg" ratio="16/10" />
           <span className="flex flex-col gap-1.5">
             <span className="h3">Academy</span>
             <span className="body">{c.academy}</span>
           </span>
         </Link>
         <Link href="/services" data-reveal className="flex flex-col gap-4 no-underline">
-          <Poster color="#1D6B52" name="Services" ratio="16/10" />
+          <Poster color="#1D6B52" name="Services" image="/images/illustrations/services.jpg" ratio="16/10" />
           <span className="flex flex-col gap-1.5">
             <span className="h3">Services</span>
             <span className="body">{c.services}</span>

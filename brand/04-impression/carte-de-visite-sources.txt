@@ -1,0 +1,2 @@
+Les PDF sont prêts pour l'imprimeur : format 85 × 55 mm, 3 mm de fond perdu, textes en Geist incorporée, logo vectoriel.
+Pour changer les coordonnées (téléphone, autre personne), modifiez scripts/brand-kit.mts dans le projet du site puis relancez-le, ou retouchez le PDF dans un éditeur vectoriel.
