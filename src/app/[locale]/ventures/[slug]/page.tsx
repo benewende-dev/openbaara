@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Link } from "@/i18n/routing";
-import { ventures, getVenture, ventureImage, STAGES } from "@/data/ventures";
+import { ventures, getVenture, STAGES } from "@/data/ventures";
+import { VentureFilm } from "@/components/site/VentureFilm";
 import { Poster } from "@/components/site/Poster";
 import { Arrow } from "@/components/site/Arrow";
 import type { Lang } from "@/components/site/lang";
@@ -114,7 +115,7 @@ export default async function VenturePage({ params }: Params) {
 
       <section className="wrap pb-6">
         <div className="grow-in origin-top">
-          <Poster color={v.color} name={v.name} image={ventureImage(v.slug)} ratio="21/9" size="lg" sizes="(min-width: 1240px) 1160px, 100vw" priority />
+          <VentureFilm venture={v} lang={lang} />
         </div>
       </section>
 
@@ -205,7 +206,7 @@ export default async function VenturePage({ params }: Params) {
             <span className="h1">{next.name}</span>
             <span className="body">{next.line[lang]}</span>
           </span>
-          <Poster color={next.color} name={next.name} image={ventureImage(next.slug)} sizes="360px" />
+          <Poster color={next.color} name={next.name} />
         </Link>
       </section>
     </>

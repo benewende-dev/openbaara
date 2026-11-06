@@ -16,6 +16,8 @@ export type Venture = {
   palette: { hex: string; name: T }[];
   /** D'où vient la palette. */
   paletteNote?: T;
+  /** Film de présentation (3 minutes au plus), identifiant de la vidéo sur Bunny Stream. */
+  film: string | null;
   category: VentureCategory;
   site: string | null;
   stageIdx: number;
@@ -67,6 +69,7 @@ export const ventures: Venture[] = [
     ],
     category: "ia",
     site: "baarali.com",
+    film: null,
     stageIdx: 2,
     cta: "demo",
     sector: t("Intelligence artificielle", "Artificial intelligence"),
@@ -127,6 +130,7 @@ export const ventures: Venture[] = [
     paletteNote: t("Noir et blanc ; le rouge est réservé aux erreurs.", "Black and white; red is kept for errors."),
     category: "mob",
     site: null,
+    film: null,
     stageIdx: 1,
     cta: "waitlist",
     sector: t("Mobilité et commerce", "Mobility and commerce"),
@@ -186,6 +190,7 @@ export const ventures: Venture[] = [
     ],
     category: "mode",
     site: null,
+    film: null,
     stageIdx: 0,
     cta: "notify",
     sector: t("Mode et accessoires", "Fashion and accessories"),
@@ -245,6 +250,7 @@ export const ventures: Venture[] = [
     ],
     category: "fin",
     site: null,
+    film: null,
     stageIdx: 0,
     cta: "waitlist",
     sector: t("Finance", "Finance"),
@@ -304,6 +310,7 @@ export const ventures: Venture[] = [
     ],
     category: "crea",
     site: null,
+    film: null,
     stageIdx: 0,
     cta: "waitlist",
     sector: t("Création et IA", "Creation and AI"),
@@ -363,6 +370,7 @@ export const ventures: Venture[] = [
     paletteNote: t("Identité à venir ; ColisGo repose sur la base de Sahely.", "Identity to come; ColisGo is built on the Sahely foundation."),
     category: "mob",
     site: null,
+    film: null,
     stageIdx: 0,
     cta: "notify",
     sector: t("Logistique", "Logistics"),
@@ -423,6 +431,7 @@ export const ventures: Venture[] = [
     paletteNote: t("Volontairement sans couleur : le contraste fait la marque.", "Deliberately colourless: contrast is the brand."),
     category: "ia",
     site: null,
+    film: null,
     stageIdx: 1,
     cta: "demo",
     sector: t("Intelligence artificielle", "Artificial intelligence"),
@@ -472,9 +481,6 @@ export const ventures: Venture[] = [
     ],
   },
 ];
-
-/** Illustration de la venture (générée, cf. scripts/generate-illustrations.mjs). */
-export const ventureImage = (slug: string) => `/images/illustrations/${slug}.jpg`;
 
 export function getVenture(slug: string): Venture | undefined {
   return ventures.find((v) => v.slug === slug);

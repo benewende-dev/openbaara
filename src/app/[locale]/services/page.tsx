@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Link } from "@/i18n/routing";
 import { getPackages } from "@/lib/shop/catalogue";
-import { ventures, ventureImage } from "@/data/ventures";
+import { ventures } from "@/data/ventures";
 import { STEPS, FAQ } from "@/data/services";
 import { Poster } from "@/components/site/Poster";
 import { Arrow } from "@/components/site/Arrow";
@@ -104,7 +104,7 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
         <div className="grid gap-8 md:grid-cols-[1.4fr_1fr_1fr] md:gap-5">
           {proof.map((v) => (
             <Link key={v.slug} href={`/ventures/${v.slug}`} data-reveal className="flex flex-col gap-3 no-underline">
-              <Poster color={v.color} name={v.name} image={ventureImage(v.slug)} ratio="4/3" size="sm" sizes="(min-width: 900px) 33vw, 100vw" />
+              <Poster color={v.color} name={v.name} ratio="4/3" size="sm" />
               <span className="font-semibold">{c.kinds[v.slug]}</span>
               <span className="small muted">{c.stacks[v.slug]}</span>
             </Link>

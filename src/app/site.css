@@ -55,7 +55,7 @@ textarea.inp { height: auto; padding: 12px 14px; line-height: 1.55; resize: vert
 .error { color: var(--err); font-size: 14px; font-weight: 500; margin: 0; }
 
 /* Visuel de venture : dégradé de sa couleur et grain, en attendant les films. */
-.poster { position: relative; overflow: hidden; border-radius: 10px; background: #0E0E10; color: #fff; isolation: isolate; display: block; text-decoration: none; }
+.poster { position: relative; overflow: hidden; border-radius: 10px; background: #0E0E10; color: #fff; isolation: isolate; display: block; text-decoration: none; box-shadow: inset 0 0 0 1px var(--line2); }
 .poster .art { position: absolute; inset: 0; transition: transform 1.2s cubic-bezier(.16, 1, .3, 1); }
 a:hover > .poster .art, a.poster:hover .art { transform: scale(1.035); }
 .poster .grain { position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E"); mix-blend-mode: overlay; opacity: .35; pointer-events: none; }

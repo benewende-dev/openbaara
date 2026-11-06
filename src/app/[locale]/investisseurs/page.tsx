@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Link } from "@/i18n/routing";
-import { ventures } from "@/data/ventures";
+import Image from "next/image";
+import { ventures, getVenture } from "@/data/ventures";
+import { MARKETS } from "@/data/photos";
+import { PhotoCredit } from "@/components/site/PhotoCredit";
 import { WHY_NOW, VALUE, FOUNDER } from "@/data/studio";
 import { Arrow } from "@/components/site/Arrow";
 import { langOf } from "@/components/site/lang";
@@ -19,6 +22,8 @@ const COPY = {
     ventureP: "Une entrée ciblée au capital de l'entreprise de votre choix, au moment qui correspond à votre thèse. La venture reste adossée aux moyens du studio : équipe, technologie, méthode et réseau.",
     portfolio: "Portefeuille",
     cols: ["Venture", "Secteur", "Marché", "Stade", "Prochaine étape"],
+    markets: "Nos marchés",
+    marketsP: "Les villes où les ventures se lancent et se préparent, dans une zone qui partage une monnaie et des rails de paiement communs.",
     why: "Pourquoi maintenant",
     value: "Comment le studio crée de la valeur",
     documents: "Documents",
@@ -44,6 +49,8 @@ const COPY = {
     ventureP: "A targeted entry into the capital of the company of your choice, at the moment that fits your thesis. The venture remains backed by the studio's resources: team, technology, method and network.",
     portfolio: "Portfolio",
     cols: ["Venture", "Sector", "Market", "Stage", "Next milestone"],
+    markets: "Our markets",
+    marketsP: "The cities where the ventures are launching and preparing, in a zone that shares one currency and common payment rails.",
     why: "Why now",
     value: "How the studio creates value",
     documents: "Documents",
@@ -112,6 +119,28 @@ export default async function InvestorsPage({ params }: { params: Promise<{ loca
             ))}
           </tbody>
         </table>
+      </section>
+
+      <section className="wrap sec flex flex-col gap-8">
+        <div className="flex flex-col gap-3" data-reveal>
+          <h2 className="h2">{c.markets}</h2>
+          <p className="body">{c.marketsP}</p>
+        </div>
+        <ul className="m-0 grid list-none gap-x-5 gap-y-10 p-0 sm:grid-cols-2 lg:grid-cols-5">
+          {MARKETS.map((m) => (
+            <li key={m.city.fr} data-reveal className="flex flex-col gap-3">
+              <div className="relative overflow-hidden rounded-[10px] bg-[var(--bg2)]" style={{ aspectRatio: "4/3" }}>
+                <Image src={m.photo.src} alt={m.photo.alt[lang]} fill sizes="(min-width: 1024px) 230px, (min-width: 640px) 50vw, 100vw" className="object-cover" />
+              </div>
+              <div className="flex flex-col gap-0.5">
+                <span className="h3">{m.city[lang]}</span>
+                <span className="small muted">{m.country[lang]}</span>
+              </div>
+              <span className="small">{m.ventures.map((slug) => getVenture(slug)?.name).filter(Boolean).join(", ")}</span>
+              <PhotoCredit photo={m.photo} lang={lang} />
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section className="band">

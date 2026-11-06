@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Link } from "@/i18n/routing";
-import { ventures, ventureImage, CATEGORIES, type VentureCategory } from "@/data/ventures";
+import { ventures, CATEGORIES, type VentureCategory } from "@/data/ventures";
 import { Poster } from "@/components/site/Poster";
 import { Arrow } from "@/components/site/Arrow";
 import type { Lang } from "@/components/site/lang";
@@ -64,7 +64,7 @@ export function VenturesView({ lang }: { lang: Lang }) {
           {shown.map((v) => (
             <article key={v.slug} className="fade flex flex-col gap-[18px]">
               <Link href={`/ventures/${v.slug}`} className="no-underline" tabIndex={-1} aria-hidden="true">
-                <Poster color={v.color} name={v.name} image={ventureImage(v.slug)} />
+                <Poster color={v.color} name={v.name} />
               </Link>
               <div className="grid grid-cols-[1fr_auto] gap-x-6 gap-y-2">
                 <Link href={`/ventures/${v.slug}`} className="h3 link self-start" style={{ fontSize: 26 }}>{v.name}</Link>
@@ -85,7 +85,7 @@ export function VenturesView({ lang }: { lang: Lang }) {
               <tr key={v.slug}>
                 <td>
                   <span className="flex items-center gap-3.5">
-                    <span className="h-7 w-11 shrink-0 rounded bg-cover bg-center" style={{ backgroundImage: `url(${ventureImage(v.slug)})` }} aria-hidden="true" />
+                    <span className="h-7 w-11 shrink-0 rounded border border-[var(--line2)]" style={{ background: v.color }} aria-hidden="true" />
                     {v.name}
                   </span>
                 </td>
