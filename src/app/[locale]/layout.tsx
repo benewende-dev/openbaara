@@ -78,7 +78,7 @@ export default async function LocaleLayout({
               "@type": "Organization",
               "name": "OpenBaara",
               "url": "https://openbaara.com",
-              "logo": "https://openbaara.com/images/logo.png",
+              "logo": "https://openbaara.com/icon-512.png",
               "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "Abidjan",

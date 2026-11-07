@@ -1,4 +1,4 @@
-/** Visuel d'une venture : dégradé de sa couleur et grain. Tient la place des films à venir. */
+/** Visuel d'une venture ou d'une offre : sa couleur de marque et son nom, en attendant son film. */
 export function Poster({
   color,
   name,

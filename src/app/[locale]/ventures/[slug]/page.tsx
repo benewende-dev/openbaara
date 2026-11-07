@@ -2,39 +2,45 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Link } from "@/i18n/routing";
 import { ventures, getVenture, STAGES } from "@/data/ventures";
+import { VentureFilm } from "@/components/site/VentureFilm";
 import { Poster } from "@/components/site/Poster";
 import { Arrow } from "@/components/site/Arrow";
+import { ProgressBar } from "@/components/site/ProgressBar";
 import type { Lang } from "@/components/site/lang";
 
 const COPY = {
   fr: {
     crumb: "Fil d'Ariane",
     others: "Autres ventures",
-    sector: "Secteur", market: "Marché", stage: "Stade", site: "Site", soon: "Bientôt",
-    cta: { demo: "Demander une démo", waitlist: "Rejoindre la liste d'attente", notify: "Être prévenu du lancement" },
+    sector: "Secteur", market: "Marché", stage: "Stade", site: "Site", soon: "Bientôt", colors: "Couleurs",
+    cta: { site: "Essayer", demo: "Demander une démo", waitlist: "Rejoindre la liste d'attente", notify: "Être prévenu du lancement" },
     invest: "Investir",
     problem: "Le problème", answer: "Notre réponse",
     who: "Pour qui",
     does: (n: string) => `Ce que fait ${n}`,
     model: "Modèle économique", edge: "L'avantage du studio", vision: "L'ambition",
     where: (n: string) => `Où en est ${n}`,
-    whereP: "Les dates précises figurent dans le dossier investisseur.",
+    whereP: "Relu dans le dépôt de la venture. Les dates précises figurent dans le dossier investisseur.",
     done: "Fait", current: "En cours", todo: "À venir",
+    today: "Ce qui existe aujourd'hui", missing: "Ce qui manque encore", surfaces: (n: string) => `${n}, sur chaque écran`,
+    rule: "Chaque étape franchie compte pour 20 %. Dans l'étape en cours, la part réalisée vient du plan de la venture quand il est chiffré ; sinon, on compte la moitié de l'étape.",
     next: "Venture suivante",
   },
   en: {
     crumb: "Breadcrumb",
     others: "Other ventures",
-    sector: "Sector", market: "Market", stage: "Stage", site: "Website", soon: "Coming soon",
-    cta: { demo: "Request a demo", waitlist: "Join the waitlist", notify: "Get notified at launch" },
+    sector: "Sector", market: "Market", stage: "Stage", site: "Website", soon: "Coming soon", colors: "Colours",
+    cta: { site: "Try it", demo: "Request a demo", waitlist: "Join the waitlist", notify: "Get notified at launch" },
     invest: "Invest",
     problem: "The problem", answer: "Our answer",
     who: "Who it's for",
     does: (n: string) => `What ${n} does`,
     model: "Business model", edge: "The studio advantage", vision: "The ambition",
     where: (n: string) => `Where ${n} stands`,
-    whereP: "Precise dates are in the investor pack.",
+    whereP: "Read from the venture's repository. Precise dates are in the investor pack.",
     done: "Done", current: "In progress", todo: "Upcoming",
+    today: "What exists today", missing: "What is still missing", surfaces: (n: string) => `${n}, on every screen`,
+    rule: "Each completed stage counts for 20%. Within the current stage, the share done comes from the venture's plan when it is measured; otherwise half the stage is counted.",
     next: "Next venture",
   },
 };
@@ -92,9 +98,27 @@ export default async function VenturePage({ params }: Params) {
             <dd className="m-0">
               {v.site ? <a className="link" href={`https://${v.site}`} target="_blank" rel="noopener">{v.site}</a> : c.soon}
             </dd>
+            <dt className="muted">{c.colors}</dt>
+            <dd className="m-0 flex flex-col gap-1.5">
+              <span className="flex flex-wrap gap-3">
+                {v.palette.map((p) => (
+                  <span key={p.hex} className="inline-flex items-center gap-1.5 small">
+                    <span className="h-4 w-4 rounded border border-[var(--line2)]" style={{ background: p.hex }} aria-hidden="true" />
+                    {p.name[lang]} <span className="mono muted">{p.hex}</span>
+                  </span>
+                ))}
+              </span>
+              {v.paletteNote && <span className="small muted">{v.paletteNote[lang]}</span>}
+            </dd>
           </dl>
+          <ProgressBar venture={v} lang={lang} />
+          {v.paused && <p className="small m-0 rounded-md border border-[var(--line2)] px-3 py-2">{v.paused[lang]}</p>}
           <div className="flex flex-wrap items-center gap-5">
-            <Link href={`/societe?venture=${v.slug}#contact`} className="btn btn-p">{c.cta[v.cta]}</Link>
+            {v.cta === "site" && v.site ? (
+              <a href={`https://${v.site}`} target="_blank" rel="noopener" className="btn btn-p">{c.cta.site} {v.name}</a>
+            ) : (
+              <Link href={`/societe?venture=${v.slug}#contact`} className="btn btn-p">{c.cta[v.cta]}</Link>
+            )}
             <Link href="/investisseurs" className="link">{c.invest} <Arrow /></Link>
           </div>
         </div>
@@ -102,7 +126,7 @@ export default async function VenturePage({ params }: Params) {
 
       <section className="wrap pb-6">
         <div className="grow-in origin-top">
-          <Poster color={v.color} name={v.name} ratio="21/9" size="lg" />
+          <VentureFilm venture={v} lang={lang} />
         </div>
       </section>
 
@@ -141,6 +165,20 @@ export default async function VenturePage({ params }: Params) {
         </div>
       </section>
 
+      {v.surfaces && (
+        <section className="wrap sec g-split">
+          <h2 className="h2" data-reveal>{c.surfaces(v.name)}</h2>
+          <div className="g-dl gap-10">
+            {v.surfaces.map((x) => (
+              <div key={x.t.fr} data-reveal className="topline">
+                <span className="h3">{x.t[lang]}</span>
+                <p className="body">{x.d[lang]}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
       <section className="wrap sec">
         <div className="g-two-cells grid border-t border-[var(--line)]">
           <div data-reveal className="flex flex-col gap-3">
@@ -167,6 +205,8 @@ export default async function VenturePage({ params }: Params) {
             <h2 className="h2">{c.where(v.name)}</h2>
             <p className="body small">{c.whereP}</p>
           </div>
+          <div className="flex flex-col gap-10">
+          <ProgressBar venture={v} lang={lang} detailed />
           <ol className="g-5 m-0 list-none p-0">
             {STAGES.map((s, k) => {
               const state = k < v.stageIdx ? c.done : k === v.stageIdx ? c.current : c.todo;
@@ -183,6 +223,22 @@ export default async function VenturePage({ params }: Params) {
               );
             })}
           </ol>
+          <div className="g-2 gap-10">
+            <div className="flex flex-col gap-3">
+              <h3 className="label m-0">{c.today}</h3>
+              <ul className="m-0 flex list-none flex-col gap-2 p-0">
+                {v.today.map((x) => <li key={x.fr} className="body small grid grid-cols-[16px_1fr] gap-2"><span aria-hidden="true">✓</span>{x[lang]}</li>)}
+              </ul>
+            </div>
+            <div className="flex flex-col gap-3">
+              <h3 className="label m-0">{c.missing}</h3>
+              <ul className="m-0 flex list-none flex-col gap-2 p-0">
+                {v.missing.map((x) => <li key={x.fr} className="body small grid grid-cols-[16px_1fr] gap-2"><span aria-hidden="true" className="muted">○</span>{x[lang]}</li>)}
+              </ul>
+            </div>
+          </div>
+          <p className="small muted m-0">{c.rule}</p>
+          </div>
         </div>
       </section>
 

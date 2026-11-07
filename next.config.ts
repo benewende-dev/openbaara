@@ -19,6 +19,7 @@ const nextConfig: NextConfig = {
       ["/contact", "/societe#contact"],
       ["/solutions", "/services"],
       ["/baarali-labs", "/ventures/baarali-entreprise"],
+      ["/ventures/outio", "/ventures/jelia"],
     ];
     return moved.flatMap(([from, to]) => [
       { source: `/:locale(fr|en)${from}`, destination: `/:locale${to}`, permanent: true },

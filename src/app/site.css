@@ -55,7 +55,7 @@ textarea.inp { height: auto; padding: 12px 14px; line-height: 1.55; resize: vert
 .error { color: var(--err); font-size: 14px; font-weight: 500; margin: 0; }
 
 /* Visuel de venture : dégradé de sa couleur et grain, en attendant les films. */
-.poster { position: relative; overflow: hidden; border-radius: 10px; background: #0E0E10; color: #fff; isolation: isolate; display: block; text-decoration: none; }
+.poster { position: relative; overflow: hidden; border-radius: 10px; background: #0E0E10; color: #fff; isolation: isolate; display: block; text-decoration: none; box-shadow: inset 0 0 0 1px var(--line2); }
 .poster .art { position: absolute; inset: 0; transition: transform 1.2s cubic-bezier(.16, 1, .3, 1); }
 a:hover > .poster .art, a.poster:hover .art { transform: scale(1.035); }
 .poster .grain { position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E"); mix-blend-mode: overlay; opacity: .35; pointer-events: none; }
@@ -120,5 +120,24 @@ a:hover > .poster .art, a.poster:hover .art { transform: scale(1.035); }
   [data-reveal], .grow-in, .fade { animation: none !important; }
   .poster .art, .link .arr { transition: none !important; }
 }
+
+
+/* Texte des articles du Journal (Markdown) : colonne de lecture confortable. */
+.prose { max-width: 68ch; font-size: 18px; line-height: 1.7; color: var(--fg2); }
+.prose > * + * { margin-top: 1.1em; }
+.prose h2 { color: var(--fg); font-weight: 600; font-size: 26px; line-height: 1.25; letter-spacing: -0.02em; margin-top: 2em; }
+.prose h3 { color: var(--fg); font-weight: 600; font-size: 20px; line-height: 1.3; margin-top: 1.6em; }
+.prose p, .prose ul, .prose ol, .prose blockquote, .prose table, .prose pre { margin-bottom: 0; }
+.prose ul, .prose ol { padding-left: 1.3em; }
+.prose ul { list-style: disc; } .prose ol { list-style: decimal; }
+.prose li + li { margin-top: .35em; }
+.prose strong { color: var(--fg); font-weight: 600; }
+.prose blockquote { border-left: 2px solid var(--fg); padding-left: 1em; color: var(--fg); font-size: 20px; }
+.prose code { font-family: var(--font-mono); font-size: .88em; background: var(--bg2); padding: .1em .35em; border-radius: 4px; }
+.prose pre { background: var(--bg2); padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { border-top: 1px solid var(--line); padding: 8px 10px 8px 0; text-align: left; vertical-align: top; }
+.prose th { color: var(--fg); font-weight: 600; }
+.prose a { text-decoration: underline; text-underline-offset: 3px; background: none; }
 
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { PRINCIPLES, COMPANY, FOUNDER } from "@/data/studio";
 import { getVenture } from "@/data/ventures";
 import { langOf } from "@/components/site/lang";
@@ -16,9 +17,17 @@ const COPY = {
       "L'intelligence artificielle change aussi l'équation. Elle permet à une équipe resserrée de concevoir des produits qui demandaient hier des dizaines d'ingénieurs, et elle peut enfin parler les langues de nos clients. Nous voulons qu'elle serve d'abord ceux qui en ont été les derniers servis.",
       "Notre ambition est claire : bâtir depuis Abidjan un ensemble d'entreprises qui deviennent des références dans leur marché, créent des emplois qualifiés dans la région et prouvent que les grands produits technologiques du continent peuvent naître ici.",
     ],
+    terms: "Venture, start-up, studio",
+    termsList: [
+      ["Une start-up", "Une jeune entreprise, souvent née d'une seule idée, qui cherche un modèle capable de grandir vite. Elle construit seule ses fondations : équipe, technologie, paiements, financement."],
+      ["Une venture", "Une start-up fondée et construite par un studio. Elle naît d'un problème choisi par le studio, démarre sur ses fondations communes et devient, quand elle a fait ses preuves, une entreprise à part entière, avec son équipe et ses propres associés."],
+      ["Un studio de ventures", "La maison qui fonde ces entreprises les unes après les autres. Il apporte l'équipe de départ, la technologie partagée, la méthode et le premier financement, puis reste associé de chaque venture."],
+    ],
+    termsP: "Chez OpenBaara, chaque projet est donc une venture : Baarali, Sahely, Jemabi, Nafolia, Jelia, ColisGo et Baarali Entreprise. Le studio en est l'actionnaire fondateur ; chacune pourra accueillir ses propres investisseurs, et un investisseur du studio est exposé à toutes.",
     method: "Comment nous travaillons",
     team: "Équipe",
     legal: "Informations légales",
+    pending: " (en cours d'immatriculation)",
     legalRows: { name: "Raison sociale", address: "Siège", rccm: "RCCM", capital: "Capital", president: "Président", site: "Site" },
     contact: "Nous contacter",
     contactP: "Réponse sous deux jours ouvrés.",
@@ -36,9 +45,17 @@ const COPY = {
       "Artificial intelligence changes the equation too. It lets a tight team design products that used to take dozens of engineers, and it can finally speak our customers' languages. We want it to serve first those who have been served last.",
       "Our ambition is clear: to build from Abidjan a group of companies that become references in their market, create skilled jobs in the region and prove that the continent's great technology products can be born here.",
     ],
+    terms: "Venture, start-up, studio",
+    termsList: [
+      ["A start-up", "A young company, often born from a single idea, looking for a model that can grow fast. It builds its foundations on its own: team, technology, payments, funding."],
+      ["A venture", "A start-up founded and built by a studio. It starts from a problem chosen by the studio, launches on its shared foundations and, once it has proven itself, becomes a company in its own right, with its own team and partners."],
+      ["A venture studio", "The house that founds these companies one after another. It provides the founding team, the shared technology, the method and the first funding, then remains a shareholder in each venture."],
+    ],
+    termsP: "At OpenBaara, each project is therefore a venture: Baarali, Sahely, Jemabi, Nafolia, Jelia, ColisGo and Baarali Enterprise. The studio is their founding shareholder; each can bring in its own investors, and an investor in the studio is exposed to all of them.",
     method: "How we work",
     team: "Team",
     legal: "Legal information",
+    pending: " (registration in progress)",
     legalRows: { name: "Company name", address: "Registered office", rccm: "Trade register", capital: "Share capital", president: "Chairman", site: "Website" },
     contact: "Contact us",
     contactP: "We reply within two working days.",
@@ -64,7 +81,7 @@ export default async function CompanyPage({
   const venture = getVenture((await searchParams).venture ?? "");
   const r = c.legalRows;
   const legal = [
-    [r.name, COMPANY.legalForm ? `${COMPANY.name} ${COMPANY.legalForm}` : COMPANY.name],
+    [r.name, `${COMPANY.legalForm ? `${COMPANY.name} ${COMPANY.legalForm}` : COMPANY.name}${COMPANY.registered ? "" : c.pending}`],
     [r.address, COMPANY.address ? `${COMPANY.address}, ${COMPANY.city}` : COMPANY.city],
     [r.rccm, COMPANY.rccm],
     [r.capital, COMPANY.capitalXof ? `${new Intl.NumberFormat("fr-FR").format(COMPANY.capitalXof)} F CFA` : null],
@@ -87,6 +104,21 @@ export default async function CompanyPage({
         </div>
       </section>
 
+      <section id="venture" className="wrap sec g-split scroll-mt-24">
+        <h2 className="h2" data-reveal>{c.terms}</h2>
+        <div className="flex flex-col gap-10">
+          <dl className="g-3 m-0">
+            {c.termsList.map(([k, d]) => (
+              <div key={k} data-reveal className="topline">
+                <dt className="h3">{k}</dt>
+                <dd className="body small m-0">{d}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="lead !text-[var(--fg)]" data-reveal>{c.termsP}</p>
+        </div>
+      </section>
+
       <section id="methode" className="wrap sec g-split scroll-mt-24">
         <h2 className="h2" data-reveal>{c.method}</h2>
         <dl className="g-dl gap-10">
@@ -102,6 +134,10 @@ export default async function CompanyPage({
       <section className="band">
         <div className="wrap g-split py-20 md:py-[104px]">
           <h2 className="h2">{c.team}</h2>
+          <div className={FOUNDER.photo ? "grid items-start gap-8 sm:grid-cols-[240px_1fr] md:gap-10" : ""}>
+          {FOUNDER.photo && (
+            <Image src={FOUNDER.photo} alt={FOUNDER.name} width={480} height={600} className="aspect-[4/5] w-full max-w-[280px] rounded-[10px] object-cover" />
+          )}
           <div className="flex flex-col gap-3.5">
             <span className="h3" style={{ fontSize: 26 }}>{FOUNDER.name}</span>
             <span className="muted">{FOUNDER.role[lang]}</span>
@@ -111,6 +147,7 @@ export default async function CompanyPage({
                 {FOUNDER.links.map((l) => <a key={l.href} className="link" href={l.href} target="_blank" rel="noopener">{l.label}</a>)}
               </span>
             )}
+          </div>
           </div>
         </div>
       </section>
