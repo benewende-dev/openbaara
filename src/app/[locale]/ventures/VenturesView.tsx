@@ -5,12 +5,13 @@ import { Link } from "@/i18n/routing";
 import { ventures, CATEGORIES, type VentureCategory } from "@/data/ventures";
 import { Poster } from "@/components/site/Poster";
 import { Arrow } from "@/components/site/Arrow";
+import { ProgressBar } from "@/components/site/ProgressBar";
 import type { Lang } from "@/components/site/lang";
 
 const COPY = {
   fr: {
     sector: "Secteur", all: "Toutes", display: "Affichage", grid: "Grille", list: "Liste",
-    cols: ["Venture", "Secteur", "Marché", "Stade", ""], see: "Voir",
+    cols: ["Venture", "Secteur", "Marché", "Stade", "Avancement", ""], see: "Voir",
     emptyTitle: "Aucune venture dans ce secteur pour l'instant.", emptyReset: "Voir toutes les ventures",
     moreTitle: "D'autres ventures sont en préparation.",
     moreP: "Recevez par e-mail l'annonce des prochains lancements, avant leur ouverture au public.",
@@ -19,7 +20,7 @@ const COPY = {
   },
   en: {
     sector: "Sector", all: "All", display: "Display", grid: "Grid", list: "List",
-    cols: ["Venture", "Sector", "Market", "Stage", ""], see: "View",
+    cols: ["Venture", "Sector", "Market", "Stage", "Progress", ""], see: "View",
     emptyTitle: "No venture in this sector yet.", emptyReset: "See all ventures",
     moreTitle: "More ventures are on the way.",
     moreP: "Get our next launches announced by email, before they open to the public.",
@@ -71,6 +72,7 @@ export function VenturesView({ lang }: { lang: Lang }) {
                 <span className="small muted pt-1.5">{v.stage[lang]}</span>
                 <p className="body col-span-2">{v.line[lang]}</p>
                 <span className="small muted col-span-2">{v.sector[lang]} · {v.market[lang]}</span>
+                <div className="col-span-2 pt-1"><ProgressBar venture={v} lang={lang} /></div>
               </div>
             </article>
           ))}
@@ -92,6 +94,7 @@ export function VenturesView({ lang }: { lang: Lang }) {
                 <td>{v.sector[lang]}</td>
                 <td>{v.market[lang]}</td>
                 <td className="!text-[var(--fg)]">{v.stage[lang]}</td>
+                <td className="min-w-[160px]"><ProgressBar venture={v} lang={lang} /></td>
                 <td className="text-right"><Link href={`/ventures/${v.slug}`} className="link">{c.see} <Arrow /></Link></td>
               </tr>
             ))}

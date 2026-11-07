@@ -13,6 +13,7 @@
     "db:deploy": "prisma migrate deploy",
     "db:seed": "prisma db seed",
     "admin:create": "tsx scripts/create-admin.ts",
+    "db:seed-articles": "tsx scripts/seed-articles.ts",
     "brand:kit": "tsx scripts/generate-icons.ts && tsx scripts/brand-kit.mts"
   },
   "dependencies": {
@@ -36,6 +37,8 @@
     "qrcode": "^1.5.4",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1",
     "server-only": "^0.0.1",
     "zod": "^4.6.7"
   },

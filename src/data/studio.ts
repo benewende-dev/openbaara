@@ -46,7 +46,9 @@ export const VALUE: Item[] = [
  */
 export const COMPANY = {
   name: "OpenBaara",
-  legalForm: null as string | null,
+  legalForm: "SASU" as string | null,
+  /** Tant que l'immatriculation n'est pas faite, le site l'indique à côté de la raison sociale. */
+  registered: false,
   address: null as string | null,
   city: "Abidjan, Côte d'Ivoire",
   rccm: null as string | null,
@@ -65,3 +67,12 @@ export const FOUNDER = {
   photo: null as string | null,
   links: [] as { label: string; href: string }[],
 };
+
+/** Villes où les ventures opèrent ou se préparent, avec les ventures concernées. */
+export const MARKETS: { city: T; country: T; ventures: string[] }[] = [
+  { city: { fr: "Abidjan", en: "Abidjan" }, country: { fr: "Côte d'Ivoire", en: "Côte d'Ivoire" }, ventures: ["baarali", "colisgo", "jemabi", "baarali-entreprise"] },
+  { city: { fr: "Ouagadougou", en: "Ouagadougou" }, country: { fr: "Burkina Faso", en: "Burkina Faso" }, ventures: ["sahely"] },
+  { city: { fr: "Bamako", en: "Bamako" }, country: { fr: "Mali", en: "Mali" }, ventures: ["sahely"] },
+  { city: { fr: "Niamey", en: "Niamey" }, country: { fr: "Niger", en: "Niger" }, ventures: ["sahely"] },
+  { city: { fr: "Lomé", en: "Lomé" }, country: { fr: "Togo", en: "Togo" }, ventures: ["baarali", "nafolia"] },
+];

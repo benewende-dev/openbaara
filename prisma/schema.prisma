@@ -306,6 +306,37 @@ model CustomerSession {
   @@map("customer_sessions")
 }
 
+// ─── Journal (blog) ─────────────────────────────────────
+// Rédigé et publié depuis la console. Un article n'est visible qu'une fois publié ;
+// la version anglaise est facultative.
+
+enum ArticleStatus {
+  draft
+  published
+}
+
+model Article {
+  id          String        @id @default(cuid())
+  slug        String        @unique
+  status      ArticleStatus @default(draft)
+  category    String // studio | ventures | methode | ia | paiements | guides
+  ventureSlug String? // venture concernée, le cas échéant
+  titleFr     String
+  titleEn     String?
+  excerptFr   String // l'essentiel en deux ou trois phrases : la réponse d'abord
+  excerptEn   String?
+  bodyFr      String // Markdown
+  bodyEn      String?
+  faq         Json          @default("[]") // [{ q: { fr, en }, a: { fr, en } }]
+  authorName  String        @default("Yannick Benewende Rapadamnaba")
+  publishedAt DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@index([status, publishedAt])
+  @@map("articles")
+}
+
 // ─── Devis (page Services) ─────────────────────────────
 
 enum QuoteStatus {

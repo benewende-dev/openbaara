@@ -10,6 +10,7 @@ import { Menu, X, ShoppingBag } from "lucide-react";
 const LINKS = [
   { href: "/ventures", fr: "Ventures", en: "Ventures" },
   { href: "/societe", fr: "Société", en: "Company" },
+  { href: "/journal", fr: "Journal", en: "Journal" },
   { href: "/services", fr: "Services", en: "Services" },
   { href: "/academy", fr: "Academy", en: "Academy" },
   { href: "/investisseurs", fr: "Investisseurs", en: "Investors" },

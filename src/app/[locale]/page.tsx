@@ -1,8 +1,5 @@
 import { Link } from "@/i18n/routing";
-import Image from "next/image";
 import { ventures } from "@/data/ventures";
-import { PHOTOS } from "@/data/photos";
-import { PhotoCredit } from "@/components/site/PhotoCredit";
 import { BRICKS } from "@/data/studio";
 import { Poster } from "@/components/site/Poster";
 import { Arrow } from "@/components/site/Arrow";
@@ -22,7 +19,7 @@ const COPY = {
     ],
     vision: "Notre vision",
     portfolio: "Portefeuille",
-    portfolioP: (n: number, sectors: string) => `${n} ventures en construction, dans ${sectors}. Le portefeuille s'agrandit à chaque problème que nous choisissons de résoudre.`,
+    portfolioP: (n: number, sectors: string) => `${n} ventures, de la conception à la bêta publique, dans ${sectors}. Le portefeuille s'agrandit à chaque problème que nous choisissons de résoudre.`,
     sectors: "l'IA, la finance, la mobilité, la logistique, la mode et la création",
     all: (n: number) => `Les ${n} ventures`,
     bricksTitle: "Un studio, des briques partagées.",
@@ -34,7 +31,6 @@ const COPY = {
     investorSpace: "L'espace investisseurs",
     academy: "Des formations à l'IA appliquée et au produit, enseignées par l'équipe qui construit les ventures, à partir de cas réels.",
     services: "Sites, boutiques en ligne, applications et agents IA, construits pour vous par l'équipe du studio.",
-    studioCaption: "Abidjan, où le studio est installé.",
   },
   en: {
     title: "We build West Africa's technology companies.",
@@ -49,7 +45,7 @@ const COPY = {
     ],
     vision: "Our vision",
     portfolio: "Portfolio",
-    portfolioP: (n: number, sectors: string) => `${n} ventures in the making, in ${sectors}. The portfolio grows with every problem we choose to solve.`,
+    portfolioP: (n: number, sectors: string) => `${n} ventures, from design to public beta, in ${sectors}. The portfolio grows with every problem we choose to solve.`,
     sectors: "AI, finance, mobility, logistics, fashion and creation",
     all: (n: number) => `All ${n} ventures`,
     bricksTitle: "One studio, shared building blocks.",
@@ -61,7 +57,6 @@ const COPY = {
     investorSpace: "The investor space",
     academy: "Training in applied AI and product, taught by the team that builds the ventures, based on real cases.",
     services: "Websites, online stores, apps and AI agents, built for you by the studio team.",
-    studioCaption: "Abidjan, home of the studio.",
   },
 };
 
@@ -82,18 +77,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             <Link href="/investisseurs" className="link">{c.invest} <Arrow /></Link>
           </div>
         </div>
-      </section>
-
-      <section className="wrap pb-20 md:pb-28">
-        <figure className="m-0 flex flex-col gap-3">
-          <div className="grow-in relative overflow-hidden rounded-[10px]" style={{ aspectRatio: "21/9" }}>
-            <Image src={PHOTOS.abidjan.src} alt={PHOTOS.abidjan.alt[lang]} fill priority sizes="(min-width: 1240px) 1160px, 100vw" className="object-cover" />
-          </div>
-          <figcaption className="flex flex-wrap justify-between gap-2">
-            <span className="small muted">{c.studioCaption}</span>
-            <PhotoCredit photo={PHOTOS.abidjan} lang={lang} />
-          </figcaption>
-        </figure>
       </section>
 
       <section className="wrap sec g-2 items-start">

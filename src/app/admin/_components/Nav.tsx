@@ -9,6 +9,7 @@ const ITEMS: [href: string, label: string][] = [
   ["/admin/devis", "Demandes de devis"],
   ["/admin/catalogue", "Forfaits et produits"],
   ["/admin/cours", "Cours de l'Academy"],
+  ["/admin/articles", "Articles du Journal"],
   ["/admin/promos", "Codes promo"],
   ["/admin/journal", "Journal d'audit"],
   ["/admin/equipe", "Équipe et accès"],

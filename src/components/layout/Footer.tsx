@@ -35,6 +35,7 @@ const STUDIO = [
   { href: "/ventures", fr: "Ventures", en: "Ventures" },
   { href: "/societe", fr: "Société", en: "Company" },
   { href: "/investisseurs", fr: "Investisseurs", en: "Investors" },
+  { href: "/journal", fr: "Journal", en: "Journal" },
   { href: "/carrieres", fr: "Carrières", en: "Careers" },
 ] as const;
 
